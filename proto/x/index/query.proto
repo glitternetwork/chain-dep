@@ -1,0 +1,107 @@
+syntax = "proto3";
+package x.index;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "x/index/params.proto";
+import "x/index/index.proto";
+import "common/sql_engine.proto";
+// this line is used by starport scaffolding # 1
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/x/index/types";
+
+// Query defines the gRPC querier service.
+service Query {
+
+
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/params";
+  }
+
+  // SQLQuery do queries
+  rpc SQLQuery(SQLQueryRequest) returns (SQLQueryResponse) {
+    option (google.api.http) = {
+      post: "/blockved/glitterchain/index/sql/query",
+      body: "*"
+    };
+  }
+
+  // SimpleSQLQuery do queries
+  rpc SimpleSQLQuery(SQLQueryRequest) returns (SimpleSQLQueryResponse) {
+    option (google.api.http) = {
+      post: "/blockved/glitterchain/index/sql/simple_query",
+      body: "*"
+    };
+  }
+
+  // Parameters queries the parameters of the module.
+  rpc SQLListTables(SQLListTablesRequest) returns (SQLListTablesResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/sql/list_tables";
+  }
+
+  rpc SQLListDatabases(SQLListDatabasesRequest) returns (SQLListDatabasesResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/sql/list_databases";
+  }
+
+  rpc ShowCreateTable(ShowCreateTableRequest) returns (ShowCreateTableResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/sql/show_create_table";
+  }
+  // this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message SQLQueryRequest{
+  string sql = 1;
+  repeated common.Argument arguments = 2;
+}
+
+message SQLQueryResponse{
+  repeated common.ResultSet results = 1;
+  float took_times = 2;
+}
+message SimpleSQLQueryResponse{
+  message ResultSet{
+    map<string, RowValue> row = 1;
+  }
+  message RowValue{
+    string value = 1;
+    common.ColumnValueType column_value_type = 2;
+  }
+  repeated ResultSet result = 1;
+}
+
+message SQLListTablesRequest{
+  string keyword = 1;
+  string uid = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+  string database = 5;
+}
+
+message SQLListTablesResponse{
+  repeated common.TableInfo tables = 1;
+}
+
+message SQLListDatabasesRequest{
+}
+
+message SQLListDatabasesResponse{
+  repeated common.DatabaseInfo databases = 1;
+}
+
+message ShowCreateTableRequest{
+  string database_name = 1;
+  string table_name = 2;
+}
+message ShowCreateTableResponse{
+  string schema = 1;
+}

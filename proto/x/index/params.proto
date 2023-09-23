@@ -1,0 +1,12 @@
+syntax = "proto3";
+package x.index;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/x/index/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

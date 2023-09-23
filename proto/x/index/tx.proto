@@ -1,0 +1,36 @@
+syntax = "proto3";
+package x.index;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/x/index/types";
+import "gogoproto/gogo.proto";
+import "common/sql_engine.proto";
+
+service Msg {
+    rpc SQLExec(SQLExecRequest) returns (SQLExecResponse);
+
+    rpc SQLGrant(SQLGrantRequest) returns (SQLGrantResponse);
+}
+
+message SQLExecRequest{
+  string uid = 1;
+  string sql = 2;
+  repeated common.Argument arguments = 3;
+}
+
+message SQLExecResponse{
+    repeated common.ResultSet results = 1;
+    float took_times = 2;
+}
+
+message SQLGrantRequest{
+  string uid = 1;
+  string onTable = 2;
+  string toUID = 3;
+  string role = 4;
+  string onDatabase = 5;
+}
+
+message SQLGrantResponse{
+}
