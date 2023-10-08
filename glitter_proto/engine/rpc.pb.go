@@ -31,6 +31,174 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+type SQLSyncRequest struct {
+	Sql        string             `protobuf:"bytes,1,opt,name=sql,proto3" json:"sql,omitempty"`
+	Uid        string             `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
+	OnTable    string             `protobuf:"bytes,3,opt,name=onTable,proto3" json:"onTable,omitempty"`
+	ToUID      string             `protobuf:"bytes,4,opt,name=toUID,proto3" json:"toUID,omitempty"`
+	Role       string             `protobuf:"bytes,5,opt,name=role,proto3" json:"role,omitempty"`
+	OnDatabase string             `protobuf:"bytes,6,opt,name=onDatabase,proto3" json:"onDatabase,omitempty"`
+	TxIndex    string             `protobuf:"bytes,7,opt,name=txIndex,proto3" json:"txIndex,omitempty"`
+	TxID       string             `protobuf:"bytes,8,opt,name=txID,proto3" json:"txID,omitempty"`
+	TxType     string             `protobuf:"bytes,9,opt,name=txType,proto3" json:"txType,omitempty"`
+	Arguments  []*common.Argument `protobuf:"bytes,10,rep,name=arguments,proto3" json:"arguments,omitempty"`
+}
+
+func (m *SQLSyncRequest) Reset()         { *m = SQLSyncRequest{} }
+func (m *SQLSyncRequest) String() string { return proto.CompactTextString(m) }
+func (*SQLSyncRequest) ProtoMessage()    {}
+func (*SQLSyncRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_44d40c67387e7e59, []int{0}
+}
+func (m *SQLSyncRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SQLSyncRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SQLSyncRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SQLSyncRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SQLSyncRequest.Merge(m, src)
+}
+func (m *SQLSyncRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *SQLSyncRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SQLSyncRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SQLSyncRequest proto.InternalMessageInfo
+
+func (m *SQLSyncRequest) GetSql() string {
+	if m != nil {
+		return m.Sql
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetUid() string {
+	if m != nil {
+		return m.Uid
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetOnTable() string {
+	if m != nil {
+		return m.OnTable
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetToUID() string {
+	if m != nil {
+		return m.ToUID
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetRole() string {
+	if m != nil {
+		return m.Role
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetOnDatabase() string {
+	if m != nil {
+		return m.OnDatabase
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetTxIndex() string {
+	if m != nil {
+		return m.TxIndex
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetTxID() string {
+	if m != nil {
+		return m.TxID
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetTxType() string {
+	if m != nil {
+		return m.TxType
+	}
+	return ""
+}
+
+func (m *SQLSyncRequest) GetArguments() []*common.Argument {
+	if m != nil {
+		return m.Arguments
+	}
+	return nil
+}
+
+type SQLSyncResponse struct {
+	Code uint32 `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg  string `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+}
+
+func (m *SQLSyncResponse) Reset()         { *m = SQLSyncResponse{} }
+func (m *SQLSyncResponse) String() string { return proto.CompactTextString(m) }
+func (*SQLSyncResponse) ProtoMessage()    {}
+func (*SQLSyncResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_44d40c67387e7e59, []int{1}
+}
+func (m *SQLSyncResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SQLSyncResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SQLSyncResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SQLSyncResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SQLSyncResponse.Merge(m, src)
+}
+func (m *SQLSyncResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *SQLSyncResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SQLSyncResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SQLSyncResponse proto.InternalMessageInfo
+
+func (m *SQLSyncResponse) GetCode() uint32 {
+	if m != nil {
+		return m.Code
+	}
+	return 0
+}
+
+func (m *SQLSyncResponse) GetMsg() string {
+	if m != nil {
+		return m.Msg
+	}
+	return ""
+}
+
 type SQLQueryRequest struct {
 	Sql       string             `protobuf:"bytes,1,opt,name=sql,proto3" json:"sql,omitempty"`
 	Arguments []*common.Argument `protobuf:"bytes,2,rep,name=arguments,proto3" json:"arguments,omitempty"`
@@ -40,7 +208,7 @@ func (m *SQLQueryRequest) Reset()         { *m = SQLQueryRequest{} }
 func (m *SQLQueryRequest) String() string { return proto.CompactTextString(m) }
 func (*SQLQueryRequest) ProtoMessage()    {}
 func (*SQLQueryRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{0}
+	return fileDescriptor_44d40c67387e7e59, []int{2}
 }
 func (m *SQLQueryRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -92,7 +260,7 @@ func (m *SQLQueryResponse) Reset()         { *m = SQLQueryResponse{} }
 func (m *SQLQueryResponse) String() string { return proto.CompactTextString(m) }
 func (*SQLQueryResponse) ProtoMessage()    {}
 func (*SQLQueryResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{1}
+	return fileDescriptor_44d40c67387e7e59, []int{3}
 }
 func (m *SQLQueryResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -143,7 +311,7 @@ func (m *SimpleSQLQueryResponse) Reset()         { *m = SimpleSQLQueryResponse{}
 func (m *SimpleSQLQueryResponse) String() string { return proto.CompactTextString(m) }
 func (*SimpleSQLQueryResponse) ProtoMessage()    {}
 func (*SimpleSQLQueryResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{2}
+	return fileDescriptor_44d40c67387e7e59, []int{4}
 }
 func (m *SimpleSQLQueryResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -187,7 +355,7 @@ func (m *SimpleSQLQueryResponse_ResultSet) Reset()         { *m = SimpleSQLQuery
 func (m *SimpleSQLQueryResponse_ResultSet) String() string { return proto.CompactTextString(m) }
 func (*SimpleSQLQueryResponse_ResultSet) ProtoMessage()    {}
 func (*SimpleSQLQueryResponse_ResultSet) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{2, 0}
+	return fileDescriptor_44d40c67387e7e59, []int{4, 0}
 }
 func (m *SimpleSQLQueryResponse_ResultSet) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -232,7 +400,7 @@ func (m *SimpleSQLQueryResponse_RowValue) Reset()         { *m = SimpleSQLQueryR
 func (m *SimpleSQLQueryResponse_RowValue) String() string { return proto.CompactTextString(m) }
 func (*SimpleSQLQueryResponse_RowValue) ProtoMessage()    {}
 func (*SimpleSQLQueryResponse_RowValue) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{2, 1}
+	return fileDescriptor_44d40c67387e7e59, []int{4, 1}
 }
 func (m *SimpleSQLQueryResponse_RowValue) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -275,622 +443,64 @@ func (m *SimpleSQLQueryResponse_RowValue) GetColumnValueType() common.ColumnValu
 	return common.ColumnValueType_InvalidColumn
 }
 
-type SQLListTablesRequest struct {
-	Keyword  string `protobuf:"bytes,1,opt,name=keyword,proto3" json:"keyword,omitempty"`
-	Uid      string `protobuf:"bytes,2,opt,name=uid,proto3" json:"uid,omitempty"`
-	Page     int32  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize int32  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	Database string `protobuf:"bytes,5,opt,name=database,proto3" json:"database,omitempty"`
-}
-
-func (m *SQLListTablesRequest) Reset()         { *m = SQLListTablesRequest{} }
-func (m *SQLListTablesRequest) String() string { return proto.CompactTextString(m) }
-func (*SQLListTablesRequest) ProtoMessage()    {}
-func (*SQLListTablesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{3}
-}
-func (m *SQLListTablesRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLListTablesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLListTablesRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLListTablesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLListTablesRequest.Merge(m, src)
-}
-func (m *SQLListTablesRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLListTablesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLListTablesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLListTablesRequest proto.InternalMessageInfo
-
-func (m *SQLListTablesRequest) GetKeyword() string {
-	if m != nil {
-		return m.Keyword
-	}
-	return ""
-}
-
-func (m *SQLListTablesRequest) GetUid() string {
-	if m != nil {
-		return m.Uid
-	}
-	return ""
-}
-
-func (m *SQLListTablesRequest) GetPage() int32 {
-	if m != nil {
-		return m.Page
-	}
-	return 0
-}
-
-func (m *SQLListTablesRequest) GetPageSize() int32 {
-	if m != nil {
-		return m.PageSize
-	}
-	return 0
-}
-
-func (m *SQLListTablesRequest) GetDatabase() string {
-	if m != nil {
-		return m.Database
-	}
-	return ""
-}
-
-type SQLListTablesResponse struct {
-	Tables []*common.TableInfo `protobuf:"bytes,1,rep,name=tables,proto3" json:"tables,omitempty"`
-}
-
-func (m *SQLListTablesResponse) Reset()         { *m = SQLListTablesResponse{} }
-func (m *SQLListTablesResponse) String() string { return proto.CompactTextString(m) }
-func (*SQLListTablesResponse) ProtoMessage()    {}
-func (*SQLListTablesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{4}
-}
-func (m *SQLListTablesResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLListTablesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLListTablesResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLListTablesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLListTablesResponse.Merge(m, src)
-}
-func (m *SQLListTablesResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLListTablesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLListTablesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLListTablesResponse proto.InternalMessageInfo
-
-func (m *SQLListTablesResponse) GetTables() []*common.TableInfo {
-	if m != nil {
-		return m.Tables
-	}
-	return nil
-}
-
-type SQLListDatabasesRequest struct {
-}
-
-func (m *SQLListDatabasesRequest) Reset()         { *m = SQLListDatabasesRequest{} }
-func (m *SQLListDatabasesRequest) String() string { return proto.CompactTextString(m) }
-func (*SQLListDatabasesRequest) ProtoMessage()    {}
-func (*SQLListDatabasesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{5}
-}
-func (m *SQLListDatabasesRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLListDatabasesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLListDatabasesRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLListDatabasesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLListDatabasesRequest.Merge(m, src)
-}
-func (m *SQLListDatabasesRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLListDatabasesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLListDatabasesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLListDatabasesRequest proto.InternalMessageInfo
-
-type SQLListDatabasesResponse struct {
-	Databases []*common.DatabaseInfo `protobuf:"bytes,1,rep,name=databases,proto3" json:"databases,omitempty"`
-}
-
-func (m *SQLListDatabasesResponse) Reset()         { *m = SQLListDatabasesResponse{} }
-func (m *SQLListDatabasesResponse) String() string { return proto.CompactTextString(m) }
-func (*SQLListDatabasesResponse) ProtoMessage()    {}
-func (*SQLListDatabasesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{6}
-}
-func (m *SQLListDatabasesResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLListDatabasesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLListDatabasesResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLListDatabasesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLListDatabasesResponse.Merge(m, src)
-}
-func (m *SQLListDatabasesResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLListDatabasesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLListDatabasesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLListDatabasesResponse proto.InternalMessageInfo
-
-func (m *SQLListDatabasesResponse) GetDatabases() []*common.DatabaseInfo {
-	if m != nil {
-		return m.Databases
-	}
-	return nil
-}
-
-type ShowCreateTableRequest struct {
-	DatabaseName string `protobuf:"bytes,1,opt,name=database_name,json=databaseName,proto3" json:"database_name,omitempty"`
-	TableName    string `protobuf:"bytes,2,opt,name=table_name,json=tableName,proto3" json:"table_name,omitempty"`
-}
-
-func (m *ShowCreateTableRequest) Reset()         { *m = ShowCreateTableRequest{} }
-func (m *ShowCreateTableRequest) String() string { return proto.CompactTextString(m) }
-func (*ShowCreateTableRequest) ProtoMessage()    {}
-func (*ShowCreateTableRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{7}
-}
-func (m *ShowCreateTableRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ShowCreateTableRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ShowCreateTableRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ShowCreateTableRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ShowCreateTableRequest.Merge(m, src)
-}
-func (m *ShowCreateTableRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *ShowCreateTableRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ShowCreateTableRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ShowCreateTableRequest proto.InternalMessageInfo
-
-func (m *ShowCreateTableRequest) GetDatabaseName() string {
-	if m != nil {
-		return m.DatabaseName
-	}
-	return ""
-}
-
-func (m *ShowCreateTableRequest) GetTableName() string {
-	if m != nil {
-		return m.TableName
-	}
-	return ""
-}
-
-type ShowCreateTableResponse struct {
-	Schema string `protobuf:"bytes,1,opt,name=schema,proto3" json:"schema,omitempty"`
-}
-
-func (m *ShowCreateTableResponse) Reset()         { *m = ShowCreateTableResponse{} }
-func (m *ShowCreateTableResponse) String() string { return proto.CompactTextString(m) }
-func (*ShowCreateTableResponse) ProtoMessage()    {}
-func (*ShowCreateTableResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{8}
-}
-func (m *ShowCreateTableResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ShowCreateTableResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ShowCreateTableResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ShowCreateTableResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ShowCreateTableResponse.Merge(m, src)
-}
-func (m *ShowCreateTableResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *ShowCreateTableResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ShowCreateTableResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ShowCreateTableResponse proto.InternalMessageInfo
-
-func (m *ShowCreateTableResponse) GetSchema() string {
-	if m != nil {
-		return m.Schema
-	}
-	return ""
-}
-
-type SQLExecRequest struct {
-	Uid       string             `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	Sql       string             `protobuf:"bytes,2,opt,name=sql,proto3" json:"sql,omitempty"`
-	Txid      string             `protobuf:"bytes,3,opt,name=txid,proto3" json:"txid,omitempty"`
-	Index     string             `protobuf:"bytes,4,opt,name=index,proto3" json:"index,omitempty"`
-	Arguments []*common.Argument `protobuf:"bytes,5,rep,name=arguments,proto3" json:"arguments,omitempty"`
-}
-
-func (m *SQLExecRequest) Reset()         { *m = SQLExecRequest{} }
-func (m *SQLExecRequest) String() string { return proto.CompactTextString(m) }
-func (*SQLExecRequest) ProtoMessage()    {}
-func (*SQLExecRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{9}
-}
-func (m *SQLExecRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLExecRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLExecRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLExecRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLExecRequest.Merge(m, src)
-}
-func (m *SQLExecRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLExecRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLExecRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLExecRequest proto.InternalMessageInfo
-
-func (m *SQLExecRequest) GetUid() string {
-	if m != nil {
-		return m.Uid
-	}
-	return ""
-}
-
-func (m *SQLExecRequest) GetSql() string {
-	if m != nil {
-		return m.Sql
-	}
-	return ""
-}
-
-func (m *SQLExecRequest) GetTxid() string {
-	if m != nil {
-		return m.Txid
-	}
-	return ""
-}
-
-func (m *SQLExecRequest) GetIndex() string {
-	if m != nil {
-		return m.Index
-	}
-	return ""
-}
-
-func (m *SQLExecRequest) GetArguments() []*common.Argument {
-	if m != nil {
-		return m.Arguments
-	}
-	return nil
-}
-
-type SQLExecResponse struct {
-	Results   []*common.ResultSet `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	TookTimes float32             `protobuf:"fixed32,2,opt,name=took_times,json=tookTimes,proto3" json:"took_times,omitempty"`
-}
-
-func (m *SQLExecResponse) Reset()         { *m = SQLExecResponse{} }
-func (m *SQLExecResponse) String() string { return proto.CompactTextString(m) }
-func (*SQLExecResponse) ProtoMessage()    {}
-func (*SQLExecResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{10}
-}
-func (m *SQLExecResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLExecResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLExecResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLExecResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLExecResponse.Merge(m, src)
-}
-func (m *SQLExecResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLExecResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLExecResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLExecResponse proto.InternalMessageInfo
-
-func (m *SQLExecResponse) GetResults() []*common.ResultSet {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *SQLExecResponse) GetTookTimes() float32 {
-	if m != nil {
-		return m.TookTimes
-	}
-	return 0
-}
-
-type SQLGrantRequest struct {
-	Uid        string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	OnTable    string `protobuf:"bytes,2,opt,name=onTable,proto3" json:"onTable,omitempty"`
-	ToUID      string `protobuf:"bytes,3,opt,name=toUID,proto3" json:"toUID,omitempty"`
-	Role       string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
-	OnDatabase string `protobuf:"bytes,5,opt,name=onDatabase,proto3" json:"onDatabase,omitempty"`
-}
-
-func (m *SQLGrantRequest) Reset()         { *m = SQLGrantRequest{} }
-func (m *SQLGrantRequest) String() string { return proto.CompactTextString(m) }
-func (*SQLGrantRequest) ProtoMessage()    {}
-func (*SQLGrantRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{11}
-}
-func (m *SQLGrantRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLGrantRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLGrantRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLGrantRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLGrantRequest.Merge(m, src)
-}
-func (m *SQLGrantRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLGrantRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLGrantRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLGrantRequest proto.InternalMessageInfo
-
-func (m *SQLGrantRequest) GetUid() string {
-	if m != nil {
-		return m.Uid
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetOnTable() string {
-	if m != nil {
-		return m.OnTable
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetToUID() string {
-	if m != nil {
-		return m.ToUID
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetRole() string {
-	if m != nil {
-		return m.Role
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetOnDatabase() string {
-	if m != nil {
-		return m.OnDatabase
-	}
-	return ""
-}
-
-type SQLGrantResponse struct {
-}
-
-func (m *SQLGrantResponse) Reset()         { *m = SQLGrantResponse{} }
-func (m *SQLGrantResponse) String() string { return proto.CompactTextString(m) }
-func (*SQLGrantResponse) ProtoMessage()    {}
-func (*SQLGrantResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_44d40c67387e7e59, []int{12}
-}
-func (m *SQLGrantResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLGrantResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLGrantResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLGrantResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLGrantResponse.Merge(m, src)
-}
-func (m *SQLGrantResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLGrantResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLGrantResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLGrantResponse proto.InternalMessageInfo
-
 func init() {
+	proto.RegisterType((*SQLSyncRequest)(nil), "engine.SQLSyncRequest")
+	proto.RegisterType((*SQLSyncResponse)(nil), "engine.SQLSyncResponse")
 	proto.RegisterType((*SQLQueryRequest)(nil), "engine.SQLQueryRequest")
 	proto.RegisterType((*SQLQueryResponse)(nil), "engine.SQLQueryResponse")
 	proto.RegisterType((*SimpleSQLQueryResponse)(nil), "engine.SimpleSQLQueryResponse")
 	proto.RegisterType((*SimpleSQLQueryResponse_ResultSet)(nil), "engine.SimpleSQLQueryResponse.ResultSet")
 	proto.RegisterMapType((map[string]*SimpleSQLQueryResponse_RowValue)(nil), "engine.SimpleSQLQueryResponse.ResultSet.RowEntry")
 	proto.RegisterType((*SimpleSQLQueryResponse_RowValue)(nil), "engine.SimpleSQLQueryResponse.RowValue")
-	proto.RegisterType((*SQLListTablesRequest)(nil), "engine.SQLListTablesRequest")
-	proto.RegisterType((*SQLListTablesResponse)(nil), "engine.SQLListTablesResponse")
-	proto.RegisterType((*SQLListDatabasesRequest)(nil), "engine.SQLListDatabasesRequest")
-	proto.RegisterType((*SQLListDatabasesResponse)(nil), "engine.SQLListDatabasesResponse")
-	proto.RegisterType((*ShowCreateTableRequest)(nil), "engine.ShowCreateTableRequest")
-	proto.RegisterType((*ShowCreateTableResponse)(nil), "engine.ShowCreateTableResponse")
-	proto.RegisterType((*SQLExecRequest)(nil), "engine.SQLExecRequest")
-	proto.RegisterType((*SQLExecResponse)(nil), "engine.SQLExecResponse")
-	proto.RegisterType((*SQLGrantRequest)(nil), "engine.SQLGrantRequest")
-	proto.RegisterType((*SQLGrantResponse)(nil), "engine.SQLGrantResponse")
 }
 
 func init() { proto.RegisterFile("engine/rpc.proto", fileDescriptor_44d40c67387e7e59) }
 
 var fileDescriptor_44d40c67387e7e59 = []byte{
-	// 906 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x55, 0xcd, 0x6f, 0xe3, 0x44,
-	0x14, 0xaf, 0x93, 0x7e, 0xf9, 0x2d, 0xf4, 0x63, 0x54, 0x12, 0x13, 0xb6, 0xd9, 0xca, 0x2b, 0x44,
-	0x00, 0x11, 0x6b, 0xc3, 0x65, 0x55, 0x69, 0x25, 0xd8, 0x76, 0x85, 0x56, 0xaa, 0x56, 0xaa, 0x53,
-	0x38, 0xf0, 0x65, 0xb9, 0xce, 0xe0, 0x58, 0xb1, 0x67, 0x1c, 0x7b, 0x42, 0x9a, 0x3d, 0x72, 0xe1,
-	0x06, 0x48, 0xfc, 0x25, 0xfc, 0x17, 0x7b, 0x5c, 0x89, 0x0b, 0x47, 0xd4, 0xf2, 0x2f, 0x70, 0x47,
-	0xf3, 0x66, 0xa6, 0x89, 0x9b, 0x2d, 0xcb, 0x85, 0x53, 0xe6, 0xfd, 0xde, 0xf3, 0xef, 0x37, 0xef,
-	0x63, 0x5e, 0x60, 0x87, 0xb2, 0x38, 0x61, 0xd4, 0x2b, 0xf2, 0xa8, 0x9b, 0x17, 0x5c, 0x70, 0xb2,
-	0xae, 0x90, 0xd6, 0x5e, 0xcc, 0x63, 0x8e, 0x90, 0x27, 0x4f, 0xca, 0xdb, 0xba, 0x1b, 0x73, 0x1e,
-	0xa7, 0xd4, 0x0b, 0xf3, 0xc4, 0x0b, 0x19, 0xe3, 0x22, 0x14, 0x09, 0x67, 0xa5, 0xf6, 0x36, 0x23,
-	0x9e, 0x65, 0x9c, 0x79, 0xe5, 0x38, 0x0d, 0x14, 0x8d, 0x72, 0xb8, 0x7d, 0xd8, 0xee, 0x9f, 0x9e,
-	0x9c, 0x4e, 0x68, 0x31, 0xf3, 0xe9, 0x78, 0x42, 0x4b, 0x41, 0x76, 0xa0, 0x5e, 0x8e, 0x53, 0xc7,
-	0x3a, 0xb0, 0x3a, 0xb6, 0x2f, 0x8f, 0xa4, 0x0b, 0x76, 0x58, 0xc4, 0x93, 0x8c, 0x32, 0x51, 0x3a,
-	0xb5, 0x83, 0x7a, 0xe7, 0x4e, 0x6f, 0xa7, 0xab, 0x18, 0xbb, 0x9f, 0x6a, 0x87, 0x3f, 0x0f, 0x71,
-	0xbf, 0x85, 0x9d, 0x39, 0x69, 0x99, 0x73, 0x56, 0x52, 0xf2, 0x21, 0x6c, 0x14, 0xb4, 0x9c, 0xa4,
-	0xa2, 0x74, 0x2c, 0x64, 0xd8, 0x35, 0x0c, 0x3e, 0xc2, 0x7d, 0x2a, 0x7c, 0x13, 0x41, 0xf6, 0x01,
-	0x04, 0xe7, 0xa3, 0x40, 0x24, 0x19, 0x95, 0x8a, 0x56, 0xa7, 0xe6, 0xdb, 0x12, 0x39, 0x93, 0x80,
-	0xfb, 0x77, 0x0d, 0x1a, 0xfd, 0x24, 0xcb, 0x53, 0xba, 0x24, 0xf3, 0x09, 0xac, 0x2b, 0x12, 0xad,
-	0xd2, 0xe9, 0xea, 0x74, 0x5f, 0x1d, 0xbf, 0x20, 0xae, 0xbf, 0x6b, 0xfd, 0x66, 0x81, 0x7d, 0x8d,
-	0x92, 0x23, 0xa8, 0x17, 0x7c, 0xaa, 0xc9, 0x1e, 0xfc, 0x57, 0xb2, 0xae, 0xcf, 0xa7, 0x4f, 0x98,
-	0x28, 0x66, 0xbe, 0xfc, 0xba, 0x15, 0xc0, 0xa6, 0x01, 0x64, 0x75, 0x47, 0x74, 0x66, 0xaa, 0x3b,
-	0xa2, 0x33, 0xf2, 0x08, 0xd6, 0xbe, 0x0f, 0xd3, 0x09, 0xc5, 0x3c, 0xef, 0xf4, 0xde, 0x7b, 0x9d,
-	0x08, 0x9f, 0x7e, 0x21, 0xc3, 0x7d, 0xf5, 0xd5, 0x61, 0xed, 0xa1, 0xd5, 0xa2, 0x28, 0x80, 0x30,
-	0xd9, 0x33, 0x74, 0x4a, 0x42, 0x19, 0xe4, 0x08, 0x76, 0x23, 0x9e, 0x4e, 0x32, 0x16, 0xa0, 0x1d,
-	0x88, 0x59, 0xae, 0x04, 0xb7, 0x7a, 0x4d, 0xd3, 0x88, 0x23, 0x0c, 0x40, 0x96, 0xb3, 0x59, 0x4e,
-	0xfd, 0xed, 0xa8, 0x0a, 0xb8, 0x3f, 0x5b, 0xb0, 0xd7, 0x3f, 0x3d, 0x39, 0x49, 0x4a, 0x71, 0x16,
-	0x9e, 0xa7, 0xb4, 0x34, 0x23, 0xe3, 0xc0, 0xc6, 0x88, 0xce, 0xa6, 0xbc, 0x18, 0x68, 0x55, 0x63,
-	0xca, 0x74, 0x27, 0xc9, 0x00, 0x95, 0x6c, 0x5f, 0x1e, 0x09, 0x81, 0xd5, 0x3c, 0x8c, 0xa9, 0x53,
-	0x3f, 0xb0, 0x3a, 0x6b, 0x3e, 0x9e, 0xc9, 0x3b, 0x60, 0xcb, 0xdf, 0xa0, 0x4c, 0x9e, 0x53, 0x67,
-	0x15, 0x1d, 0x9b, 0x12, 0xe8, 0x27, 0xcf, 0x29, 0x69, 0xc1, 0xe6, 0x20, 0x14, 0xe1, 0x79, 0x58,
-	0x52, 0x67, 0x0d, 0x79, 0xae, 0x6d, 0xf7, 0x31, 0xbc, 0x75, 0xe3, 0x42, 0x7a, 0x0e, 0xde, 0x87,
-	0x75, 0x81, 0xc8, 0xcd, 0x69, 0xc3, 0xb8, 0xa7, 0xec, 0x3b, 0xee, 0xeb, 0x00, 0xf7, 0x6d, 0x68,
-	0x6a, 0x8e, 0x63, 0x4d, 0x6b, 0xf2, 0x72, 0x9f, 0x81, 0xb3, 0xec, 0xd2, 0x0a, 0x3d, 0xb0, 0xcd,
-	0x35, 0x8c, 0xc8, 0x9e, 0x11, 0x31, 0xd1, 0xa8, 0x33, 0x0f, 0x73, 0xbf, 0x86, 0x46, 0x7f, 0xc8,
-	0xa7, 0x47, 0x05, 0x0d, 0x05, 0xc5, 0x9b, 0x98, 0x0a, 0xde, 0x87, 0x37, 0x4d, 0x58, 0xc0, 0xc2,
-	0xcc, 0x74, 0xef, 0x0d, 0x03, 0x3e, 0x0b, 0x33, 0x8a, 0xcf, 0x42, 0x7e, 0xa4, 0x22, 0x54, 0x4d,
-	0x6d, 0x44, 0xa4, 0xdb, 0x7d, 0x00, 0xcd, 0x25, 0x76, 0x7d, 0xd9, 0x06, 0xac, 0x97, 0xd1, 0x90,
-	0x66, 0xa1, 0xe6, 0xd5, 0x96, 0xfb, 0x93, 0x05, 0x5b, 0xfd, 0xd3, 0x93, 0x27, 0x17, 0x34, 0x5a,
-	0x78, 0xfe, 0xb2, 0x63, 0xd6, 0xbc, 0x63, 0x7a, 0x21, 0xd4, 0xe6, 0x0b, 0x81, 0xc0, 0xaa, 0xb8,
-	0x48, 0x06, 0xd8, 0x43, 0xdb, 0xc7, 0xb3, 0x9c, 0xbb, 0x84, 0x0d, 0xe8, 0x05, 0xf6, 0xcf, 0xf6,
-	0x95, 0x51, 0x5d, 0x1d, 0x6b, 0xaf, 0x5f, 0x1d, 0xdf, 0xe0, 0x3e, 0x52, 0xf7, 0xf9, 0x1f, 0x36,
-	0xc7, 0x8f, 0x16, 0xf2, 0x7f, 0x56, 0x84, 0x4c, 0xdc, 0x9e, 0xb0, 0x03, 0x1b, 0x9c, 0x61, 0x01,
-	0x75, 0xd2, 0xc6, 0x94, 0x49, 0x0a, 0xfe, 0xf9, 0xd3, 0x63, 0x9d, 0xb9, 0x32, 0x64, 0x39, 0x0a,
-	0x9e, 0x52, 0x9d, 0x39, 0x9e, 0x49, 0x1b, 0x80, 0xb3, 0xe3, 0xea, 0xdc, 0x2e, 0x20, 0x2e, 0xc1,
-	0x1d, 0xa9, 0x2f, 0xa2, 0x32, 0xed, 0xbd, 0xa8, 0x43, 0xdd, 0xcf, 0x23, 0xf2, 0x15, 0x6c, 0x9a,
-	0x67, 0x4f, 0x9a, 0xd7, 0xeb, 0xa0, 0xba, 0xa6, 0x5b, 0xce, 0xb2, 0x43, 0xd1, 0xb8, 0x77, 0x7f,
-	0xf8, 0xfd, 0xaf, 0x5f, 0x6b, 0x0d, 0x77, 0xd7, 0xd3, 0xff, 0x21, 0xe5, 0x38, 0xf5, 0xc6, 0x32,
-	0xe4, 0xd0, 0xfa, 0x80, 0x30, 0xd8, 0xaa, 0x6e, 0x96, 0xdb, 0x25, 0xda, 0xff, 0xbe, 0x8a, 0xdc,
-	0xfb, 0x28, 0xb4, 0xef, 0x3a, 0x8b, 0x42, 0x25, 0xc6, 0x06, 0xd7, 0x7a, 0x33, 0xd8, 0xbe, 0x31,
-	0x95, 0x64, 0xce, 0xfb, 0xca, 0xc7, 0xd0, 0xba, 0x77, 0xab, 0x5f, 0x0b, 0xbf, 0x8b, 0xc2, 0xf7,
-	0xc8, 0x7e, 0x45, 0x78, 0xc8, 0xa7, 0x41, 0x84, 0xd1, 0x01, 0x3e, 0x0a, 0x72, 0x08, 0x1b, 0x7a,
-	0x98, 0x48, 0x63, 0x21, 0xc7, 0x85, 0x69, 0x6f, 0x35, 0x97, 0x70, 0x3d, 0x75, 0x8f, 0xb0, 0x07,
-	0xd8, 0x9f, 0x4a, 0x81, 0x16, 0x47, 0xa7, 0xd2, 0x83, 0x4a, 0x2b, 0x1f, 0xfb, 0x2f, 0x2e, 0xdb,
-	0xd6, 0xcb, 0xcb, 0xb6, 0xf5, 0xe7, 0x65, 0xdb, 0xfa, 0xe5, 0xaa, 0xbd, 0xf2, 0xf2, 0xaa, 0xbd,
-	0xf2, 0xc7, 0x55, 0x7b, 0xe5, 0xcb, 0x87, 0x71, 0x22, 0x86, 0x93, 0x73, 0x39, 0xc3, 0x5e, 0x9c,
-	0x26, 0x42, 0xd0, 0x82, 0x51, 0x31, 0xe5, 0xc5, 0xc8, 0x8b, 0x86, 0x61, 0xc2, 0x3e, 0x1a, 0xd0,
-	0xdc, 0x38, 0x02, 0xf5, 0x37, 0xaf, 0x44, 0xce, 0xd7, 0xd1, 0xfa, 0xf8, 0x9f, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0x9f, 0x12, 0x04, 0x19, 0x1b, 0x08, 0x00, 0x00,
+	// 686 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0xc1, 0x4e, 0xdb, 0x4c,
+	0x10, 0xc6, 0x0e, 0x04, 0x32, 0xe8, 0x87, 0xb0, 0x42, 0x60, 0x59, 0xff, 0x6f, 0x21, 0x4b, 0xbf,
+	0x40, 0xa5, 0x8d, 0xd5, 0xf4, 0x00, 0x42, 0xaa, 0xd4, 0x16, 0x7a, 0x40, 0xea, 0x85, 0x0d, 0xed,
+	0xa1, 0x87, 0x5a, 0x8e, 0xb3, 0x32, 0x6e, 0xec, 0x5d, 0xc7, 0xbb, 0x26, 0xc9, 0xa1, 0x97, 0x3e,
+	0x40, 0x55, 0xa9, 0x4f, 0xd1, 0x63, 0xdf, 0xa2, 0x47, 0xa4, 0x5e, 0x7a, 0xac, 0xa0, 0xaf, 0xd0,
+	0x7b, 0xb5, 0xbb, 0x36, 0x24, 0xa2, 0x40, 0x6f, 0x33, 0xdf, 0xcc, 0x7c, 0xdf, 0xf8, 0xf3, 0xd8,
+	0xd0, 0x24, 0x34, 0x8a, 0x29, 0xf1, 0xf2, 0x2c, 0x6c, 0x65, 0x39, 0x13, 0x0c, 0xd5, 0x35, 0x62,
+	0xaf, 0x46, 0x2c, 0x62, 0x0a, 0xf2, 0x64, 0xa4, 0xab, 0xf6, 0xbf, 0x11, 0x63, 0x51, 0x42, 0xbc,
+	0x20, 0x8b, 0xbd, 0x80, 0x52, 0x26, 0x02, 0x11, 0x33, 0xca, 0xcb, 0xea, 0x7a, 0xc8, 0xd2, 0x94,
+	0x51, 0x8f, 0x0f, 0x12, 0x5f, 0xd3, 0xe8, 0x82, 0xfb, 0xc1, 0x84, 0xa5, 0xce, 0xd1, 0x8b, 0xce,
+	0x98, 0x86, 0x98, 0x0c, 0x0a, 0xc2, 0x05, 0x6a, 0x42, 0x8d, 0x0f, 0x12, 0xcb, 0xd8, 0x30, 0xb6,
+	0x1a, 0x58, 0x86, 0x12, 0x29, 0xe2, 0x9e, 0x65, 0x6a, 0xa4, 0x88, 0x7b, 0xc8, 0x82, 0x79, 0x46,
+	0x8f, 0x83, 0x6e, 0x42, 0xac, 0x9a, 0x42, 0xab, 0x14, 0xad, 0xc2, 0x9c, 0x60, 0x2f, 0x0f, 0x0f,
+	0xac, 0x59, 0x85, 0xeb, 0x04, 0x21, 0x98, 0xcd, 0x59, 0x42, 0xac, 0x39, 0x05, 0xaa, 0x18, 0x39,
+	0x00, 0x8c, 0x1e, 0x04, 0x22, 0xe8, 0x06, 0x9c, 0x58, 0x75, 0x55, 0x99, 0x40, 0xa4, 0x86, 0x18,
+	0x1d, 0xd2, 0x1e, 0x19, 0x59, 0xf3, 0x5a, 0xa3, 0x4c, 0x25, 0x9b, 0x18, 0x1d, 0x1e, 0x58, 0x0b,
+	0x9a, 0x4d, 0xc6, 0x68, 0x0d, 0xea, 0x62, 0x74, 0x3c, 0xce, 0x88, 0xd5, 0x50, 0x68, 0x99, 0xa1,
+	0x16, 0x34, 0x82, 0x3c, 0x2a, 0x52, 0x42, 0x05, 0xb7, 0x60, 0xa3, 0xb6, 0xb5, 0xd8, 0x6e, 0xb6,
+	0xb4, 0x1b, 0xad, 0xa7, 0x65, 0x01, 0x5f, 0xb5, 0xb8, 0x3b, 0xb0, 0x7c, 0xe9, 0x07, 0xcf, 0x18,
+	0xe5, 0x44, 0xca, 0x85, 0xac, 0x47, 0x94, 0x23, 0xff, 0x60, 0x15, 0x4b, 0x4b, 0x52, 0x1e, 0x55,
+	0x96, 0xa4, 0x3c, 0x72, 0x3b, 0x6a, 0xf0, 0xa8, 0x20, 0xf9, 0xf8, 0x66, 0x27, 0xa7, 0xb6, 0x31,
+	0xef, 0xde, 0xe6, 0x0d, 0x34, 0xaf, 0x48, 0xcb, 0x75, 0xb6, 0x61, 0x3e, 0x27, 0xbc, 0x48, 0x04,
+	0xb7, 0x0c, 0xc5, 0xb0, 0x52, 0x31, 0x60, 0x05, 0x77, 0x88, 0xc0, 0x55, 0x07, 0xfa, 0x0f, 0x40,
+	0x30, 0xd6, 0xf7, 0x45, 0x9c, 0x12, 0xae, 0xd6, 0x35, 0x71, 0x43, 0x22, 0xc7, 0x12, 0x70, 0x7f,
+	0x99, 0xb0, 0xd6, 0x89, 0xd3, 0x2c, 0x21, 0xd7, 0x64, 0x9e, 0x40, 0x5d, 0x93, 0x94, 0x2a, 0x5b,
+	0xad, 0xf2, 0x70, 0xfe, 0xdc, 0x3f, 0x21, 0x5e, 0xce, 0xd9, 0x5f, 0x0c, 0x68, 0x5c, 0xa2, 0x68,
+	0x1f, 0x6a, 0x39, 0x1b, 0x96, 0x64, 0x0f, 0xff, 0x96, 0xac, 0x85, 0xd9, 0xf0, 0x39, 0x15, 0xf9,
+	0x18, 0xcb, 0x69, 0xdb, 0x87, 0x85, 0x0a, 0x90, 0xee, 0xf6, 0xc9, 0xb8, 0x72, 0xb7, 0x4f, 0xc6,
+	0xe8, 0x31, 0xcc, 0x9d, 0x06, 0x49, 0x41, 0xd4, 0x73, 0x2e, 0xb6, 0x37, 0xef, 0x12, 0x61, 0xc3,
+	0x57, 0xb2, 0x1d, 0xeb, 0xa9, 0x3d, 0x73, 0xd7, 0xb0, 0x89, 0x12, 0x50, 0xb0, 0x3c, 0x65, 0x4d,
+	0xa7, 0x25, 0x74, 0x82, 0xf6, 0x61, 0x25, 0x64, 0x49, 0x91, 0x52, 0x5f, 0xe5, 0xbe, 0x90, 0x37,
+	0x27, 0x05, 0x97, 0xda, 0xeb, 0xd5, 0x8b, 0xd8, 0x57, 0x0d, 0x8a, 0x45, 0x1e, 0x21, 0x5e, 0x0e,
+	0xa7, 0x81, 0xf6, 0x67, 0x13, 0x6a, 0x38, 0x0b, 0xd1, 0x0e, 0xcc, 0xca, 0x53, 0x43, 0x6b, 0x97,
+	0xab, 0x4e, 0x7d, 0x8b, 0xf6, 0xfa, 0x35, 0xbc, 0x7c, 0x3b, 0x6f, 0x61, 0xa1, 0x7a, 0x1e, 0x34,
+	0xd9, 0x34, 0x79, 0x7f, 0xb6, 0x75, 0xbd, 0xa0, 0xc7, 0xdd, 0xed, 0xf7, 0xdf, 0x7e, 0x7e, 0x32,
+	0xff, 0x77, 0x37, 0xbc, 0x6e, 0xc2, 0xc2, 0xfe, 0x29, 0xe9, 0x79, 0xe5, 0xff, 0x26, 0x96, 0x5f,
+	0x98, 0xfc, 0x4f, 0x78, 0x03, 0x39, 0xb1, 0x67, 0xdc, 0x43, 0xef, 0x60, 0x69, 0xda, 0xc1, 0x9b,
+	0x15, 0x9d, 0xdb, 0x2d, 0x77, 0xdb, 0x4a, 0xf7, 0xbe, 0xbb, 0x79, 0x8b, 0x2e, 0x57, 0xa3, 0x7e,
+	0x25, 0xff, 0x0c, 0x7f, 0x3d, 0x77, 0x8c, 0xb3, 0x73, 0xc7, 0xf8, 0x71, 0xee, 0x18, 0x1f, 0x2f,
+	0x9c, 0x99, 0xb3, 0x0b, 0x67, 0xe6, 0xfb, 0x85, 0x33, 0xf3, 0x7a, 0x37, 0x8a, 0xc5, 0x49, 0xd1,
+	0x95, 0xae, 0x7b, 0x51, 0x12, 0x0b, 0x41, 0x72, 0x4a, 0xc4, 0x90, 0xe5, 0x7d, 0x2f, 0x3c, 0x09,
+	0x62, 0xfa, 0xa0, 0x47, 0xb2, 0xaa, 0xe0, 0xeb, 0x3f, 0xa6, 0x56, 0xeb, 0xd6, 0x55, 0xf6, 0xe8,
+	0x77, 0x00, 0x00, 0x00, 0xff, 0xff, 0x13, 0x88, 0x26, 0xd0, 0x66, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -905,11 +515,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RpcClient interface {
+	Sync(ctx context.Context, in *SQLSyncRequest, opts ...grpc.CallOption) (*SQLSyncResponse, error)
 	SQLQuery(ctx context.Context, in *SQLQueryRequest, opts ...grpc.CallOption) (*SQLQueryResponse, error)
 	SimpleSQLQuery(ctx context.Context, in *SQLQueryRequest, opts ...grpc.CallOption) (*SimpleSQLQueryResponse, error)
-	ShowCreateTable(ctx context.Context, in *ShowCreateTableRequest, opts ...grpc.CallOption) (*ShowCreateTableResponse, error)
-	SQLExec(ctx context.Context, in *SQLExecRequest, opts ...grpc.CallOption) (*SQLExecResponse, error)
-	SQLGrant(ctx context.Context, in *SQLGrantRequest, opts ...grpc.CallOption) (*SQLGrantResponse, error)
 }
 
 type rpcClient struct {
@@ -918,6 +526,15 @@ type rpcClient struct {
 
 func NewRpcClient(cc grpc1.ClientConn) RpcClient {
 	return &rpcClient{cc}
+}
+
+func (c *rpcClient) Sync(ctx context.Context, in *SQLSyncRequest, opts ...grpc.CallOption) (*SQLSyncResponse, error) {
+	out := new(SQLSyncResponse)
+	err := c.cc.Invoke(ctx, "/engine.Rpc/Sync", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *rpcClient) SQLQuery(ctx context.Context, in *SQLQueryRequest, opts ...grpc.CallOption) (*SQLQueryResponse, error) {
@@ -938,64 +555,47 @@ func (c *rpcClient) SimpleSQLQuery(ctx context.Context, in *SQLQueryRequest, opt
 	return out, nil
 }
 
-func (c *rpcClient) ShowCreateTable(ctx context.Context, in *ShowCreateTableRequest, opts ...grpc.CallOption) (*ShowCreateTableResponse, error) {
-	out := new(ShowCreateTableResponse)
-	err := c.cc.Invoke(ctx, "/engine.Rpc/ShowCreateTable", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *rpcClient) SQLExec(ctx context.Context, in *SQLExecRequest, opts ...grpc.CallOption) (*SQLExecResponse, error) {
-	out := new(SQLExecResponse)
-	err := c.cc.Invoke(ctx, "/engine.Rpc/SQLExec", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *rpcClient) SQLGrant(ctx context.Context, in *SQLGrantRequest, opts ...grpc.CallOption) (*SQLGrantResponse, error) {
-	out := new(SQLGrantResponse)
-	err := c.cc.Invoke(ctx, "/engine.Rpc/SQLGrant", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // RpcServer is the server API for Rpc service.
 type RpcServer interface {
+	Sync(context.Context, *SQLSyncRequest) (*SQLSyncResponse, error)
 	SQLQuery(context.Context, *SQLQueryRequest) (*SQLQueryResponse, error)
 	SimpleSQLQuery(context.Context, *SQLQueryRequest) (*SimpleSQLQueryResponse, error)
-	ShowCreateTable(context.Context, *ShowCreateTableRequest) (*ShowCreateTableResponse, error)
-	SQLExec(context.Context, *SQLExecRequest) (*SQLExecResponse, error)
-	SQLGrant(context.Context, *SQLGrantRequest) (*SQLGrantResponse, error)
 }
 
 // UnimplementedRpcServer can be embedded to have forward compatible implementations.
 type UnimplementedRpcServer struct {
 }
 
+func (*UnimplementedRpcServer) Sync(ctx context.Context, req *SQLSyncRequest) (*SQLSyncResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sync not implemented")
+}
 func (*UnimplementedRpcServer) SQLQuery(ctx context.Context, req *SQLQueryRequest) (*SQLQueryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SQLQuery not implemented")
 }
 func (*UnimplementedRpcServer) SimpleSQLQuery(ctx context.Context, req *SQLQueryRequest) (*SimpleSQLQueryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SimpleSQLQuery not implemented")
 }
-func (*UnimplementedRpcServer) ShowCreateTable(ctx context.Context, req *ShowCreateTableRequest) (*ShowCreateTableResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ShowCreateTable not implemented")
-}
-func (*UnimplementedRpcServer) SQLExec(ctx context.Context, req *SQLExecRequest) (*SQLExecResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SQLExec not implemented")
-}
-func (*UnimplementedRpcServer) SQLGrant(ctx context.Context, req *SQLGrantRequest) (*SQLGrantResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SQLGrant not implemented")
-}
 
 func RegisterRpcServer(s grpc1.Server, srv RpcServer) {
 	s.RegisterService(&_Rpc_serviceDesc, srv)
+}
+
+func _Rpc_Sync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SQLSyncRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RpcServer).Sync(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/engine.Rpc/Sync",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RpcServer).Sync(ctx, req.(*SQLSyncRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Rpc_SQLQuery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1034,64 +634,14 @@ func _Rpc_SimpleSQLQuery_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Rpc_ShowCreateTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ShowCreateTableRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RpcServer).ShowCreateTable(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/engine.Rpc/ShowCreateTable",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RpcServer).ShowCreateTable(ctx, req.(*ShowCreateTableRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Rpc_SQLExec_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SQLExecRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RpcServer).SQLExec(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/engine.Rpc/SQLExec",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RpcServer).SQLExec(ctx, req.(*SQLExecRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Rpc_SQLGrant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SQLGrantRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RpcServer).SQLGrant(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/engine.Rpc/SQLGrant",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RpcServer).SQLGrant(ctx, req.(*SQLGrantRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Rpc_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "engine.Rpc",
 	HandlerType: (*RpcServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Sync",
+			Handler:    _Rpc_Sync_Handler,
+		},
 		{
 			MethodName: "SQLQuery",
 			Handler:    _Rpc_SQLQuery_Handler,
@@ -1100,21 +650,144 @@ var _Rpc_serviceDesc = grpc.ServiceDesc{
 			MethodName: "SimpleSQLQuery",
 			Handler:    _Rpc_SimpleSQLQuery_Handler,
 		},
-		{
-			MethodName: "ShowCreateTable",
-			Handler:    _Rpc_ShowCreateTable_Handler,
-		},
-		{
-			MethodName: "SQLExec",
-			Handler:    _Rpc_SQLExec_Handler,
-		},
-		{
-			MethodName: "SQLGrant",
-			Handler:    _Rpc_SQLGrant_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "engine/rpc.proto",
+}
+
+func (m *SQLSyncRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SQLSyncRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SQLSyncRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Arguments) > 0 {
+		for iNdEx := len(m.Arguments) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Arguments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintRpc(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x52
+		}
+	}
+	if len(m.TxType) > 0 {
+		i -= len(m.TxType)
+		copy(dAtA[i:], m.TxType)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.TxType)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.TxID) > 0 {
+		i -= len(m.TxID)
+		copy(dAtA[i:], m.TxID)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.TxID)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.TxIndex) > 0 {
+		i -= len(m.TxIndex)
+		copy(dAtA[i:], m.TxIndex)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.TxIndex)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.OnDatabase) > 0 {
+		i -= len(m.OnDatabase)
+		copy(dAtA[i:], m.OnDatabase)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.OnDatabase)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Role) > 0 {
+		i -= len(m.Role)
+		copy(dAtA[i:], m.Role)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.Role)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.ToUID) > 0 {
+		i -= len(m.ToUID)
+		copy(dAtA[i:], m.ToUID)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.ToUID)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.OnTable) > 0 {
+		i -= len(m.OnTable)
+		copy(dAtA[i:], m.OnTable)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.OnTable)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Uid) > 0 {
+		i -= len(m.Uid)
+		copy(dAtA[i:], m.Uid)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.Uid)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Sql) > 0 {
+		i -= len(m.Sql)
+		copy(dAtA[i:], m.Sql)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.Sql)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SQLSyncResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SQLSyncResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SQLSyncResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Msg) > 0 {
+		i -= len(m.Msg)
+		copy(dAtA[i:], m.Msg)
+		i = encodeVarintRpc(dAtA, i, uint64(len(m.Msg)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Code != 0 {
+		i = encodeVarintRpc(dAtA, i, uint64(m.Code))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *SQLQueryRequest) Marshal() (dAtA []byte, err error) {
@@ -1325,413 +998,6 @@ func (m *SimpleSQLQueryResponse_RowValue) MarshalToSizedBuffer(dAtA []byte) (int
 	return len(dAtA) - i, nil
 }
 
-func (m *SQLListTablesRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLListTablesRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLListTablesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Database) > 0 {
-		i -= len(m.Database)
-		copy(dAtA[i:], m.Database)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Database)))
-		i--
-		dAtA[i] = 0x2a
-	}
-	if m.PageSize != 0 {
-		i = encodeVarintRpc(dAtA, i, uint64(m.PageSize))
-		i--
-		dAtA[i] = 0x20
-	}
-	if m.Page != 0 {
-		i = encodeVarintRpc(dAtA, i, uint64(m.Page))
-		i--
-		dAtA[i] = 0x18
-	}
-	if len(m.Uid) > 0 {
-		i -= len(m.Uid)
-		copy(dAtA[i:], m.Uid)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Uid)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Keyword) > 0 {
-		i -= len(m.Keyword)
-		copy(dAtA[i:], m.Keyword)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Keyword)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLListTablesResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLListTablesResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLListTablesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Tables) > 0 {
-		for iNdEx := len(m.Tables) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Tables[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintRpc(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLListDatabasesRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLListDatabasesRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLListDatabasesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLListDatabasesResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLListDatabasesResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLListDatabasesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Databases) > 0 {
-		for iNdEx := len(m.Databases) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Databases[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintRpc(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *ShowCreateTableRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *ShowCreateTableRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ShowCreateTableRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.TableName) > 0 {
-		i -= len(m.TableName)
-		copy(dAtA[i:], m.TableName)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.TableName)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.DatabaseName) > 0 {
-		i -= len(m.DatabaseName)
-		copy(dAtA[i:], m.DatabaseName)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.DatabaseName)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *ShowCreateTableResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *ShowCreateTableResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ShowCreateTableResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Schema) > 0 {
-		i -= len(m.Schema)
-		copy(dAtA[i:], m.Schema)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Schema)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLExecRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLExecRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLExecRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Arguments) > 0 {
-		for iNdEx := len(m.Arguments) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Arguments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintRpc(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x2a
-		}
-	}
-	if len(m.Index) > 0 {
-		i -= len(m.Index)
-		copy(dAtA[i:], m.Index)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Index)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.Txid) > 0 {
-		i -= len(m.Txid)
-		copy(dAtA[i:], m.Txid)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Txid)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.Sql) > 0 {
-		i -= len(m.Sql)
-		copy(dAtA[i:], m.Sql)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Sql)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Uid) > 0 {
-		i -= len(m.Uid)
-		copy(dAtA[i:], m.Uid)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Uid)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLExecResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLExecResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLExecResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.TookTimes != 0 {
-		i -= 4
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(m.TookTimes))))
-		i--
-		dAtA[i] = 0x15
-	}
-	if len(m.Results) > 0 {
-		for iNdEx := len(m.Results) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Results[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintRpc(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLGrantRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLGrantRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLGrantRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.OnDatabase) > 0 {
-		i -= len(m.OnDatabase)
-		copy(dAtA[i:], m.OnDatabase)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.OnDatabase)))
-		i--
-		dAtA[i] = 0x2a
-	}
-	if len(m.Role) > 0 {
-		i -= len(m.Role)
-		copy(dAtA[i:], m.Role)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Role)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.ToUID) > 0 {
-		i -= len(m.ToUID)
-		copy(dAtA[i:], m.ToUID)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.ToUID)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.OnTable) > 0 {
-		i -= len(m.OnTable)
-		copy(dAtA[i:], m.OnTable)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.OnTable)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Uid) > 0 {
-		i -= len(m.Uid)
-		copy(dAtA[i:], m.Uid)
-		i = encodeVarintRpc(dAtA, i, uint64(len(m.Uid)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLGrantResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLGrantResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLGrantResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
 func encodeVarintRpc(dAtA []byte, offset int, v uint64) int {
 	offset -= sovRpc(v)
 	base := offset
@@ -1743,6 +1009,73 @@ func encodeVarintRpc(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *SQLSyncRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Sql)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.Uid)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.OnTable)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.ToUID)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.Role)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.OnDatabase)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.TxIndex)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.TxID)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	l = len(m.TxType)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	if len(m.Arguments) > 0 {
+		for _, e := range m.Arguments {
+			l = e.Size()
+			n += 1 + l + sovRpc(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *SQLSyncResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Code != 0 {
+		n += 1 + sovRpc(uint64(m.Code))
+	}
+	l = len(m.Msg)
+	if l > 0 {
+		n += 1 + l + sovRpc(uint64(l))
+	}
+	return n
+}
+
 func (m *SQLQueryRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1833,194 +1166,484 @@ func (m *SimpleSQLQueryResponse_RowValue) Size() (n int) {
 	return n
 }
 
-func (m *SQLListTablesRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Keyword)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.Uid)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	if m.Page != 0 {
-		n += 1 + sovRpc(uint64(m.Page))
-	}
-	if m.PageSize != 0 {
-		n += 1 + sovRpc(uint64(m.PageSize))
-	}
-	l = len(m.Database)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	return n
-}
-
-func (m *SQLListTablesResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Tables) > 0 {
-		for _, e := range m.Tables {
-			l = e.Size()
-			n += 1 + l + sovRpc(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *SQLListDatabasesRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *SQLListDatabasesResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Databases) > 0 {
-		for _, e := range m.Databases {
-			l = e.Size()
-			n += 1 + l + sovRpc(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *ShowCreateTableRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.DatabaseName)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.TableName)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	return n
-}
-
-func (m *ShowCreateTableResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Schema)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	return n
-}
-
-func (m *SQLExecRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Uid)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.Sql)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.Txid)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.Index)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	if len(m.Arguments) > 0 {
-		for _, e := range m.Arguments {
-			l = e.Size()
-			n += 1 + l + sovRpc(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *SQLExecResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Results) > 0 {
-		for _, e := range m.Results {
-			l = e.Size()
-			n += 1 + l + sovRpc(uint64(l))
-		}
-	}
-	if m.TookTimes != 0 {
-		n += 5
-	}
-	return n
-}
-
-func (m *SQLGrantRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Uid)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.OnTable)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.ToUID)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.Role)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	l = len(m.OnDatabase)
-	if l > 0 {
-		n += 1 + l + sovRpc(uint64(l))
-	}
-	return n
-}
-
-func (m *SQLGrantResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
 func sovRpc(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozRpc(x uint64) (n int) {
 	return sovRpc(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *SQLSyncRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowRpc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SQLSyncRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SQLSyncRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Sql", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Sql = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Uid", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Uid = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OnTable", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OnTable = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ToUID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ToUID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Role", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Role = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OnDatabase", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OnDatabase = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TxIndex", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.TxIndex = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TxID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.TxID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TxType", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.TxType = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Arguments", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Arguments = append(m.Arguments, &common.Argument{})
+			if err := m.Arguments[len(m.Arguments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipRpc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SQLSyncResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowRpc
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SQLSyncResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SQLSyncResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Code", wireType)
+			}
+			m.Code = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Code |= uint32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Msg", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRpc
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthRpc
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Msg = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipRpc(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthRpc
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *SQLQueryRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -2576,1171 +2199,6 @@ func (m *SimpleSQLQueryResponse_RowValue) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLListTablesRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLListTablesRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLListTablesRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Keyword", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Keyword = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Uid", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Uid = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
-			}
-			m.Page = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Page |= int32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PageSize", wireType)
-			}
-			m.PageSize = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.PageSize |= int32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Database", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Database = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLListTablesResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLListTablesResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLListTablesResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Tables", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Tables = append(m.Tables, &common.TableInfo{})
-			if err := m.Tables[len(m.Tables)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLListDatabasesRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLListDatabasesRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLListDatabasesRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLListDatabasesResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLListDatabasesResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLListDatabasesResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Databases", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Databases = append(m.Databases, &common.DatabaseInfo{})
-			if err := m.Databases[len(m.Databases)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *ShowCreateTableRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: ShowCreateTableRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ShowCreateTableRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field DatabaseName", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.DatabaseName = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field TableName", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.TableName = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *ShowCreateTableResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: ShowCreateTableResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ShowCreateTableResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Schema", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Schema = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLExecRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLExecRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLExecRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Uid", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Uid = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Sql", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Sql = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Txid", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Txid = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Index = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Arguments", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Arguments = append(m.Arguments, &common.Argument{})
-			if err := m.Arguments[len(m.Arguments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLExecResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLExecResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLExecResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Results", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Results = append(m.Results, &common.ResultSet{})
-			if err := m.Results[len(m.Results)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 5 {
-				return fmt.Errorf("proto: wrong wireType = %d for field TookTimes", wireType)
-			}
-			var v uint32
-			if (iNdEx + 4) > l {
-				return io.ErrUnexpectedEOF
-			}
-			v = uint32(encoding_binary.LittleEndian.Uint32(dAtA[iNdEx:]))
-			iNdEx += 4
-			m.TookTimes = float32(math.Float32frombits(v))
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLGrantRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLGrantRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLGrantRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Uid", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Uid = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OnTable", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OnTable = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ToUID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.ToUID = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Role", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Role = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OnDatabase", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRpc
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRpc
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OnDatabase = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipRpc(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthRpc
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLGrantResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowRpc
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLGrantResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLGrantResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipRpc(dAtA[iNdEx:])

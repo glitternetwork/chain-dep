@@ -7,30 +7,43 @@ import "google/api/annotations.proto";
 import "common/sql_engine.proto";
 
 service Rpc {
-
+  rpc Sync(SQLSyncRequest) returns (SQLSyncResponse);
 
   rpc SQLQuery(SQLQueryRequest) returns (SQLQueryResponse) {
     option (google.api.http) = {
-      post: "/engine/sql/query",
+      post: "/blockved/engine/index/sql/query",
       body: "*"
     };
   }
 
   rpc SimpleSQLQuery(SQLQueryRequest) returns (SimpleSQLQueryResponse) {
     option (google.api.http) = {
-      post: "/engine/sql/simple_query",
+      post: "/blockved/engine/index/sql/simple_query",
       body: "*"
     };
   }
 
-  rpc ShowCreateTable(ShowCreateTableRequest) returns (ShowCreateTableResponse) {
-    option (google.api.http).get = "/engine/sql/show_create_table";
-  }
-
-  rpc SQLExec(SQLExecRequest) returns (SQLExecResponse);
-
-  rpc SQLGrant(SQLGrantRequest) returns (SQLGrantResponse);
 }
+
+
+message SQLSyncRequest{
+  string sql = 1;
+  string uid = 2;
+  string onTable = 3;
+  string toUID = 4;
+  string role = 5;
+  string onDatabase = 6;
+  string txIndex = 7;
+  string txID = 8;
+  string txType = 9; //x.index.SQLExecRequest or  x.index.SQLGrantRequest
+  repeated common.Argument arguments = 10;
+}
+
+message SQLSyncResponse{
+  uint32 code = 1;
+  string msg = 2;
+}
+
 
 
 message SQLQueryRequest{
@@ -51,57 +64,4 @@ message SimpleSQLQueryResponse{
     common.ColumnValueType column_value_type = 2;
   }
   repeated ResultSet result = 1;
-}
-
-message SQLListTablesRequest{
-  string keyword = 1;
-  string uid = 2;
-  int32 page = 3;
-  int32 page_size = 4;
-  string database = 5;
-}
-
-message SQLListTablesResponse{
-  repeated common.TableInfo tables = 1;
-}
-
-message SQLListDatabasesRequest{
-}
-
-
-message SQLListDatabasesResponse{
-  repeated common.DatabaseInfo databases = 1;
-}
-
-message ShowCreateTableRequest{
-  string database_name = 1;
-  string table_name = 2;
-}
-message ShowCreateTableResponse{
-  string schema = 1;
-}
-
-
-message SQLExecRequest{
-  string uid = 1;
-  string sql = 2;
-  string txid =3;
-  string index = 4;
-  repeated common.Argument arguments = 5;
-}
-
-message SQLExecResponse{
-  repeated common.ResultSet results = 1;
-  float took_times = 2;
-}
-
-message SQLGrantRequest{
-  string uid = 1;
-  string onTable = 2;
-  string toUID = 3;
-  string role = 4;
-  string onDatabase = 5;
-}
-
-message SQLGrantResponse{
 }
