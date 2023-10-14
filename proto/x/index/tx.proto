@@ -11,6 +11,8 @@ service Msg {
     rpc SQLExec(SQLExecRequest) returns (SQLExecResponse);
 
     rpc SQLGrant(SQLGrantRequest) returns (SQLGrantResponse);
+
+    rpc BindHost(BindHostRequest ) returns (BindHostResponse);
 }
 
 message SQLExecRequest{
@@ -33,4 +35,15 @@ message SQLGrantRequest{
 }
 
 message SQLGrantResponse{
+}
+
+
+message BindHostRequest{
+  string uid  = 1;
+  string database = 2;
+  string url = 3;
+}
+
+message BindHostResponse {
+
 }

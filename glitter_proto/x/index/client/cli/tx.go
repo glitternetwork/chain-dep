@@ -38,6 +38,7 @@ func GetTxCmd() *cobra.Command {
 
 	cmd.AddCommand(GetCmdTxSQLExec())
 	cmd.AddCommand(GetCmdTxSQLGrant())
+	cmd.AddCommand(GetCmdTxBindHost())
 	return cmd
 }
 
@@ -109,6 +110,35 @@ func GetCmdTxSQLGrant() *cobra.Command {
 				return errors.New("args error: empty role")
 			}
 			msg := types.NewSQLGrantRequest(ownerAddress, onDatabase, onTable, toUID, role)
+			if err := msg.ValidateBasic(); err != nil {
+				return err
+			}
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+
+	flags.AddTxFlagsToCmd(cmd)
+
+	return cmd
+}
+
+// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
+func GetCmdTxBindHost() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "bind-host <database> <url>",
+		Short: "grant permission",
+		Args:  cobra.ExactArgs(2),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+			ownerAddress := clientCtx.GetFromAddress()
+			var (
+				database, url string
+			)
+			database, url = args[0], args[1]
+			msg := types.NewBindHostRequest(ownerAddress, database, url)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

@@ -99,3 +99,46 @@ func strSholudNotEmpty(name string, s string) error {
 	}
 	return errors.Errorf("%s should not empty", name)
 }
+
+var _ sdk.Msg = &BindHostRequest{}
+
+func NewBindHostRequest(ownerAddress sdk.AccAddress, database string, url string) *BindHostRequest {
+	return &BindHostRequest{
+		Uid:      ownerAddress.String(),
+		Database: database,
+		Url:      url,
+	}
+}
+func (msg BindHostRequest) Route() string {
+	return RouterKey
+}
+
+func (m BindHostRequest) Type() string {
+	return TypeMsgSQLGrant
+}
+
+func (msg BindHostRequest) ValidateBasic() error {
+	if err := strSholudNotEmpty("uid", msg.GetUid()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("database", msg.GetDatabase()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("host", msg.GetUrl()); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (msg BindHostRequest) GetSigners() []sdk.AccAddress {
+	signer, err := sdk.AccAddressFromBech32(msg.Uid)
+	if err != nil {
+		panic(err)
+	}
+	return []sdk.AccAddress{signer}
+}
+
+// GetSignBytes Implements Msg.
+func (msg BindHostRequest) GetSignBytes() []byte {
+	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
+}

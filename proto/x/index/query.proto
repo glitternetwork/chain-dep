@@ -5,6 +5,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "x/index/params.proto";
 import "x/index/index.proto";
+import "x/index/host.proto";
 import "common/sql_engine.proto";
 // this line is used by starport scaffolding # 1
 
@@ -46,6 +47,11 @@ service Query {
 
   rpc ShowCreateTable(ShowCreateTableRequest) returns (ShowCreateTableResponse) {
     option (google.api.http).get = "/blockved/glitterchain/index/sql/show_create_table";
+  }
+
+  // Parameters queries the parameters of the module.
+  rpc GetAllHosts(GetAllHostsRequest) returns (GetAllHostsResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/sql/get_all_hosts";
   }
   // this line is used by starport scaffolding # 2
 }
@@ -104,4 +110,13 @@ message ShowCreateTableRequest{
 }
 message ShowCreateTableResponse{
   string schema = 1;
+}
+
+
+message GetAllHostsRequest{
+
+}
+
+message GetAllHostsResponse{
+  repeated Host list = 1;
 }
