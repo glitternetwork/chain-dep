@@ -1,0 +1,84 @@
+syntax = "proto3";
+package engine;
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/indexserver";
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "common/sql_engine.proto";
+
+service IndexServer{
+  // Execute 执行SQL语句
+  rpc Execute(ExecuteRequest) returns (ExecuteResponse);
+  // BatchExecute 批量执行SQL语句
+  rpc BatchExecute(BatchExecuteRequest) returns (BatchExecuteResponse);
+  // QueryExecuteResult 查询执行结果
+  rpc QueryExecuteResult(QueryExecuteResultRequest) returns (QueryExecuteResultResponse);
+  // QueryResult
+  rpc Query(QueryRequest) returns (QueryResponse);
+  // SimpleQuery
+  rpc SimpleQuery(QueryRequest) returns (SimpleQueryResponse);
+}
+
+message ExecuteRequest {
+  string UID = 1;
+  string SQL = 2;
+  repeated common.Argument Arguments = 3;
+  string TraceID = 4; // 支持幂等
+}
+
+message ExecuteResponse {
+  string TraceID = 1;
+  bool   Success = 2;
+  int32  ErrorCode = 3;
+  string ErrorMessage = 4;
+}
+
+message BatchExecuteRequest {
+  repeated ExecuteRequest requests = 1;
+}
+
+message BatchExecuteResponse {
+  repeated ExecuteResponse responses = 1;
+}
+
+
+message QueryExecuteResultRequest {
+  string TraceID = 1;
+}
+
+message QueryExecuteResultResponse {
+  enum ExecuteStatus {
+    Unknown = 0;
+    Executing = 1;
+    Success = 2;
+    Failed = 3;
+  }
+  string TraceID = 1;
+  ExecuteStatus status = 3;
+  int32  ErrorCode = 4; // 返回库/表不存在的错误
+  string ErrorMessage = 5;
+}
+
+
+message QueryRequest {
+  string UID = 1;
+  string SQL = 2;
+  repeated common.Argument Arguments = 3;
+}
+
+message QueryResponse {
+  repeated common.ResultSet results = 1;
+  float took_times = 2;
+}
+
+
+message SimpleQueryResponse{
+  message ResultSet{
+    map<string, RowValue> row = 1;
+  }
+  message RowValue{
+    string value = 1;
+    common.ColumnValueType column_value_type = 2;
+  }
+  repeated ResultSet result = 1;
+}

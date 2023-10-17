@@ -36,19 +36,18 @@ protoc \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
   $(find  ${CHAIN_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
-mkdir -p   glitter_proto/x/index/types glitter_proto/engine
 cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/x/index/types/*.go  glitter_proto/x/index/types/
 
 
-ENGINE_DIR=${SRC_DIR}"/engine"
+INDEXSERVER_DIR=${SRC_DIR}"/indexserver"
 protoc \
   --proto_path=${SRC_DIR} \
   -I="third_party/proto/" \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
-  $(find  ${ENGINE_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
-mkdir -p   glitter_proto/engine
-cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/engine/*.go glitter_proto/engine/
+  $(find  ${INDEXSERVER_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
+mkdir -p   glitter_proto/indexserver
+cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/indexserver/*.go glitter_proto/indexserver/
 
 
 rm -rf glitter_proto/github.com/
