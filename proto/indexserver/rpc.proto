@@ -46,13 +46,14 @@ message QueryExecuteResultRequest {
   string TraceID = 1;
 }
 
+enum ExecuteStatus {
+  Success = 0;
+  Executing = 1;
+  Failed = 3;
+  Unkown = 4;
+}
+
 message QueryExecuteResultResponse {
-  enum ExecuteStatus {
-    Unknown = 0;
-    Executing = 1;
-    Success = 2;
-    Failed = 3;
-  }
   string TraceID = 1;
   ExecuteStatus status = 3;
   int32  ErrorCode = 4; // 返回库/表不存在的错误
