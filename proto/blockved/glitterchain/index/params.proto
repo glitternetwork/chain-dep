@@ -1,9 +1,9 @@
 syntax = "proto3";
-package x.index;
+package blockved.glitterchain.index;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/x/index/types";
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
 
 // Params defines the parameters for the module.
 message Params {

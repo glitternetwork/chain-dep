@@ -1,12 +1,12 @@
 syntax = "proto3";
-package x.index;
+package blockved.glitterchain.index;
 
 // this line is used by starport scaffolding # genesis/proto/import
 
 //option go_package = "x/index/types;types";
-option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/x/index/types";
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
 import "gogoproto/gogo.proto";
-import "x/index/index.proto";
+import "blockved/glitterchain/index/index.proto";
 // GenesisState defines the index module's genesis state.
 message GenesisState {
 }

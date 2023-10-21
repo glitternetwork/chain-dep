@@ -30,7 +30,7 @@ import (
 	ethermintcodec "github.com/evmos/ethermint/encoding/codec"
 	"github.com/evmos/ethermint/x/evm"
 	"github.com/evmos/ethermint/x/feemarket"
-	glitterindex "github.com/glitternetwork/chain-dep/glitter_proto/x/index"
+	glitterindex "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index"
 )
 
 // EncodingConfig specifies the concrete encoding types to use for a given app.

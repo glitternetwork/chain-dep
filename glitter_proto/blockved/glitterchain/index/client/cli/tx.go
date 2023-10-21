@@ -12,7 +12,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	// "github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/glitternetwork/chain-dep/glitter_proto/x/index/types"
+	"github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types"
 )
 
 var (

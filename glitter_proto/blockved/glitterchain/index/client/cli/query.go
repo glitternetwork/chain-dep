@@ -10,7 +10,7 @@ import (
 	// "github.com/cosmos/cosmos-sdk/client/flags"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/glitternetwork/chain-dep/glitter_proto/x/index/types"
+	"github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module
