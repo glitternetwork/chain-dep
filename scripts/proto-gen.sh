@@ -47,9 +47,19 @@ protoc \
   -I="third_party/proto/" \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
+  --openapiv2_out ./glitter_proto \
   $(find  ${INDEXSERVER_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
 mkdir -p   glitter_proto/indexserver
 cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/indexserver/*.go glitter_proto/indexserver/
+cat << EOF > glitter_proto/indexserver/embed_swagger.go
+package indexserver
 
+import (
+	_ "embed"
+)
+
+//go:embed rpc.swagger.json
+var SwaggerJSONData string
+EOF
 
 rm -rf glitter_proto/github.com/

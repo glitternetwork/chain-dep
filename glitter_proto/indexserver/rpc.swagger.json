@@ -1,0 +1,356 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "indexserver/rpc.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "IndexServer"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sql/query": {
+      "post": {
+        "summary": "QueryResult",
+        "operationId": "IndexServer_Query",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineQueryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineQueryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IndexServer"
+        ]
+      }
+    },
+    "/sql/simple_query": {
+      "post": {
+        "summary": "SimpleQuery",
+        "operationId": "IndexServer_SimpleQuery",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/engineSimpleQueryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/engineQueryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IndexServer"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ArgumentVarType": {
+      "type": "string",
+      "enum": [
+        "INT",
+        "UINT",
+        "FLOAT",
+        "BOOL",
+        "STRING",
+        "BYTES"
+      ],
+      "default": "INT"
+    },
+    "SimpleQueryResponseRowValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "columnValueType": {
+          "$ref": "#/definitions/commonColumnValueType"
+        }
+      }
+    },
+    "commonArgument": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ArgumentVarType",
+          "title": "variable type"
+        },
+        "value": {
+          "type": "string",
+          "title": "variable value"
+        }
+      }
+    },
+    "commonColumnDef": {
+      "type": "object",
+      "properties": {
+        "columnName": {
+          "type": "string"
+        },
+        "columnType": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "columnValueType": {
+          "$ref": "#/definitions/commonColumnValueType"
+        }
+      }
+    },
+    "commonColumnValueType": {
+      "type": "string",
+      "enum": [
+        "InvalidColumn",
+        "IntColumn",
+        "UintColumn",
+        "FloatColumn",
+        "BoolColumn",
+        "StringColumn",
+        "BytesColumn"
+      ],
+      "default": "InvalidColumn"
+    },
+    "commonResultSet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "columnDefs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonColumnDef"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonRowData"
+          }
+        }
+      }
+    },
+    "commonRowData": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "engineBatchExecuteResponse": {
+      "type": "object",
+      "properties": {
+        "responses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/engineExecuteResponse"
+          }
+        }
+      }
+    },
+    "engineExecuteRequest": {
+      "type": "object",
+      "properties": {
+        "UID": {
+          "type": "string"
+        },
+        "SQL": {
+          "type": "string"
+        },
+        "Arguments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonArgument"
+          }
+        },
+        "TraceID": {
+          "type": "string",
+          "title": "支持幂等"
+        },
+        "TxID": {
+          "type": "string"
+        }
+      }
+    },
+    "engineExecuteResponse": {
+      "type": "object",
+      "properties": {
+        "TraceID": {
+          "type": "string"
+        },
+        "Success": {
+          "type": "boolean"
+        },
+        "ErrorCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "engineExecuteStatus": {
+      "type": "string",
+      "enum": [
+        "Success",
+        "Executing",
+        "Failed",
+        "Unkown"
+      ],
+      "default": "Success"
+    },
+    "engineQueryExecuteResultResponse": {
+      "type": "object",
+      "properties": {
+        "TraceID": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/engineExecuteStatus"
+        },
+        "ErrorCode": {
+          "type": "integer",
+          "format": "int32",
+          "title": "返回库/表不存在的错误"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "engineQueryRequest": {
+      "type": "object",
+      "properties": {
+        "UID": {
+          "type": "string"
+        },
+        "SQL": {
+          "type": "string"
+        },
+        "Arguments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonArgument"
+          }
+        }
+      }
+    },
+    "engineQueryResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonResultSet"
+          }
+        },
+        "tookTimes": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "engineSimpleQueryResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/engineSimpleQueryResponseResultSet"
+          }
+        }
+      }
+    },
+    "engineSimpleQueryResponseResultSet": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/SimpleQueryResponseRowValue"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

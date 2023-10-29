@@ -14,9 +14,19 @@ service IndexServer{
   // QueryExecuteResult 查询执行结果
   rpc QueryExecuteResult(QueryExecuteResultRequest) returns (QueryExecuteResultResponse);
   // QueryResult
-  rpc Query(QueryRequest) returns (QueryResponse);
+  rpc Query(QueryRequest) returns (QueryResponse){
+    option (google.api.http) = {
+      post: "/sql/query",
+      body: "*"
+    };
+  };
   // SimpleQuery
-  rpc SimpleQuery(QueryRequest) returns (SimpleQueryResponse);
+  rpc SimpleQuery(QueryRequest) returns (SimpleQueryResponse){
+    option (google.api.http) = {
+      post: "/sql/simple_query",
+      body: "*"
+    };
+  };
 }
 
 message ExecuteRequest {
@@ -24,6 +34,7 @@ message ExecuteRequest {
   string SQL = 2;
   repeated common.Argument Arguments = 3;
   string TraceID = 4; // 支持幂等
+  string TxID = 5;
 }
 
 message ExecuteResponse {
