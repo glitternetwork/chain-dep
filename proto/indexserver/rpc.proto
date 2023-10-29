@@ -16,14 +16,14 @@ service IndexServer{
   // QueryResult
   rpc Query(QueryRequest) returns (QueryResponse){
     option (google.api.http) = {
-      post: "/sql/query",
+      post: "/api/v1/sql/query",
       body: "*"
     };
   };
   // SimpleQuery
   rpc SimpleQuery(QueryRequest) returns (SimpleQueryResponse){
     option (google.api.http) = {
-      post: "/sql/simple_query",
+      post: "/api/v1/sql/simple_query",
       body: "*"
     };
   };

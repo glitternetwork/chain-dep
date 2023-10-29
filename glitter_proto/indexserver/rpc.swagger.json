@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/sql/query": {
+    "/api/v1/sql/query": {
       "post": {
         "summary": "QueryResult",
         "operationId": "IndexServer_Query",
@@ -49,7 +49,7 @@
         ]
       }
     },
-    "/sql/simple_query": {
+    "/api/v1/sql/simple_query": {
       "post": {
         "summary": "SimpleQuery",
         "operationId": "IndexServer_SimpleQuery",

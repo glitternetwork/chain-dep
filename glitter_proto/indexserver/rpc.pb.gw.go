@@ -238,9 +238,9 @@ func RegisterIndexServerHandlerClient(ctx context.Context, mux *runtime.ServeMux
 }
 
 var (
-	pattern_IndexServer_Query_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"sql", "query"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_IndexServer_Query_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "sql", "query"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_IndexServer_SimpleQuery_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"sql", "simple_query"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_IndexServer_SimpleQuery_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "sql", "simple_query"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (
