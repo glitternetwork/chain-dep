@@ -30,8 +30,10 @@ func FindDBTablID(n *gast.AST) (schema.TableID, error) {
 			return schema.TableID{}, syntaxError(n)
 		}
 		refs = stmt.TableRefs.TableRefs
+	case *ast.CreateTableStmt:
+		return schema.NewTableID(stmt.Table.Schema.O, stmt.Table.Name.O), nil
 	default:
-		return schema.TableID{}, errors.Errorf("not support find table from this statement: type=%s", n.Type)
+		return schema.TableID{}, errors.Errorf("not support find table from this statement: type=%d", n.Type)
 	}
 	return getTableName(refs)
 }
