@@ -7,13 +7,6 @@ import "google/api/annotations.proto";
 import "common/sql_engine.proto";
 
 service IndexServer{
-  // Execute 执行SQL语句
-  rpc Execute(ExecuteRequest) returns (ExecuteResponse);
-  // BatchExecute 批量执行SQL语句
-  rpc BatchExecute(BatchExecuteRequest) returns (BatchExecuteResponse);
-  // QueryExecuteResult 查询执行结果
-  rpc QueryExecuteResult(QueryExecuteResultRequest) returns (QueryExecuteResultResponse);
-  // QueryResult
   rpc Query(QueryRequest) returns (QueryResponse){
     option (google.api.http) = {
       post: "/api/v1/sql/query",

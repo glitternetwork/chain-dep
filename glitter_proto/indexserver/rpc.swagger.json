@@ -18,7 +18,6 @@
   "paths": {
     "/api/v1/sql/query": {
       "post": {
-        "summary": "QueryResult",
         "operationId": "IndexServer_Query",
         "responses": {
           "200": {
@@ -159,14 +158,12 @@
         "columnDefs": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/commonColumnDef"
           }
         },
         "rows": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/commonRowData"
           }
         }
@@ -183,90 +180,6 @@
         }
       }
     },
-    "engineBatchExecuteResponse": {
-      "type": "object",
-      "properties": {
-        "responses": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/engineExecuteResponse"
-          }
-        }
-      }
-    },
-    "engineExecuteRequest": {
-      "type": "object",
-      "properties": {
-        "UID": {
-          "type": "string"
-        },
-        "SQL": {
-          "type": "string"
-        },
-        "Arguments": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/commonArgument"
-          }
-        },
-        "TraceID": {
-          "type": "string",
-          "title": "支持幂等"
-        },
-        "TxID": {
-          "type": "string"
-        }
-      }
-    },
-    "engineExecuteResponse": {
-      "type": "object",
-      "properties": {
-        "TraceID": {
-          "type": "string"
-        },
-        "Success": {
-          "type": "boolean"
-        },
-        "ErrorCode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "ErrorMessage": {
-          "type": "string"
-        }
-      }
-    },
-    "engineExecuteStatus": {
-      "type": "string",
-      "enum": [
-        "Success",
-        "Executing",
-        "Failed",
-        "Unkown"
-      ],
-      "default": "Success"
-    },
-    "engineQueryExecuteResultResponse": {
-      "type": "object",
-      "properties": {
-        "TraceID": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/engineExecuteStatus"
-        },
-        "ErrorCode": {
-          "type": "integer",
-          "format": "int32",
-          "title": "返回库/表不存在的错误"
-        },
-        "ErrorMessage": {
-          "type": "string"
-        }
-      }
-    },
     "engineQueryRequest": {
       "type": "object",
       "properties": {
@@ -279,7 +192,6 @@
         "Arguments": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/commonArgument"
           }
         }
@@ -291,7 +203,6 @@
         "results": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/commonResultSet"
           }
         },
@@ -307,7 +218,6 @@
         "result": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/engineSimpleQueryResponseResultSet"
           }
         }
@@ -346,7 +256,6 @@
         "details": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
