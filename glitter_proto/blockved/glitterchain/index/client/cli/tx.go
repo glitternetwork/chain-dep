@@ -138,6 +138,9 @@ func GetCmdTxBindHost() *cobra.Command {
 				database, url string
 			)
 			database, url = args[0], args[1]
+			if len(url) > 1000 {
+				return errors.New("url is too long")
+			}
 			msg := types.NewBindHostRequest(ownerAddress, database, url)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
