@@ -5,14 +5,11 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
-
-	"github.com/spf13/cobra"
-
-	"github.com/cosmos/cosmos-sdk/client"
-	// "github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types"
+	"github.com/spf13/cobra"
 )
 
 var (
@@ -39,6 +36,9 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(GetCmdTxSQLExec())
 	cmd.AddCommand(GetCmdTxSQLGrant())
 	cmd.AddCommand(GetCmdTxBindHost())
+	cmd.AddCommand(GetCmdTxCreateDataset())
+	cmd.AddCommand(GetCmdTxEditDataset())
+	cmd.AddCommand(GetCmdTxEditTable())
 	return cmd
 }
 
@@ -142,6 +142,162 @@ func GetCmdTxBindHost() *cobra.Command {
 				return errors.New("url is too long")
 			}
 			msg := types.NewBindHostRequest(ownerAddress, database, url)
+			if err := msg.ValidateBasic(); err != nil {
+				return err
+			}
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+
+	flags.AddTxFlagsToCmd(cmd)
+
+	return cmd
+}
+
+// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
+func GetCmdTxCreateDataset() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "create-dataset <dataset_name>",
+		Short: "create dataset",
+		Args:  cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+			fromAddress := clientCtx.GetFromAddress()
+			var (
+				datasetName string
+			)
+			datasetName = args[0]
+			if err != nil {
+				return err
+			}
+			description, err := cmd.Flags().GetString(FlagDescription)
+			if err != nil {
+				return err
+			}
+
+			hosts, err := cmd.Flags().GetString(FlagHosts)
+			if err != nil {
+				return err
+			}
+
+			manageAddresses, err := cmd.Flags().GetString(FlagManageAddresses)
+			if err != nil {
+				return err
+			}
+
+			workstatus, err := cmd.Flags().GetInt32(FlagWorkStatus)
+			if err != nil {
+				return err
+			}
+
+			msg := types.NewCreateDatasetRequest(
+				fromAddress,
+				datasetName,
+				types.ServiceStatus(workstatus),
+				hosts,
+				manageAddresses,
+				description,
+			)
+			if err := msg.ValidateBasic(); err != nil {
+				return err
+			}
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+
+	cmd.Flags().AddFlagSet(FlagSetdescription())
+	cmd.Flags().AddFlagSet(FlagSetWorkStatus())
+	cmd.Flags().AddFlagSet(FlagSetHosts())
+	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
+	flags.AddTxFlagsToCmd(cmd)
+
+	return cmd
+}
+
+// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
+func GetCmdTxEditDataset() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "edit-dataset <dataset_name>",
+		Short: "edit dataset",
+		Args:  cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+			fromAddress := clientCtx.GetFromAddress()
+			var (
+				datasetName string
+			)
+			datasetName = args[0]
+			if err != nil {
+				return err
+			}
+			description, err := cmd.Flags().GetString(FlagDescription)
+			if err != nil {
+				return err
+			}
+
+			hosts, err := cmd.Flags().GetString(FlagHosts)
+			if err != nil {
+				return err
+			}
+
+			manageAddresses, err := cmd.Flags().GetString(FlagManageAddresses)
+			if err != nil {
+				return err
+			}
+
+			workstatus, err := cmd.Flags().GetInt32(FlagWorkStatus)
+			if err != nil {
+				return err
+			}
+
+			msg := types.NewEditDatasetRequest(
+				fromAddress,
+				datasetName,
+				types.ServiceStatus(workstatus),
+				hosts,
+				manageAddresses,
+				description,
+			)
+			if err := msg.ValidateBasic(); err != nil {
+				return err
+			}
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+
+	cmd.Flags().AddFlagSet(FlagSetdescription())
+	cmd.Flags().AddFlagSet(FlagSetWorkStatus())
+	cmd.Flags().AddFlagSet(FlagSetHosts())
+	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
+	flags.AddTxFlagsToCmd(cmd)
+
+	return cmd
+}
+
+// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
+func GetCmdTxEditTable() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "edit-table <dataset_name> <table_name> <meta>",
+		Short: "edit table",
+		Args:  cobra.ExactArgs(3),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+			fromAddress := clientCtx.GetFromAddress()
+			var (
+				datasetName, tableName, meta string
+			)
+			datasetName, tableName, meta = args[0], args[1], args[2]
+
+			msg := types.NewEditTableRequest(fromAddress, datasetName, tableName, meta)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

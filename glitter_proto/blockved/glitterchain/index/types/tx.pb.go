@@ -7,6 +7,7 @@ import (
 	context "context"
 	encoding_binary "encoding/binary"
 	fmt "fmt"
+	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
 	common "github.com/glitternetwork/chain-dep/glitter_proto/common"
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
@@ -350,6 +351,368 @@ func (m *BindHostResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_BindHostResponse proto.InternalMessageInfo
 
+type EditTableRequest struct {
+	FromAddress string `protobuf:"bytes,1,opt,name=from_address,json=fromAddress,proto3" json:"from_address,omitempty"`
+	DatasetName string `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
+	TableName   string `protobuf:"bytes,3,opt,name=table_name,json=tableName,proto3" json:"table_name,omitempty"`
+	Meta        string `protobuf:"bytes,4,opt,name=meta,proto3" json:"meta,omitempty"`
+}
+
+func (m *EditTableRequest) Reset()         { *m = EditTableRequest{} }
+func (m *EditTableRequest) String() string { return proto.CompactTextString(m) }
+func (*EditTableRequest) ProtoMessage()    {}
+func (*EditTableRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f95f62838e2ccd4a, []int{6}
+}
+func (m *EditTableRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *EditTableRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_EditTableRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *EditTableRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EditTableRequest.Merge(m, src)
+}
+func (m *EditTableRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *EditTableRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_EditTableRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EditTableRequest proto.InternalMessageInfo
+
+func (m *EditTableRequest) GetFromAddress() string {
+	if m != nil {
+		return m.FromAddress
+	}
+	return ""
+}
+
+func (m *EditTableRequest) GetDatasetName() string {
+	if m != nil {
+		return m.DatasetName
+	}
+	return ""
+}
+
+func (m *EditTableRequest) GetTableName() string {
+	if m != nil {
+		return m.TableName
+	}
+	return ""
+}
+
+func (m *EditTableRequest) GetMeta() string {
+	if m != nil {
+		return m.Meta
+	}
+	return ""
+}
+
+type EditTableResponse struct {
+}
+
+func (m *EditTableResponse) Reset()         { *m = EditTableResponse{} }
+func (m *EditTableResponse) String() string { return proto.CompactTextString(m) }
+func (*EditTableResponse) ProtoMessage()    {}
+func (*EditTableResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f95f62838e2ccd4a, []int{7}
+}
+func (m *EditTableResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *EditTableResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_EditTableResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *EditTableResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EditTableResponse.Merge(m, src)
+}
+func (m *EditTableResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *EditTableResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_EditTableResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EditTableResponse proto.InternalMessageInfo
+
+type CreateDatasetRequest struct {
+	FromAddress     string                                 `protobuf:"bytes,1,opt,name=from_address,json=fromAddress,proto3" json:"from_address,omitempty"`
+	DatasetName     string                                 `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
+	WorkStatus      ServiceStatus                          `protobuf:"varint,3,opt,name=work_status,json=workStatus,proto3,enum=blockved.glitterchain.index.ServiceStatus" json:"work_status,omitempty"`
+	OwnerAddress    string                                 `protobuf:"bytes,4,opt,name=owner_address,json=ownerAddress,proto3" json:"owner_address,omitempty"`
+	OwnerStake      github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,5,opt,name=owner_stake,json=ownerStake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"owner_stake"`
+	Hosts           string                                 `protobuf:"bytes,6,opt,name=hosts,proto3" json:"hosts,omitempty"`
+	ManageAddresses string                                 `protobuf:"bytes,7,opt,name=manage_addresses,json=manageAddresses,proto3" json:"manage_addresses,omitempty"`
+	Description     string                                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
+}
+
+func (m *CreateDatasetRequest) Reset()         { *m = CreateDatasetRequest{} }
+func (m *CreateDatasetRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateDatasetRequest) ProtoMessage()    {}
+func (*CreateDatasetRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f95f62838e2ccd4a, []int{8}
+}
+func (m *CreateDatasetRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateDatasetRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateDatasetRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateDatasetRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateDatasetRequest.Merge(m, src)
+}
+func (m *CreateDatasetRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateDatasetRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateDatasetRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateDatasetRequest proto.InternalMessageInfo
+
+func (m *CreateDatasetRequest) GetFromAddress() string {
+	if m != nil {
+		return m.FromAddress
+	}
+	return ""
+}
+
+func (m *CreateDatasetRequest) GetDatasetName() string {
+	if m != nil {
+		return m.DatasetName
+	}
+	return ""
+}
+
+func (m *CreateDatasetRequest) GetWorkStatus() ServiceStatus {
+	if m != nil {
+		return m.WorkStatus
+	}
+	return unset
+}
+
+func (m *CreateDatasetRequest) GetOwnerAddress() string {
+	if m != nil {
+		return m.OwnerAddress
+	}
+	return ""
+}
+
+func (m *CreateDatasetRequest) GetHosts() string {
+	if m != nil {
+		return m.Hosts
+	}
+	return ""
+}
+
+func (m *CreateDatasetRequest) GetManageAddresses() string {
+	if m != nil {
+		return m.ManageAddresses
+	}
+	return ""
+}
+
+func (m *CreateDatasetRequest) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CreateDatasetResponse struct {
+}
+
+func (m *CreateDatasetResponse) Reset()         { *m = CreateDatasetResponse{} }
+func (m *CreateDatasetResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateDatasetResponse) ProtoMessage()    {}
+func (*CreateDatasetResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f95f62838e2ccd4a, []int{9}
+}
+func (m *CreateDatasetResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CreateDatasetResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CreateDatasetResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CreateDatasetResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateDatasetResponse.Merge(m, src)
+}
+func (m *CreateDatasetResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *CreateDatasetResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateDatasetResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateDatasetResponse proto.InternalMessageInfo
+
+type EditDatasetRequest struct {
+	FromAddress     string                                 `protobuf:"bytes,1,opt,name=from_address,json=fromAddress,proto3" json:"from_address,omitempty"`
+	DatasetName     string                                 `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
+	WorkStatus      ServiceStatus                          `protobuf:"varint,3,opt,name=work_status,json=workStatus,proto3,enum=blockved.glitterchain.index.ServiceStatus" json:"work_status,omitempty"`
+	OwnerAddress    string                                 `protobuf:"bytes,4,opt,name=owner_address,json=ownerAddress,proto3" json:"owner_address,omitempty"`
+	OwnerStake      github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,5,opt,name=owner_stake,json=ownerStake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"owner_stake"`
+	Hosts           string                                 `protobuf:"bytes,6,opt,name=hosts,proto3" json:"hosts,omitempty"`
+	ManageAddresses string                                 `protobuf:"bytes,7,opt,name=manage_addresses,json=manageAddresses,proto3" json:"manage_addresses,omitempty"`
+	Description     string                                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
+}
+
+func (m *EditDatasetRequest) Reset()         { *m = EditDatasetRequest{} }
+func (m *EditDatasetRequest) String() string { return proto.CompactTextString(m) }
+func (*EditDatasetRequest) ProtoMessage()    {}
+func (*EditDatasetRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f95f62838e2ccd4a, []int{10}
+}
+func (m *EditDatasetRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *EditDatasetRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_EditDatasetRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *EditDatasetRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EditDatasetRequest.Merge(m, src)
+}
+func (m *EditDatasetRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *EditDatasetRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_EditDatasetRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EditDatasetRequest proto.InternalMessageInfo
+
+func (m *EditDatasetRequest) GetFromAddress() string {
+	if m != nil {
+		return m.FromAddress
+	}
+	return ""
+}
+
+func (m *EditDatasetRequest) GetDatasetName() string {
+	if m != nil {
+		return m.DatasetName
+	}
+	return ""
+}
+
+func (m *EditDatasetRequest) GetWorkStatus() ServiceStatus {
+	if m != nil {
+		return m.WorkStatus
+	}
+	return unset
+}
+
+func (m *EditDatasetRequest) GetOwnerAddress() string {
+	if m != nil {
+		return m.OwnerAddress
+	}
+	return ""
+}
+
+func (m *EditDatasetRequest) GetHosts() string {
+	if m != nil {
+		return m.Hosts
+	}
+	return ""
+}
+
+func (m *EditDatasetRequest) GetManageAddresses() string {
+	if m != nil {
+		return m.ManageAddresses
+	}
+	return ""
+}
+
+func (m *EditDatasetRequest) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type EditDatasetResponse struct {
+}
+
+func (m *EditDatasetResponse) Reset()         { *m = EditDatasetResponse{} }
+func (m *EditDatasetResponse) String() string { return proto.CompactTextString(m) }
+func (*EditDatasetResponse) ProtoMessage()    {}
+func (*EditDatasetResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f95f62838e2ccd4a, []int{11}
+}
+func (m *EditDatasetResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *EditDatasetResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_EditDatasetResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *EditDatasetResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EditDatasetResponse.Merge(m, src)
+}
+func (m *EditDatasetResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *EditDatasetResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_EditDatasetResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_EditDatasetResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*SQLExecRequest)(nil), "blockved.glitterchain.index.SQLExecRequest")
 	proto.RegisterType((*SQLExecResponse)(nil), "blockved.glitterchain.index.SQLExecResponse")
@@ -357,6 +720,12 @@ func init() {
 	proto.RegisterType((*SQLGrantResponse)(nil), "blockved.glitterchain.index.SQLGrantResponse")
 	proto.RegisterType((*BindHostRequest)(nil), "blockved.glitterchain.index.BindHostRequest")
 	proto.RegisterType((*BindHostResponse)(nil), "blockved.glitterchain.index.BindHostResponse")
+	proto.RegisterType((*EditTableRequest)(nil), "blockved.glitterchain.index.EditTableRequest")
+	proto.RegisterType((*EditTableResponse)(nil), "blockved.glitterchain.index.EditTableResponse")
+	proto.RegisterType((*CreateDatasetRequest)(nil), "blockved.glitterchain.index.CreateDatasetRequest")
+	proto.RegisterType((*CreateDatasetResponse)(nil), "blockved.glitterchain.index.CreateDatasetResponse")
+	proto.RegisterType((*EditDatasetRequest)(nil), "blockved.glitterchain.index.EditDatasetRequest")
+	proto.RegisterType((*EditDatasetResponse)(nil), "blockved.glitterchain.index.EditDatasetResponse")
 }
 
 func init() {
@@ -364,37 +733,57 @@ func init() {
 }
 
 var fileDescriptor_f95f62838e2ccd4a = []byte{
-	// 472 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x53, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0x8d, 0xe3, 0x96, 0x34, 0x83, 0x44, 0xc3, 0xaa, 0x12, 0x96, 0x11, 0x56, 0x65, 0x71, 0xa8,
-	0x54, 0x6a, 0x4b, 0xe5, 0x0b, 0xa8, 0x8a, 0x00, 0x09, 0x0e, 0x75, 0xca, 0x05, 0x09, 0x45, 0x76,
-	0x3c, 0x72, 0xad, 0xac, 0x77, 0x13, 0xef, 0x1a, 0xc2, 0x17, 0x70, 0xe5, 0x87, 0xb8, 0x73, 0xec,
-	0x91, 0x23, 0x4a, 0x7e, 0x04, 0xed, 0xae, 0xb7, 0x09, 0x95, 0x48, 0x72, 0x9b, 0x7d, 0xf3, 0xf6,
-	0xbd, 0x99, 0x9d, 0x1d, 0x78, 0x9e, 0x51, 0x3e, 0x9e, 0x7c, 0xc1, 0x3c, 0x2e, 0x68, 0x29, 0x25,
-	0xd6, 0xe3, 0x9b, 0xb4, 0x64, 0x71, 0xc9, 0x72, 0x9c, 0xc7, 0x72, 0x1e, 0x4d, 0x6b, 0x2e, 0x39,
-	0x79, 0x6a, 0x59, 0xd1, 0x3a, 0x2b, 0xd2, 0x2c, 0xff, 0xa8, 0xe0, 0x05, 0xd7, 0xbc, 0x58, 0x45,
-	0xe6, 0x8a, 0xff, 0x64, 0xcc, 0xab, 0x8a, 0xb3, 0x58, 0xcc, 0xe8, 0x08, 0x59, 0x51, 0x32, 0x34,
-	0x89, 0x30, 0x87, 0x47, 0xc3, 0xab, 0xf7, 0xaf, 0xe7, 0x38, 0x4e, 0x70, 0xd6, 0xa0, 0x90, 0x64,
-	0x00, 0x6e, 0x53, 0xe6, 0x9e, 0x73, 0xec, 0x9c, 0xf4, 0x13, 0x15, 0x2a, 0x44, 0xcc, 0xa8, 0xd7,
-	0x35, 0x88, 0x98, 0x51, 0x12, 0x41, 0x3f, 0xad, 0x8b, 0xa6, 0x42, 0x26, 0x85, 0xe7, 0x1e, 0xbb,
-	0x27, 0x0f, 0xcf, 0x07, 0x91, 0xb1, 0x88, 0x5e, 0xb5, 0x89, 0x64, 0x45, 0x09, 0x3f, 0xc3, 0xe1,
-	0x9d, 0x8b, 0x98, 0x72, 0x26, 0x90, 0x9c, 0x42, 0xaf, 0x46, 0xd1, 0x50, 0x29, 0x3c, 0x47, 0x0b,
-	0x3c, 0xb6, 0x02, 0x89, 0x86, 0x87, 0x28, 0x13, 0xcb, 0x20, 0xcf, 0x00, 0x24, 0xe7, 0x93, 0x91,
-	0x2c, 0x2b, 0x14, 0xba, 0x90, 0x6e, 0xd2, 0x57, 0xc8, 0xb5, 0x02, 0xc2, 0xef, 0x8e, 0xd6, 0x7f,
-	0x53, 0xa7, 0x4c, 0xfe, 0xbf, 0x0d, 0x0f, 0x7a, 0x9c, 0x5d, 0xa7, 0x19, 0xc5, 0xb6, 0x15, 0x7b,
-	0x24, 0x47, 0xb0, 0x2f, 0xf9, 0xc7, 0x77, 0x97, 0x9e, 0xab, 0x71, 0x73, 0x20, 0x04, 0xf6, 0x6a,
-	0x4e, 0xd1, 0xdb, 0xd3, 0xa0, 0x8e, 0x49, 0x00, 0xc0, 0xd9, 0x65, 0x2a, 0xd3, 0x2c, 0x15, 0xe8,
-	0xed, 0xeb, 0xcc, 0x1a, 0x12, 0x12, 0x18, 0xac, 0x0a, 0x31, 0x9d, 0x86, 0x57, 0x70, 0x78, 0x51,
-	0xb2, 0xfc, 0x2d, 0x17, 0x1b, 0x8a, 0xf3, 0xe1, 0x20, 0xb7, 0xb2, 0xa6, 0xba, 0xbb, 0xb3, 0x66,
-	0xd7, 0xb4, 0x2d, 0x4e, 0x85, 0xca, 0x66, 0x25, 0x69, 0x6c, 0xce, 0x7f, 0x76, 0xc1, 0xfd, 0x20,
-	0x0a, 0x92, 0x43, 0xaf, 0x7d, 0x6b, 0x72, 0x1a, 0x6d, 0xf8, 0x29, 0xd1, 0xbf, 0x73, 0xf7, 0x5f,
-	0xec, 0x46, 0x6e, 0xc7, 0x57, 0xc0, 0x81, 0x6d, 0x94, 0x6c, 0xbd, 0xb9, 0x3e, 0x18, 0xff, 0x6c,
-	0x47, 0xf6, 0xca, 0xc8, 0xb6, 0xba, 0xc5, 0xe8, 0xde, 0x23, 0x6f, 0x31, 0xba, 0xff, 0x7e, 0x17,
-	0xd5, 0xaf, 0x45, 0xe0, 0xdc, 0x2e, 0x02, 0xe7, 0xcf, 0x22, 0x70, 0x7e, 0x2c, 0x83, 0xce, 0xed,
-	0x32, 0xe8, 0xfc, 0x5e, 0x06, 0x9d, 0x4f, 0xc3, 0xa2, 0x94, 0x37, 0x4d, 0xa6, 0xfe, 0xa7, 0xdd,
-	0x4b, 0x86, 0xf2, 0x2b, 0xaf, 0x27, 0xb1, 0x56, 0x3c, 0xcb, 0x71, 0x6a, 0x13, 0x23, 0xb3, 0x7a,
-	0x1b, 0xf7, 0xf8, 0xdb, 0x14, 0x45, 0xf6, 0x40, 0x13, 0x5f, 0xfe, 0x0d, 0x00, 0x00, 0xff, 0xff,
-	0x7c, 0x6c, 0x67, 0x90, 0xf3, 0x03, 0x00, 0x00,
+	// 799 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x56, 0xcf, 0x6f, 0xe3, 0x44,
+	0x14, 0x8e, 0x37, 0xed, 0xa6, 0x79, 0xd9, 0xdd, 0x66, 0x67, 0xbb, 0x5a, 0xcb, 0x88, 0x6c, 0x09,
+	0x08, 0xed, 0x52, 0x62, 0x43, 0xf8, 0x0b, 0x5a, 0x52, 0x01, 0xe2, 0x97, 0xea, 0x94, 0x0b, 0x12,
+	0x8a, 0x26, 0xf6, 0xc3, 0x35, 0xb1, 0x67, 0x12, 0xcf, 0xa4, 0x2d, 0x37, 0xc4, 0x85, 0x03, 0x17,
+	0x24, 0xfe, 0xa9, 0x1e, 0x7b, 0x44, 0x1c, 0x2a, 0xd4, 0xfe, 0x23, 0x68, 0x7e, 0x38, 0x49, 0x0b,
+	0x24, 0x41, 0x42, 0xe2, 0xb2, 0xa7, 0xcc, 0x7c, 0xf3, 0xbd, 0xf7, 0x7d, 0x33, 0x6f, 0xe6, 0xc5,
+	0xf0, 0xd6, 0x30, 0xe3, 0xd1, 0xe8, 0x14, 0xe3, 0x20, 0xc9, 0x52, 0x29, 0xb1, 0x88, 0x4e, 0x68,
+	0xca, 0x82, 0x94, 0xc5, 0x78, 0x1e, 0xc8, 0x73, 0x7f, 0x5c, 0x70, 0xc9, 0xc9, 0x6b, 0x25, 0xcb,
+	0x5f, 0x64, 0xf9, 0x9a, 0xe5, 0xed, 0x24, 0x3c, 0xe1, 0x9a, 0x17, 0xa8, 0x91, 0x09, 0xf1, 0x9e,
+	0x45, 0x3c, 0xcf, 0x39, 0x0b, 0xc4, 0x24, 0x1b, 0x20, 0x4b, 0x52, 0x86, 0x76, 0xe1, 0xe5, 0x32,
+	0xc5, 0x98, 0x4a, 0x2a, 0x50, 0x1a, 0x6a, 0x3b, 0x86, 0x47, 0xfd, 0xa3, 0xcf, 0x0e, 0xcf, 0x31,
+	0x0a, 0x71, 0x32, 0x45, 0x21, 0x49, 0x13, 0xaa, 0xd3, 0x34, 0x76, 0x9d, 0x5d, 0xe7, 0x45, 0x3d,
+	0x54, 0x43, 0x85, 0x88, 0x49, 0xe6, 0xde, 0x33, 0x88, 0x98, 0x64, 0xc4, 0x87, 0x3a, 0x2d, 0x92,
+	0x69, 0x8e, 0x4c, 0x0a, 0xb7, 0xba, 0x5b, 0x7d, 0xd1, 0xe8, 0x36, 0x7d, 0xe3, 0xc6, 0xdf, 0xb7,
+	0x0b, 0xe1, 0x9c, 0xd2, 0xfe, 0x06, 0xb6, 0x67, 0x2a, 0x62, 0xcc, 0x99, 0x40, 0xb2, 0x07, 0xb5,
+	0x02, 0xc5, 0x34, 0x93, 0xc2, 0x75, 0x74, 0x82, 0xc7, 0x65, 0x82, 0x50, 0xc3, 0x7d, 0x94, 0x61,
+	0xc9, 0x20, 0xaf, 0x03, 0x48, 0xce, 0x47, 0x03, 0x99, 0xe6, 0x28, 0xb4, 0x91, 0x7b, 0x61, 0x5d,
+	0x21, 0xc7, 0x0a, 0x68, 0xff, 0xe4, 0xe8, 0xfc, 0x1f, 0x15, 0x94, 0xc9, 0x7f, 0xde, 0x86, 0x0b,
+	0x35, 0xce, 0x8e, 0xe9, 0x30, 0x43, 0xbb, 0x95, 0x72, 0x4a, 0x76, 0x60, 0x53, 0xf2, 0xaf, 0x3e,
+	0xe9, 0xb9, 0x55, 0x8d, 0x9b, 0x09, 0x21, 0xb0, 0x51, 0xf0, 0x0c, 0xdd, 0x0d, 0x0d, 0xea, 0x31,
+	0x69, 0x01, 0x70, 0xd6, 0xa3, 0x92, 0x0e, 0xa9, 0x40, 0x77, 0x53, 0xaf, 0x2c, 0x20, 0x6d, 0x02,
+	0xcd, 0xb9, 0x11, 0xb3, 0xd3, 0xf6, 0x11, 0x6c, 0x1f, 0xa4, 0x2c, 0xfe, 0x98, 0x8b, 0x25, 0xe6,
+	0x3c, 0xd8, 0x8a, 0xcb, 0xb4, 0xc6, 0xdd, 0x6c, 0xae, 0xd9, 0x45, 0x66, 0xcd, 0xa9, 0xa1, 0x92,
+	0x99, 0xa7, 0xb4, 0x32, 0x3f, 0x3b, 0xd0, 0x3c, 0x8c, 0x53, 0xa9, 0xb7, 0x54, 0x0a, 0xbd, 0x01,
+	0x0f, 0xbe, 0x2d, 0x78, 0x3e, 0xa0, 0x71, 0x5c, 0xa0, 0x10, 0x56, 0xb1, 0xa1, 0xb0, 0x7d, 0x03,
+	0x29, 0x8a, 0xbd, 0x12, 0x03, 0x46, 0xf3, 0x52, 0xbd, 0x61, 0xb1, 0x2f, 0x68, 0x8e, 0xfa, 0xf8,
+	0x55, 0x56, 0x43, 0x30, 0x3e, 0xea, 0x1a, 0xd1, 0xcb, 0x04, 0x36, 0x72, 0x94, 0xb4, 0x3c, 0x28,
+	0x35, 0x6e, 0x3f, 0x81, 0xc7, 0x0b, 0x66, 0xac, 0xc5, 0x1f, 0xab, 0xb0, 0xf3, 0x61, 0x81, 0x54,
+	0x62, 0xcf, 0x64, 0xff, 0x6f, 0x6d, 0x7e, 0x0a, 0x8d, 0x33, 0x5e, 0x8c, 0x06, 0x42, 0x52, 0x39,
+	0x15, 0xda, 0xe7, 0xa3, 0xee, 0x3b, 0xfe, 0x92, 0x87, 0xe5, 0xf7, 0xb1, 0x38, 0x4d, 0x23, 0xec,
+	0xeb, 0x88, 0x10, 0x54, 0xb8, 0x19, 0x93, 0x37, 0xe1, 0x21, 0x3f, 0x63, 0x58, 0xcc, 0x3c, 0x99,
+	0xdd, 0x3d, 0xd0, 0x60, 0x69, 0xea, 0x4b, 0x68, 0x18, 0x92, 0x90, 0x74, 0x64, 0xef, 0xc3, 0x81,
+	0x7f, 0x71, 0xf5, 0xbc, 0xf2, 0xfb, 0xd5, 0xf3, 0xb7, 0x93, 0x54, 0x9e, 0x4c, 0x87, 0xea, 0x5a,
+	0x07, 0x11, 0x17, 0x39, 0x17, 0xf6, 0xa7, 0x23, 0xe2, 0x51, 0x20, 0xbf, 0x1f, 0xa3, 0xf0, 0x7b,
+	0x18, 0x85, 0xa0, 0x53, 0xf4, 0x55, 0x06, 0x75, 0x13, 0x4f, 0xb8, 0x90, 0xc2, 0xbd, 0x6f, 0x6e,
+	0xa2, 0x9e, 0x90, 0x97, 0xd0, 0xcc, 0x29, 0xa3, 0x09, 0x96, 0x66, 0x50, 0xb8, 0x35, 0x4d, 0xd8,
+	0x36, 0xf8, 0x7e, 0x09, 0x93, 0x5d, 0x68, 0xc4, 0x28, 0xa2, 0x22, 0x1d, 0xcb, 0x94, 0x33, 0x77,
+	0xcb, 0x9e, 0xd2, 0x1c, 0x6a, 0x3f, 0x83, 0xa7, 0x77, 0x6a, 0x60, 0xab, 0xf3, 0x43, 0x15, 0x88,
+	0xaa, 0xd9, 0xab, 0xda, 0xfc, 0x6f, 0xb5, 0x79, 0x0a, 0x4f, 0x6e, 0x55, 0xc0, 0x54, 0xa6, 0xfb,
+	0xeb, 0x26, 0x54, 0x3f, 0x17, 0x09, 0x89, 0xa1, 0x66, 0xdb, 0x28, 0xd9, 0x5b, 0x7e, 0x74, 0xb7,
+	0x5a, 0xba, 0xf7, 0xee, 0x7a, 0x64, 0xdb, 0x99, 0x13, 0xd8, 0x2a, 0x7b, 0x18, 0x59, 0x19, 0xb9,
+	0xd8, 0x73, 0xbd, 0xce, 0x9a, 0xec, 0xb9, 0x50, 0xd9, 0xc5, 0x56, 0x08, 0xdd, 0xe9, 0x9f, 0x2b,
+	0x84, 0xee, 0xb6, 0x46, 0x72, 0x0a, 0x0f, 0x6f, 0x5d, 0x79, 0xf2, 0xfe, 0xd2, 0xf8, 0xbf, 0x6b,
+	0x51, 0x5e, 0xf7, 0xdf, 0x84, 0x58, 0xdd, 0x31, 0x34, 0x16, 0xca, 0x49, 0x82, 0xa5, 0x29, 0xfe,
+	0xfa, 0xf4, 0xbc, 0xf7, 0xd6, 0x0f, 0xb0, 0x8a, 0xdf, 0x41, 0x7d, 0xd6, 0x76, 0x49, 0x67, 0x65,
+	0xf8, 0xe2, 0x7f, 0x85, 0xe7, 0xaf, 0x4b, 0x37, 0x5a, 0x07, 0xf9, 0xc5, 0x75, 0xcb, 0xb9, 0xbc,
+	0x6e, 0x39, 0x7f, 0x5c, 0xb7, 0x9c, 0x5f, 0x6e, 0x5a, 0x95, 0xcb, 0x9b, 0x56, 0xe5, 0xb7, 0x9b,
+	0x56, 0xe5, 0xeb, 0xfe, 0xc2, 0xeb, 0xb2, 0xa9, 0x18, 0x4a, 0xf5, 0x80, 0x03, 0x9d, 0xb2, 0x13,
+	0xe3, 0xb8, 0x5c, 0x18, 0x98, 0xcf, 0x9a, 0xa5, 0xdf, 0x48, 0xea, 0x39, 0x0e, 0xef, 0x6b, 0xe2,
+	0x07, 0x7f, 0x06, 0x00, 0x00, 0xff, 0xff, 0x62, 0xd5, 0x3c, 0x80, 0x4f, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -412,6 +801,9 @@ type MsgClient interface {
 	SQLExec(ctx context.Context, in *SQLExecRequest, opts ...grpc.CallOption) (*SQLExecResponse, error)
 	SQLGrant(ctx context.Context, in *SQLGrantRequest, opts ...grpc.CallOption) (*SQLGrantResponse, error)
 	BindHost(ctx context.Context, in *BindHostRequest, opts ...grpc.CallOption) (*BindHostResponse, error)
+	CreateDataset(ctx context.Context, in *CreateDatasetRequest, opts ...grpc.CallOption) (*CreateDatasetResponse, error)
+	EditDataset(ctx context.Context, in *EditDatasetRequest, opts ...grpc.CallOption) (*EditDatasetResponse, error)
+	EditTable(ctx context.Context, in *EditTableRequest, opts ...grpc.CallOption) (*EditTableResponse, error)
 }
 
 type msgClient struct {
@@ -449,11 +841,41 @@ func (c *msgClient) BindHost(ctx context.Context, in *BindHostRequest, opts ...g
 	return out, nil
 }
 
+func (c *msgClient) CreateDataset(ctx context.Context, in *CreateDatasetRequest, opts ...grpc.CallOption) (*CreateDatasetResponse, error) {
+	out := new(CreateDatasetResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Msg/CreateDataset", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) EditDataset(ctx context.Context, in *EditDatasetRequest, opts ...grpc.CallOption) (*EditDatasetResponse, error) {
+	out := new(EditDatasetResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Msg/EditDataset", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) EditTable(ctx context.Context, in *EditTableRequest, opts ...grpc.CallOption) (*EditTableResponse, error) {
+	out := new(EditTableResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Msg/EditTable", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	SQLExec(context.Context, *SQLExecRequest) (*SQLExecResponse, error)
 	SQLGrant(context.Context, *SQLGrantRequest) (*SQLGrantResponse, error)
 	BindHost(context.Context, *BindHostRequest) (*BindHostResponse, error)
+	CreateDataset(context.Context, *CreateDatasetRequest) (*CreateDatasetResponse, error)
+	EditDataset(context.Context, *EditDatasetRequest) (*EditDatasetResponse, error)
+	EditTable(context.Context, *EditTableRequest) (*EditTableResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -468,6 +890,15 @@ func (*UnimplementedMsgServer) SQLGrant(ctx context.Context, req *SQLGrantReques
 }
 func (*UnimplementedMsgServer) BindHost(ctx context.Context, req *BindHostRequest) (*BindHostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BindHost not implemented")
+}
+func (*UnimplementedMsgServer) CreateDataset(ctx context.Context, req *CreateDatasetRequest) (*CreateDatasetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDataset not implemented")
+}
+func (*UnimplementedMsgServer) EditDataset(ctx context.Context, req *EditDatasetRequest) (*EditDatasetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditDataset not implemented")
+}
+func (*UnimplementedMsgServer) EditTable(ctx context.Context, req *EditTableRequest) (*EditTableResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditTable not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -528,6 +959,60 @@ func _Msg_BindHost_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateDataset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDatasetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateDataset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockved.glitterchain.index.Msg/CreateDataset",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateDataset(ctx, req.(*CreateDatasetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_EditDataset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditDatasetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).EditDataset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockved.glitterchain.index.Msg/EditDataset",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).EditDataset(ctx, req.(*EditDatasetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_EditTable_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditTableRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).EditTable(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockved.glitterchain.index.Msg/EditTable",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).EditTable(ctx, req.(*EditTableRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "blockved.glitterchain.index.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -543,6 +1028,18 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BindHost",
 			Handler:    _Msg_BindHost_Handler,
+		},
+		{
+			MethodName: "CreateDataset",
+			Handler:    _Msg_CreateDataset_Handler,
+		},
+		{
+			MethodName: "EditDataset",
+			Handler:    _Msg_EditDataset_Handler,
+		},
+		{
+			MethodName: "EditTable",
+			Handler:    _Msg_EditTable_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -791,6 +1288,286 @@ func (m *BindHostResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *EditTableRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *EditTableRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *EditTableRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Meta) > 0 {
+		i -= len(m.Meta)
+		copy(dAtA[i:], m.Meta)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Meta)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.TableName) > 0 {
+		i -= len(m.TableName)
+		copy(dAtA[i:], m.TableName)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.TableName)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.DatasetName) > 0 {
+		i -= len(m.DatasetName)
+		copy(dAtA[i:], m.DatasetName)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.DatasetName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.FromAddress) > 0 {
+		i -= len(m.FromAddress)
+		copy(dAtA[i:], m.FromAddress)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.FromAddress)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *EditTableResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *EditTableResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *EditTableResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *CreateDatasetRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateDatasetRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateDatasetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Description) > 0 {
+		i -= len(m.Description)
+		copy(dAtA[i:], m.Description)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Description)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.ManageAddresses) > 0 {
+		i -= len(m.ManageAddresses)
+		copy(dAtA[i:], m.ManageAddresses)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ManageAddresses)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Hosts) > 0 {
+		i -= len(m.Hosts)
+		copy(dAtA[i:], m.Hosts)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Hosts)))
+		i--
+		dAtA[i] = 0x32
+	}
+	{
+		size := m.OwnerStake.Size()
+		i -= size
+		if _, err := m.OwnerStake.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintTx(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x2a
+	if len(m.OwnerAddress) > 0 {
+		i -= len(m.OwnerAddress)
+		copy(dAtA[i:], m.OwnerAddress)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OwnerAddress)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.WorkStatus != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.WorkStatus))
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.DatasetName) > 0 {
+		i -= len(m.DatasetName)
+		copy(dAtA[i:], m.DatasetName)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.DatasetName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.FromAddress) > 0 {
+		i -= len(m.FromAddress)
+		copy(dAtA[i:], m.FromAddress)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.FromAddress)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CreateDatasetResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CreateDatasetResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CreateDatasetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *EditDatasetRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *EditDatasetRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *EditDatasetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Description) > 0 {
+		i -= len(m.Description)
+		copy(dAtA[i:], m.Description)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Description)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.ManageAddresses) > 0 {
+		i -= len(m.ManageAddresses)
+		copy(dAtA[i:], m.ManageAddresses)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ManageAddresses)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Hosts) > 0 {
+		i -= len(m.Hosts)
+		copy(dAtA[i:], m.Hosts)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Hosts)))
+		i--
+		dAtA[i] = 0x32
+	}
+	{
+		size := m.OwnerStake.Size()
+		i -= size
+		if _, err := m.OwnerStake.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintTx(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x2a
+	if len(m.OwnerAddress) > 0 {
+		i -= len(m.OwnerAddress)
+		copy(dAtA[i:], m.OwnerAddress)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OwnerAddress)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.WorkStatus != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.WorkStatus))
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.DatasetName) > 0 {
+		i -= len(m.DatasetName)
+		copy(dAtA[i:], m.DatasetName)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.DatasetName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.FromAddress) > 0 {
+		i -= len(m.FromAddress)
+		copy(dAtA[i:], m.FromAddress)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.FromAddress)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *EditDatasetResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *EditDatasetResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *EditDatasetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -903,6 +1680,134 @@ func (m *BindHostRequest) Size() (n int) {
 }
 
 func (m *BindHostResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *EditTableRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.FromAddress)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.DatasetName)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.TableName)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Meta)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *EditTableResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *CreateDatasetRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.FromAddress)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.DatasetName)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.WorkStatus != 0 {
+		n += 1 + sovTx(uint64(m.WorkStatus))
+	}
+	l = len(m.OwnerAddress)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = m.OwnerStake.Size()
+	n += 1 + l + sovTx(uint64(l))
+	l = len(m.Hosts)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ManageAddresses)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Description)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *CreateDatasetResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *EditDatasetRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.FromAddress)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.DatasetName)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.WorkStatus != 0 {
+		n += 1 + sovTx(uint64(m.WorkStatus))
+	}
+	l = len(m.OwnerAddress)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = m.OwnerStake.Size()
+	n += 1 + l + sovTx(uint64(l))
+	l = len(m.Hosts)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ManageAddresses)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Description)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *EditDatasetResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1593,6 +2498,924 @@ func (m *BindHostResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: BindHostResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *EditTableRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: EditTableRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: EditTableRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FromAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FromAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DatasetName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DatasetName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TableName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.TableName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Meta", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Meta = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *EditTableResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: EditTableResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: EditTableResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CreateDatasetRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateDatasetRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateDatasetRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FromAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FromAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DatasetName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DatasetName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WorkStatus", wireType)
+			}
+			m.WorkStatus = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.WorkStatus |= ServiceStatus(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OwnerAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OwnerAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OwnerStake", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.OwnerStake.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Hosts", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Hosts = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManageAddresses", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ManageAddresses = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CreateDatasetResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CreateDatasetResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CreateDatasetResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *EditDatasetRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: EditDatasetRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: EditDatasetRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FromAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FromAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DatasetName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DatasetName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WorkStatus", wireType)
+			}
+			m.WorkStatus = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.WorkStatus |= ServiceStatus(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OwnerAddress", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OwnerAddress = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OwnerStake", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.OwnerStake.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Hosts", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Hosts = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ManageAddresses", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ManageAddresses = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *EditDatasetResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: EditDatasetResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: EditDatasetResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

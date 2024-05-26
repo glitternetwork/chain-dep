@@ -158,12 +158,14 @@
         "columnDefs": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/commonColumnDef"
           }
         },
         "rows": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/commonRowData"
           }
         }
@@ -192,6 +194,7 @@
         "Arguments": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/commonArgument"
           }
         }
@@ -203,6 +206,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/commonResultSet"
           }
         },
@@ -218,6 +222,7 @@
         "result": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/engineSimpleQueryResponseResultSet"
           }
         }
@@ -256,6 +261,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }

@@ -1,0 +1,52 @@
+syntax = "proto3";
+package blockved.glitterchain.index;
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+// BondStatus is the status of a validator.
+enum BondStatus {
+  option (gogoproto.goproto_enum_prefix) = false;
+
+  // UNSPECIFIED defines an invalid validator status.
+  BOND_STATUS_UNSPECIFIED = 0 [(gogoproto.enumvalue_customname) = "Unspecified"];
+  // UNBONDED defines a validator that is not bonded.
+  BOND_STATUS_UNBONDED = 1 [(gogoproto.enumvalue_customname) = "Unbonded"];
+  // UNBONDING defines a validator that is unbonding.
+  BOND_STATUS_UNBONDING = 2 [(gogoproto.enumvalue_customname) = "Unbonding"];
+  // BONDED defines a validator that is bonded.
+  BOND_STATUS_BONDED = 3 [(gogoproto.enumvalue_customname) = "Bonded"];
+}
+
+enum ServiceStatus {
+  option (gogoproto.goproto_enum_prefix) = false;
+  Service_Status_Unset   = 0 [(gogoproto.enumvalue_customname) = "unset"];
+  Service_Status_Preparing = 1 [(gogoproto.enumvalue_customname) = "preparing"];
+  Service_Status_Ready   = 2 [(gogoproto.enumvalue_customname) = "ready"];
+}
+
+message Table{
+  string dataset_name = 1;
+  string table_name = 2;
+  string meta  = 3;
+  google.protobuf.Timestamp update_time = 4
+  [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
+}
+
+
+message Dataset {
+  string        dataset_name = 1;
+  ServiceStatus work_status =  2;
+  string        owner_address = 3;
+  string        owner_stake = 4
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
+  string        hosts = 5;
+  string        manage_addresses = 6;
+  string        description = 7;
+  map<string, Table> table_map = 8;
+  google.protobuf.Timestamp update_time = 9
+  [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
+}

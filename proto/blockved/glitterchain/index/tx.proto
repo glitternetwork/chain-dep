@@ -6,6 +6,7 @@ package blockved.glitterchain.index;
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
 import "gogoproto/gogo.proto";
 import "common/sql_engine.proto";
+import "blockved/glitterchain/index/dataset.proto";
 
 service Msg {
     rpc SQLExec(SQLExecRequest) returns (SQLExecResponse);
@@ -13,6 +14,12 @@ service Msg {
     rpc SQLGrant(SQLGrantRequest) returns (SQLGrantResponse);
 
     rpc BindHost(BindHostRequest ) returns (BindHostResponse);
+
+    rpc CreateDataset(CreateDatasetRequest ) returns (CreateDatasetResponse);
+
+    rpc EditDataset(EditDatasetRequest ) returns (EditDatasetResponse);
+
+    rpc EditTable(EditTableRequest ) returns (EditTableResponse);
 }
 
 message SQLExecRequest{
@@ -47,3 +54,43 @@ message BindHostRequest{
 message BindHostResponse {
 
 }
+
+message EditTableRequest{
+  string from_address = 1;
+  string dataset_name = 2;
+  string table_name = 3;
+  string meta  = 4;
+}
+
+message EditTableResponse{}
+
+
+message CreateDatasetRequest{
+  string  from_address = 1;
+  string  dataset_name = 2;
+  ServiceStatus work_status =  3;
+  string        owner_address = 4;
+  string        owner_stake = 5
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
+  string        hosts = 6;
+  string        manage_addresses = 7;
+  string        description = 8;
+}
+
+message CreateDatasetResponse{}
+
+
+message EditDatasetRequest{
+  string  from_address = 1;
+  string  dataset_name = 2;
+  ServiceStatus work_status =  3;
+  string        owner_address = 4;
+  string        owner_stake = 5
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
+  string        hosts = 6;
+  string        manage_addresses = 7;
+  string        description = 8;
+}
+
+
+message EditDatasetResponse{}

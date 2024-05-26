@@ -8,10 +8,13 @@ import (
 )
 
 const (
-	TypeMsgSchema   = "Schema"
-	TypeMsgDoc      = "Doc"
-	TypeMsgSQLExec  = "SQLExec"
-	TypeMsgSQLGrant = "SQLGrant"
+	TypeMsgSchema        = "Schema"
+	TypeMsgDoc           = "Doc"
+	TypeMsgSQLExec       = "SQLExec"
+	TypeMsgSQLGrant      = "SQLGrant"
+	TypeMsgEditTable     = "EditTable"
+	TypeMsgCreateDataset = "CreateDataset"
+	TypeMsgEditDataset   = "EditDataset"
 )
 
 var _ sdk.Msg = &SQLExecRequest{}
@@ -142,3 +145,132 @@ func (msg BindHostRequest) GetSigners() []sdk.AccAddress {
 func (msg BindHostRequest) GetSignBytes() []byte {
 	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
 }
+
+var _ sdk.Msg = &EditTableRequest{}
+
+func NewEditTableRequest(fromAddress sdk.AccAddress, datasetName string, tableName string, meta string) *EditTableRequest {
+	return &EditTableRequest{
+		FromAddress: fromAddress.String(),
+		DatasetName: datasetName,
+		TableName:   tableName,
+		Meta:        meta,
+	}
+}
+func (msg EditTableRequest) Route() string {
+	return RouterKey
+}
+
+func (m EditTableRequest) Type() string {
+	return TypeMsgEditTable
+}
+
+func (msg EditTableRequest) ValidateBasic() error {
+	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("tableName", msg.GetTableName()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (msg EditTableRequest) GetSigners() []sdk.AccAddress {
+	signer, err := sdk.AccAddressFromBech32(msg.GetFromAddress())
+	if err != nil {
+		panic(err)
+	}
+	return []sdk.AccAddress{signer}
+}
+
+func (msg EditTableRequest) GetSignBytes() []byte {
+	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
+}
+
+// CreateDatasetRequest
+var _ sdk.Msg = &CreateDatasetRequest{}
+
+func NewCreateDatasetRequest(
+	fromAddress sdk.AccAddress,
+	datasetName string,
+	workStatus ServiceStatus,
+	hosts string,
+	manageAddresses string,
+	description string,
+) *CreateDatasetRequest {
+	return &CreateDatasetRequest{
+		FromAddress:     fromAddress.String(),
+		DatasetName:     datasetName,
+		WorkStatus:      workStatus,
+		OwnerAddress:    fromAddress.String(),
+		Hosts:           hosts,
+		ManageAddresses: manageAddresses,
+		Description:     description,
+	}
+}
+func (msg CreateDatasetRequest) Route() string {
+	return RouterKey
+}
+func (m CreateDatasetRequest) Type() string {
+	return TypeMsgCreateDataset
+}
+func (msg CreateDatasetRequest) ValidateBasic() error {
+	return nil
+}
+func (msg CreateDatasetRequest) GetSigners() []sdk.AccAddress {
+	signer, err := sdk.AccAddressFromBech32(msg.GetFromAddress())
+	if err != nil {
+		panic(err)
+	}
+	return []sdk.AccAddress{signer}
+}
+func (msg CreateDatasetRequest) GetSignBytes() []byte {
+	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
+}
+
+/*end*/
+
+// EditDatasetRequest
+var _ sdk.Msg = &EditDatasetRequest{}
+
+func NewEditDatasetRequest(
+	fromAddress sdk.AccAddress,
+	datasetName string,
+	workStatus ServiceStatus,
+	hosts string,
+	manageAddresses string,
+	description string,
+) *EditDatasetRequest {
+	return &EditDatasetRequest{
+		FromAddress:     fromAddress.String(),
+		DatasetName:     datasetName,
+		WorkStatus:      workStatus,
+		OwnerAddress:    fromAddress.String(),
+		Hosts:           hosts,
+		ManageAddresses: manageAddresses,
+		Description:     description,
+	}
+}
+func (msg EditDatasetRequest) Route() string {
+	return RouterKey
+}
+func (m EditDatasetRequest) Type() string {
+	return TypeMsgEditDataset
+}
+func (msg EditDatasetRequest) ValidateBasic() error {
+	return nil
+}
+func (msg EditDatasetRequest) GetSigners() []sdk.AccAddress {
+	signer, err := sdk.AccAddressFromBech32(msg.GetFromAddress())
+	if err != nil {
+		panic(err)
+	}
+	return []sdk.AccAddress{signer}
+}
+func (msg EditDatasetRequest) GetSignBytes() []byte {
+	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
+}
+
+/*end*/

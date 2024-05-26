@@ -6,6 +6,7 @@ import "google/api/annotations.proto";
 import "blockved/glitterchain/index/params.proto";
 import "blockved/glitterchain/index/index.proto";
 import "blockved/glitterchain/index/host.proto";
+import "blockved/glitterchain/index/dataset.proto";
 import "common/sql_engine.proto";
 // this line is used by starport scaffolding # 1
 
@@ -54,6 +55,11 @@ service Query {
     option (google.api.http).get = "/blockved/glitterchain/index/sql/get_all_hosts";
   }
   // this line is used by starport scaffolding # 2
+
+  // Parameters queries the parameters of the module.
+  rpc QueryDateset(QueryDatesetRequest) returns (QueryDatesetResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/dataset/{dataset_name}";
+  }
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -119,4 +125,12 @@ message GetAllHostsRequest{
 
 message GetAllHostsResponse{
   repeated Host list = 1;
+}
+
+message QueryDatesetRequest{
+  string dataset_name = 1;
+}
+
+message QueryDatesetResponse{
+  Dataset dateset = 1;
 }
