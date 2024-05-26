@@ -7,20 +7,6 @@ import "gogoproto/gogo.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
-// BondStatus is the status of a validator.
-enum BondStatus {
-  option (gogoproto.goproto_enum_prefix) = false;
-
-  // UNSPECIFIED defines an invalid validator status.
-  BOND_STATUS_UNSPECIFIED = 0 [(gogoproto.enumvalue_customname) = "Unspecified"];
-  // UNBONDED defines a validator that is not bonded.
-  BOND_STATUS_UNBONDED = 1 [(gogoproto.enumvalue_customname) = "Unbonded"];
-  // UNBONDING defines a validator that is unbonding.
-  BOND_STATUS_UNBONDING = 2 [(gogoproto.enumvalue_customname) = "Unbonding"];
-  // BONDED defines a validator that is bonded.
-  BOND_STATUS_BONDED = 3 [(gogoproto.enumvalue_customname) = "Bonded"];
-}
-
 enum ServiceStatus {
   option (gogoproto.goproto_enum_prefix) = false;
   Service_Status_Unset   = 0 [(gogoproto.enumvalue_customname) = "unset"];
