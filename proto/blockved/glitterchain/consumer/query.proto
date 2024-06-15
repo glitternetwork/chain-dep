@@ -12,18 +12,19 @@ option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/
 service Query {
 
 
-  // Parameters queries the parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/blockved/glitterchain/consumer/params";
   }
 
-  //query stake dataset by dapp
   rpc QueryConsumer(QueryConsumerRequest) returns (QueryConsumerResponse) {
-    option (google.api.http) = {
-      post: "/blockved/glitterchain/consumer/{address}",
-      body: "*"
-    };
+    option (google.api.http).get = "/blockved/glitterchain/consumer/address/{address}";
   }
+
+  rpc QueryConsumers(QueryConsumersRequest) returns (QueryConsumersResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/consumers";
+  }
+
+
 }
 
 message QueryParamsRequest {
@@ -38,4 +39,13 @@ message QueryConsumerRequest{
 
 message QueryConsumerResponse{
   consumer consumer = 1;
+}
+
+
+message QueryConsumersRequest{
+  string address = 1;
+}
+
+message QueryConsumersResponse{
+  repeated  consumer consumer = 1;
 }

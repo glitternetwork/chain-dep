@@ -30,6 +30,7 @@ import (
 	ethermintcodec "github.com/evmos/ethermint/encoding/codec"
 	"github.com/evmos/ethermint/x/evm"
 	"github.com/evmos/ethermint/x/feemarket"
+	glitterconsumer "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer"
 	glitterindex "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index"
 )
 
@@ -84,6 +85,7 @@ var ModuleBasics = module.NewBasicManager(
 	transfer.AppModuleBasic{},
 	vesting.AppModuleBasic{},
 	glitterindex.AppModuleBasic{},
+	glitterconsumer.AppModuleBasic{},
 	evm.AppModuleBasic{},
 	feemarket.AppModuleBasic{},
 	vesting.AppModuleBasic{},

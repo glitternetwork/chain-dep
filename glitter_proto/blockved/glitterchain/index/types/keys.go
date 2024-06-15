@@ -3,7 +3,7 @@ package types
 const (
 	// ModuleName defines the module name
 
-	ModuleName = "consumer"
+	ModuleName = "index"
 
 	// StoreKey defines the primary module store key
 	StoreKey = ModuleName
