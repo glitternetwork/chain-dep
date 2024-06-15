@@ -11,10 +11,11 @@ const (
 
 var _ sdk.Msg = &StakeRequest{}
 
-func NewConsumerStakeRequest(address sdk.AccAddress, amount sdk.Int) *StakeRequest {
+func NewStakeRequest(address sdk.AccAddress, datasetName string, amount sdk.Int) *StakeRequest {
 	return &StakeRequest{
-		Address: address.String(),
-		Amount:  amount,
+		Address:     address.String(),
+		DatasetName: datasetName,
+		Amount:      amount,
 	}
 }
 func (msg StakeRequest) Route() string {
@@ -44,7 +45,7 @@ func (msg StakeRequest) GetSignBytes() []byte {
 
 var _ sdk.Msg = &UnStakeRequest{}
 
-func NewConsumerUnStakeRequest(address sdk.AccAddress, amount sdk.Int) *UnStakeRequest {
+func NeUnStakeRequest(address sdk.AccAddress, amount sdk.Int) *UnStakeRequest {
 	return &UnStakeRequest{
 		Address: address.String(),
 		Amount:  amount,
