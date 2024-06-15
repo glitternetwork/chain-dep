@@ -6,19 +6,20 @@ import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
+import "common/staking.proto";
 
 enum ServiceStatus {
   option (gogoproto.goproto_enum_prefix) = false;
   Service_Status_Unset   = 0 [(gogoproto.enumvalue_customname) = "unset"];
-  Service_Status_Preparing = 1 [(gogoproto.enumvalue_customname) = "preparing"];
-  Service_Status_Ready   = 2 [(gogoproto.enumvalue_customname) = "ready"];
+  Service_Status_Start = 1 [(gogoproto.enumvalue_customname) = "start"];
+  Service_Status_Stop   = 2 [(gogoproto.enumvalue_customname) = "stop"];
+  Service_Status_Delete   = 3 [(gogoproto.enumvalue_customname) = "delete"];
 }
 
 message Table{
-  string dataset_name = 1;
-  string table_name = 2;
-  string meta  = 3;
-  google.protobuf.Timestamp update_time = 4
+  string table_name = 1;
+  string meta  = 2;
+  google.protobuf.Timestamp update_time = 3
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
 }
 
@@ -28,11 +29,14 @@ message Dataset {
   ServiceStatus work_status =  2;
   string        owner_address = 3;
   string        owner_stake = 4
-  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
-  string        hosts = 5;
-  string        manage_addresses = 6;
-  string        description = 7;
-  map<string, Table> table_map = 8;
-  google.protobuf.Timestamp update_time = 9
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  string        consumer_stake = 5
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  string        hosts = 6;
+  string        manage_addresses = 7;
+  repeated      Table tables = 8;
+  repeated      common.dataset_stake  consumer_stakes = 9;
+  string        description = 10;
+  google.protobuf.Timestamp update_time = 11
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
 }

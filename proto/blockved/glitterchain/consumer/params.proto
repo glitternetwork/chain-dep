@@ -1,0 +1,12 @@
+syntax = "proto3";
+package blockved.glitterchain.consumer;
+
+import "gogoproto/gogo.proto";
+
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

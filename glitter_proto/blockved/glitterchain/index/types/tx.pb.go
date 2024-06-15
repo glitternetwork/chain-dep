@@ -5,10 +5,9 @@ package types
 
 import (
 	context "context"
-	encoding_binary "encoding/binary"
 	fmt "fmt"
 	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
-	common "github.com/glitternetwork/chain-dep/glitter_proto/common"
+	_ "github.com/glitternetwork/chain-dep/glitter_proto/common"
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
@@ -31,230 +30,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type SQLExecRequest struct {
-	Uid       string             `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	Sql       string             `protobuf:"bytes,2,opt,name=sql,proto3" json:"sql,omitempty"`
-	Arguments []*common.Argument `protobuf:"bytes,3,rep,name=arguments,proto3" json:"arguments,omitempty"`
-}
-
-func (m *SQLExecRequest) Reset()         { *m = SQLExecRequest{} }
-func (m *SQLExecRequest) String() string { return proto.CompactTextString(m) }
-func (*SQLExecRequest) ProtoMessage()    {}
-func (*SQLExecRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{0}
-}
-func (m *SQLExecRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLExecRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLExecRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLExecRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLExecRequest.Merge(m, src)
-}
-func (m *SQLExecRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLExecRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLExecRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLExecRequest proto.InternalMessageInfo
-
-func (m *SQLExecRequest) GetUid() string {
-	if m != nil {
-		return m.Uid
-	}
-	return ""
-}
-
-func (m *SQLExecRequest) GetSql() string {
-	if m != nil {
-		return m.Sql
-	}
-	return ""
-}
-
-func (m *SQLExecRequest) GetArguments() []*common.Argument {
-	if m != nil {
-		return m.Arguments
-	}
-	return nil
-}
-
-type SQLExecResponse struct {
-	Results   []*common.ResultSet `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
-	TookTimes float32             `protobuf:"fixed32,2,opt,name=took_times,json=tookTimes,proto3" json:"took_times,omitempty"`
-}
-
-func (m *SQLExecResponse) Reset()         { *m = SQLExecResponse{} }
-func (m *SQLExecResponse) String() string { return proto.CompactTextString(m) }
-func (*SQLExecResponse) ProtoMessage()    {}
-func (*SQLExecResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{1}
-}
-func (m *SQLExecResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLExecResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLExecResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLExecResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLExecResponse.Merge(m, src)
-}
-func (m *SQLExecResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLExecResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLExecResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLExecResponse proto.InternalMessageInfo
-
-func (m *SQLExecResponse) GetResults() []*common.ResultSet {
-	if m != nil {
-		return m.Results
-	}
-	return nil
-}
-
-func (m *SQLExecResponse) GetTookTimes() float32 {
-	if m != nil {
-		return m.TookTimes
-	}
-	return 0
-}
-
-type SQLGrantRequest struct {
-	Uid        string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	OnTable    string `protobuf:"bytes,2,opt,name=onTable,proto3" json:"onTable,omitempty"`
-	ToUID      string `protobuf:"bytes,3,opt,name=toUID,proto3" json:"toUID,omitempty"`
-	Role       string `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
-	OnDatabase string `protobuf:"bytes,5,opt,name=onDatabase,proto3" json:"onDatabase,omitempty"`
-}
-
-func (m *SQLGrantRequest) Reset()         { *m = SQLGrantRequest{} }
-func (m *SQLGrantRequest) String() string { return proto.CompactTextString(m) }
-func (*SQLGrantRequest) ProtoMessage()    {}
-func (*SQLGrantRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{2}
-}
-func (m *SQLGrantRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLGrantRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLGrantRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLGrantRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLGrantRequest.Merge(m, src)
-}
-func (m *SQLGrantRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLGrantRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLGrantRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLGrantRequest proto.InternalMessageInfo
-
-func (m *SQLGrantRequest) GetUid() string {
-	if m != nil {
-		return m.Uid
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetOnTable() string {
-	if m != nil {
-		return m.OnTable
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetToUID() string {
-	if m != nil {
-		return m.ToUID
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetRole() string {
-	if m != nil {
-		return m.Role
-	}
-	return ""
-}
-
-func (m *SQLGrantRequest) GetOnDatabase() string {
-	if m != nil {
-		return m.OnDatabase
-	}
-	return ""
-}
-
-type SQLGrantResponse struct {
-}
-
-func (m *SQLGrantResponse) Reset()         { *m = SQLGrantResponse{} }
-func (m *SQLGrantResponse) String() string { return proto.CompactTextString(m) }
-func (*SQLGrantResponse) ProtoMessage()    {}
-func (*SQLGrantResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{3}
-}
-func (m *SQLGrantResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *SQLGrantResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_SQLGrantResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *SQLGrantResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SQLGrantResponse.Merge(m, src)
-}
-func (m *SQLGrantResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *SQLGrantResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SQLGrantResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_SQLGrantResponse proto.InternalMessageInfo
-
 type BindHostRequest struct {
 	Uid      string `protobuf:"bytes,1,opt,name=uid,proto3" json:"uid,omitempty"`
 	Database string `protobuf:"bytes,2,opt,name=database,proto3" json:"database,omitempty"`
@@ -265,7 +40,7 @@ func (m *BindHostRequest) Reset()         { *m = BindHostRequest{} }
 func (m *BindHostRequest) String() string { return proto.CompactTextString(m) }
 func (*BindHostRequest) ProtoMessage()    {}
 func (*BindHostRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{4}
+	return fileDescriptor_f95f62838e2ccd4a, []int{0}
 }
 func (m *BindHostRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -322,7 +97,7 @@ func (m *BindHostResponse) Reset()         { *m = BindHostResponse{} }
 func (m *BindHostResponse) String() string { return proto.CompactTextString(m) }
 func (*BindHostResponse) ProtoMessage()    {}
 func (*BindHostResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{5}
+	return fileDescriptor_f95f62838e2ccd4a, []int{1}
 }
 func (m *BindHostResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -362,7 +137,7 @@ func (m *EditTableRequest) Reset()         { *m = EditTableRequest{} }
 func (m *EditTableRequest) String() string { return proto.CompactTextString(m) }
 func (*EditTableRequest) ProtoMessage()    {}
 func (*EditTableRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{6}
+	return fileDescriptor_f95f62838e2ccd4a, []int{2}
 }
 func (m *EditTableRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -426,7 +201,7 @@ func (m *EditTableResponse) Reset()         { *m = EditTableResponse{} }
 func (m *EditTableResponse) String() string { return proto.CompactTextString(m) }
 func (*EditTableResponse) ProtoMessage()    {}
 func (*EditTableResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{7}
+	return fileDescriptor_f95f62838e2ccd4a, []int{3}
 }
 func (m *EditTableResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -464,13 +239,14 @@ type CreateDatasetRequest struct {
 	Hosts           string                                 `protobuf:"bytes,6,opt,name=hosts,proto3" json:"hosts,omitempty"`
 	ManageAddresses string                                 `protobuf:"bytes,7,opt,name=manage_addresses,json=manageAddresses,proto3" json:"manage_addresses,omitempty"`
 	Description     string                                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
+	DatasetMeta     string                                 `protobuf:"bytes,9,opt,name=dataset_meta,json=datasetMeta,proto3" json:"dataset_meta,omitempty"`
 }
 
 func (m *CreateDatasetRequest) Reset()         { *m = CreateDatasetRequest{} }
 func (m *CreateDatasetRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateDatasetRequest) ProtoMessage()    {}
 func (*CreateDatasetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{8}
+	return fileDescriptor_f95f62838e2ccd4a, []int{4}
 }
 func (m *CreateDatasetRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -548,6 +324,13 @@ func (m *CreateDatasetRequest) GetDescription() string {
 	return ""
 }
 
+func (m *CreateDatasetRequest) GetDatasetMeta() string {
+	if m != nil {
+		return m.DatasetMeta
+	}
+	return ""
+}
+
 type CreateDatasetResponse struct {
 }
 
@@ -555,7 +338,7 @@ func (m *CreateDatasetResponse) Reset()         { *m = CreateDatasetResponse{} }
 func (m *CreateDatasetResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateDatasetResponse) ProtoMessage()    {}
 func (*CreateDatasetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{9}
+	return fileDescriptor_f95f62838e2ccd4a, []int{5}
 }
 func (m *CreateDatasetResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -599,7 +382,7 @@ func (m *EditDatasetRequest) Reset()         { *m = EditDatasetRequest{} }
 func (m *EditDatasetRequest) String() string { return proto.CompactTextString(m) }
 func (*EditDatasetRequest) ProtoMessage()    {}
 func (*EditDatasetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{10}
+	return fileDescriptor_f95f62838e2ccd4a, []int{6}
 }
 func (m *EditDatasetRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -684,7 +467,7 @@ func (m *EditDatasetResponse) Reset()         { *m = EditDatasetResponse{} }
 func (m *EditDatasetResponse) String() string { return proto.CompactTextString(m) }
 func (*EditDatasetResponse) ProtoMessage()    {}
 func (*EditDatasetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f95f62838e2ccd4a, []int{11}
+	return fileDescriptor_f95f62838e2ccd4a, []int{7}
 }
 func (m *EditDatasetResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -714,10 +497,6 @@ func (m *EditDatasetResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_EditDatasetResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*SQLExecRequest)(nil), "blockved.glitterchain.index.SQLExecRequest")
-	proto.RegisterType((*SQLExecResponse)(nil), "blockved.glitterchain.index.SQLExecResponse")
-	proto.RegisterType((*SQLGrantRequest)(nil), "blockved.glitterchain.index.SQLGrantRequest")
-	proto.RegisterType((*SQLGrantResponse)(nil), "blockved.glitterchain.index.SQLGrantResponse")
 	proto.RegisterType((*BindHostRequest)(nil), "blockved.glitterchain.index.BindHostRequest")
 	proto.RegisterType((*BindHostResponse)(nil), "blockved.glitterchain.index.BindHostResponse")
 	proto.RegisterType((*EditTableRequest)(nil), "blockved.glitterchain.index.EditTableRequest")
@@ -733,57 +512,46 @@ func init() {
 }
 
 var fileDescriptor_f95f62838e2ccd4a = []byte{
-	// 799 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x56, 0xcf, 0x6f, 0xe3, 0x44,
-	0x14, 0x8e, 0x37, 0xed, 0xa6, 0x79, 0xd9, 0xdd, 0x66, 0x67, 0xbb, 0x5a, 0xcb, 0x88, 0x6c, 0x09,
-	0x08, 0xed, 0x52, 0x62, 0x43, 0xf8, 0x0b, 0x5a, 0x52, 0x01, 0xe2, 0x97, 0xea, 0x94, 0x0b, 0x12,
-	0x8a, 0x26, 0xf6, 0xc3, 0x35, 0xb1, 0x67, 0x12, 0xcf, 0xa4, 0x2d, 0x37, 0xc4, 0x85, 0x03, 0x17,
-	0x24, 0xfe, 0xa9, 0x1e, 0x7b, 0x44, 0x1c, 0x2a, 0xd4, 0xfe, 0x23, 0x68, 0x7e, 0x38, 0x49, 0x0b,
-	0x24, 0x41, 0x42, 0xe2, 0xb2, 0xa7, 0xcc, 0x7c, 0xf3, 0xbd, 0xf7, 0x7d, 0x33, 0x6f, 0xe6, 0xc5,
-	0xf0, 0xd6, 0x30, 0xe3, 0xd1, 0xe8, 0x14, 0xe3, 0x20, 0xc9, 0x52, 0x29, 0xb1, 0x88, 0x4e, 0x68,
-	0xca, 0x82, 0x94, 0xc5, 0x78, 0x1e, 0xc8, 0x73, 0x7f, 0x5c, 0x70, 0xc9, 0xc9, 0x6b, 0x25, 0xcb,
-	0x5f, 0x64, 0xf9, 0x9a, 0xe5, 0xed, 0x24, 0x3c, 0xe1, 0x9a, 0x17, 0xa8, 0x91, 0x09, 0xf1, 0x9e,
-	0x45, 0x3c, 0xcf, 0x39, 0x0b, 0xc4, 0x24, 0x1b, 0x20, 0x4b, 0x52, 0x86, 0x76, 0xe1, 0xe5, 0x32,
-	0xc5, 0x98, 0x4a, 0x2a, 0x50, 0x1a, 0x6a, 0x3b, 0x86, 0x47, 0xfd, 0xa3, 0xcf, 0x0e, 0xcf, 0x31,
-	0x0a, 0x71, 0x32, 0x45, 0x21, 0x49, 0x13, 0xaa, 0xd3, 0x34, 0x76, 0x9d, 0x5d, 0xe7, 0x45, 0x3d,
-	0x54, 0x43, 0x85, 0x88, 0x49, 0xe6, 0xde, 0x33, 0x88, 0x98, 0x64, 0xc4, 0x87, 0x3a, 0x2d, 0x92,
-	0x69, 0x8e, 0x4c, 0x0a, 0xb7, 0xba, 0x5b, 0x7d, 0xd1, 0xe8, 0x36, 0x7d, 0xe3, 0xc6, 0xdf, 0xb7,
-	0x0b, 0xe1, 0x9c, 0xd2, 0xfe, 0x06, 0xb6, 0x67, 0x2a, 0x62, 0xcc, 0x99, 0x40, 0xb2, 0x07, 0xb5,
-	0x02, 0xc5, 0x34, 0x93, 0xc2, 0x75, 0x74, 0x82, 0xc7, 0x65, 0x82, 0x50, 0xc3, 0x7d, 0x94, 0x61,
-	0xc9, 0x20, 0xaf, 0x03, 0x48, 0xce, 0x47, 0x03, 0x99, 0xe6, 0x28, 0xb4, 0x91, 0x7b, 0x61, 0x5d,
-	0x21, 0xc7, 0x0a, 0x68, 0xff, 0xe4, 0xe8, 0xfc, 0x1f, 0x15, 0x94, 0xc9, 0x7f, 0xde, 0x86, 0x0b,
-	0x35, 0xce, 0x8e, 0xe9, 0x30, 0x43, 0xbb, 0x95, 0x72, 0x4a, 0x76, 0x60, 0x53, 0xf2, 0xaf, 0x3e,
-	0xe9, 0xb9, 0x55, 0x8d, 0x9b, 0x09, 0x21, 0xb0, 0x51, 0xf0, 0x0c, 0xdd, 0x0d, 0x0d, 0xea, 0x31,
-	0x69, 0x01, 0x70, 0xd6, 0xa3, 0x92, 0x0e, 0xa9, 0x40, 0x77, 0x53, 0xaf, 0x2c, 0x20, 0x6d, 0x02,
-	0xcd, 0xb9, 0x11, 0xb3, 0xd3, 0xf6, 0x11, 0x6c, 0x1f, 0xa4, 0x2c, 0xfe, 0x98, 0x8b, 0x25, 0xe6,
-	0x3c, 0xd8, 0x8a, 0xcb, 0xb4, 0xc6, 0xdd, 0x6c, 0xae, 0xd9, 0x45, 0x66, 0xcd, 0xa9, 0xa1, 0x92,
-	0x99, 0xa7, 0xb4, 0x32, 0x3f, 0x3b, 0xd0, 0x3c, 0x8c, 0x53, 0xa9, 0xb7, 0x54, 0x0a, 0xbd, 0x01,
-	0x0f, 0xbe, 0x2d, 0x78, 0x3e, 0xa0, 0x71, 0x5c, 0xa0, 0x10, 0x56, 0xb1, 0xa1, 0xb0, 0x7d, 0x03,
-	0x29, 0x8a, 0xbd, 0x12, 0x03, 0x46, 0xf3, 0x52, 0xbd, 0x61, 0xb1, 0x2f, 0x68, 0x8e, 0xfa, 0xf8,
-	0x55, 0x56, 0x43, 0x30, 0x3e, 0xea, 0x1a, 0xd1, 0xcb, 0x04, 0x36, 0x72, 0x94, 0xb4, 0x3c, 0x28,
-	0x35, 0x6e, 0x3f, 0x81, 0xc7, 0x0b, 0x66, 0xac, 0xc5, 0x1f, 0xab, 0xb0, 0xf3, 0x61, 0x81, 0x54,
-	0x62, 0xcf, 0x64, 0xff, 0x6f, 0x6d, 0x7e, 0x0a, 0x8d, 0x33, 0x5e, 0x8c, 0x06, 0x42, 0x52, 0x39,
-	0x15, 0xda, 0xe7, 0xa3, 0xee, 0x3b, 0xfe, 0x92, 0x87, 0xe5, 0xf7, 0xb1, 0x38, 0x4d, 0x23, 0xec,
-	0xeb, 0x88, 0x10, 0x54, 0xb8, 0x19, 0x93, 0x37, 0xe1, 0x21, 0x3f, 0x63, 0x58, 0xcc, 0x3c, 0x99,
-	0xdd, 0x3d, 0xd0, 0x60, 0x69, 0xea, 0x4b, 0x68, 0x18, 0x92, 0x90, 0x74, 0x64, 0xef, 0xc3, 0x81,
-	0x7f, 0x71, 0xf5, 0xbc, 0xf2, 0xfb, 0xd5, 0xf3, 0xb7, 0x93, 0x54, 0x9e, 0x4c, 0x87, 0xea, 0x5a,
-	0x07, 0x11, 0x17, 0x39, 0x17, 0xf6, 0xa7, 0x23, 0xe2, 0x51, 0x20, 0xbf, 0x1f, 0xa3, 0xf0, 0x7b,
-	0x18, 0x85, 0xa0, 0x53, 0xf4, 0x55, 0x06, 0x75, 0x13, 0x4f, 0xb8, 0x90, 0xc2, 0xbd, 0x6f, 0x6e,
-	0xa2, 0x9e, 0x90, 0x97, 0xd0, 0xcc, 0x29, 0xa3, 0x09, 0x96, 0x66, 0x50, 0xb8, 0x35, 0x4d, 0xd8,
-	0x36, 0xf8, 0x7e, 0x09, 0x93, 0x5d, 0x68, 0xc4, 0x28, 0xa2, 0x22, 0x1d, 0xcb, 0x94, 0x33, 0x77,
-	0xcb, 0x9e, 0xd2, 0x1c, 0x6a, 0x3f, 0x83, 0xa7, 0x77, 0x6a, 0x60, 0xab, 0xf3, 0x43, 0x15, 0x88,
-	0xaa, 0xd9, 0xab, 0xda, 0xfc, 0x6f, 0xb5, 0x79, 0x0a, 0x4f, 0x6e, 0x55, 0xc0, 0x54, 0xa6, 0xfb,
-	0xeb, 0x26, 0x54, 0x3f, 0x17, 0x09, 0x89, 0xa1, 0x66, 0xdb, 0x28, 0xd9, 0x5b, 0x7e, 0x74, 0xb7,
-	0x5a, 0xba, 0xf7, 0xee, 0x7a, 0x64, 0xdb, 0x99, 0x13, 0xd8, 0x2a, 0x7b, 0x18, 0x59, 0x19, 0xb9,
-	0xd8, 0x73, 0xbd, 0xce, 0x9a, 0xec, 0xb9, 0x50, 0xd9, 0xc5, 0x56, 0x08, 0xdd, 0xe9, 0x9f, 0x2b,
-	0x84, 0xee, 0xb6, 0x46, 0x72, 0x0a, 0x0f, 0x6f, 0x5d, 0x79, 0xf2, 0xfe, 0xd2, 0xf8, 0xbf, 0x6b,
-	0x51, 0x5e, 0xf7, 0xdf, 0x84, 0x58, 0xdd, 0x31, 0x34, 0x16, 0xca, 0x49, 0x82, 0xa5, 0x29, 0xfe,
-	0xfa, 0xf4, 0xbc, 0xf7, 0xd6, 0x0f, 0xb0, 0x8a, 0xdf, 0x41, 0x7d, 0xd6, 0x76, 0x49, 0x67, 0x65,
-	0xf8, 0xe2, 0x7f, 0x85, 0xe7, 0xaf, 0x4b, 0x37, 0x5a, 0x07, 0xf9, 0xc5, 0x75, 0xcb, 0xb9, 0xbc,
-	0x6e, 0x39, 0x7f, 0x5c, 0xb7, 0x9c, 0x5f, 0x6e, 0x5a, 0x95, 0xcb, 0x9b, 0x56, 0xe5, 0xb7, 0x9b,
-	0x56, 0xe5, 0xeb, 0xfe, 0xc2, 0xeb, 0xb2, 0xa9, 0x18, 0x4a, 0xf5, 0x80, 0x03, 0x9d, 0xb2, 0x13,
-	0xe3, 0xb8, 0x5c, 0x18, 0x98, 0xcf, 0x9a, 0xa5, 0xdf, 0x48, 0xea, 0x39, 0x0e, 0xef, 0x6b, 0xe2,
-	0x07, 0x7f, 0x06, 0x00, 0x00, 0xff, 0xff, 0x62, 0xd5, 0x3c, 0x80, 0x4f, 0x09, 0x00, 0x00,
+	// 610 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x55, 0x51, 0x4f, 0xd4, 0x4c,
+	0x14, 0xdd, 0xb2, 0xc0, 0xc7, 0xde, 0xc2, 0xc7, 0x3a, 0x40, 0x68, 0x6a, 0x2c, 0xb8, 0x1a, 0x23,
+	0x26, 0xb4, 0x8a, 0xbf, 0x00, 0xc4, 0xc4, 0xc4, 0xa0, 0x71, 0xd7, 0x27, 0x5f, 0x36, 0xb3, 0xed,
+	0xb5, 0xd4, 0x6d, 0x67, 0x4a, 0x67, 0x16, 0xf0, 0xcd, 0x77, 0x5f, 0xfc, 0x13, 0xfe, 0x17, 0x1e,
+	0x79, 0x34, 0x9a, 0x10, 0x03, 0x7f, 0xc4, 0xcc, 0x4c, 0x0b, 0x45, 0xcd, 0x8a, 0x89, 0x89, 0x2f,
+	0x3e, 0xed, 0xf4, 0xcc, 0xb9, 0xf7, 0x9c, 0x9d, 0x73, 0xdb, 0x81, 0xdb, 0x83, 0x94, 0x87, 0xc3,
+	0x7d, 0x8c, 0x82, 0x38, 0x4d, 0xa4, 0xc4, 0x22, 0xdc, 0xa5, 0x09, 0x0b, 0x12, 0x16, 0xe1, 0x61,
+	0x20, 0x0f, 0xfd, 0xbc, 0xe0, 0x92, 0x93, 0xeb, 0x15, 0xcb, 0xaf, 0xb3, 0x7c, 0xcd, 0x72, 0x17,
+	0x63, 0x1e, 0x73, 0xcd, 0x0b, 0xd4, 0xca, 0x94, 0xb8, 0xcb, 0x21, 0xcf, 0x32, 0xce, 0x02, 0xb1,
+	0x97, 0xf6, 0x91, 0xc5, 0x09, 0xc3, 0x72, 0x63, 0x6d, 0x9c, 0x62, 0x44, 0x25, 0x15, 0x28, 0x0d,
+	0xb5, 0xf3, 0x02, 0xe6, 0xb7, 0x12, 0x16, 0x3d, 0xe1, 0x42, 0x76, 0x71, 0x6f, 0x84, 0x42, 0x92,
+	0x36, 0x34, 0x47, 0x49, 0xe4, 0x58, 0xab, 0xd6, 0xdd, 0x56, 0x57, 0x2d, 0x89, 0x0b, 0x33, 0xaa,
+	0x6a, 0x40, 0x05, 0x3a, 0x13, 0x1a, 0x3e, 0x7f, 0xd6, 0xec, 0x22, 0x75, 0x9a, 0x25, 0xbb, 0x48,
+	0x3b, 0x04, 0xda, 0x17, 0x2d, 0x45, 0xce, 0x99, 0xc0, 0xce, 0x7b, 0x0b, 0xda, 0x8f, 0xa3, 0x44,
+	0xbe, 0xa4, 0x83, 0x14, 0x2b, 0xa1, 0x9b, 0x30, 0xfb, 0xba, 0xe0, 0x59, 0x9f, 0x46, 0x51, 0x81,
+	0x42, 0x94, 0x8a, 0xb6, 0xc2, 0x36, 0x0d, 0xa4, 0x28, 0xa5, 0xdf, 0x3e, 0xa3, 0x59, 0xa5, 0x6e,
+	0x97, 0xd8, 0x33, 0x9a, 0x21, 0xb9, 0x01, 0x20, 0x55, 0x57, 0x43, 0x30, 0x3e, 0x5a, 0x1a, 0xd1,
+	0xdb, 0x04, 0x26, 0x33, 0x94, 0xd4, 0x99, 0xd4, 0x1b, 0x7a, 0xdd, 0x59, 0x80, 0x6b, 0x35, 0x33,
+	0xa5, 0xc5, 0x8f, 0x4d, 0x58, 0x7c, 0x54, 0x20, 0x95, 0xb8, 0x6d, 0xba, 0xff, 0x59, 0x9b, 0x4f,
+	0xc1, 0x3e, 0xe0, 0xc5, 0xb0, 0x2f, 0x24, 0x95, 0x23, 0xa1, 0x7d, 0xfe, 0xbf, 0x71, 0xcf, 0x1f,
+	0x93, 0xba, 0xdf, 0xc3, 0x62, 0x3f, 0x09, 0xb1, 0xa7, 0x2b, 0xba, 0xa0, 0xca, 0xcd, 0x9a, 0xdc,
+	0x82, 0x39, 0x7e, 0xc0, 0xb0, 0x38, 0xf7, 0x64, 0xfe, 0xdd, 0xac, 0x06, 0x2b, 0x53, 0xcf, 0xc1,
+	0x36, 0x24, 0x21, 0xe9, 0x10, 0x9d, 0x29, 0x45, 0xd9, 0xf2, 0x8f, 0x4e, 0x56, 0x1a, 0x9f, 0x4f,
+	0x56, 0xee, 0xc4, 0x89, 0xdc, 0x1d, 0x0d, 0xfc, 0x90, 0x67, 0x41, 0xc8, 0x45, 0xc6, 0x45, 0xf9,
+	0xb3, 0x2e, 0xa2, 0x61, 0x20, 0xdf, 0xe6, 0x28, 0xfc, 0x6d, 0x0c, 0xbb, 0xa0, 0x5b, 0xf4, 0x54,
+	0x07, 0xb2, 0x08, 0x53, 0xbb, 0x5c, 0x48, 0xe1, 0x4c, 0x6b, 0x35, 0xf3, 0x40, 0xd6, 0xa0, 0x9d,
+	0x51, 0x46, 0x63, 0xac, 0xcc, 0xa0, 0x70, 0xfe, 0xd3, 0x84, 0x79, 0x83, 0x6f, 0x56, 0x30, 0x59,
+	0x05, 0x3b, 0x42, 0x11, 0x16, 0x49, 0x2e, 0x13, 0xce, 0x9c, 0x99, 0xf2, 0x94, 0x2e, 0xa0, 0xfa,
+	0x41, 0xea, 0xd4, 0x5a, 0x97, 0x0e, 0x72, 0x47, 0x85, 0xb7, 0x0c, 0x4b, 0xdf, 0xc5, 0x54, 0x06,
+	0xf8, 0xae, 0x09, 0x44, 0xc5, 0xfa, 0x2f, 0xbe, 0xbf, 0x15, 0x5f, 0x67, 0x09, 0x16, 0x2e, 0x25,
+	0x60, 0x92, 0xd9, 0xf8, 0x32, 0x01, 0xcd, 0x1d, 0x11, 0x93, 0x7d, 0x98, 0xbb, 0x14, 0x1d, 0x79,
+	0x30, 0xf6, 0x00, 0x7f, 0xf6, 0x36, 0xba, 0x1b, 0xbf, 0x53, 0x62, 0xf4, 0x49, 0x0e, 0x76, 0xcd,
+	0x16, 0x09, 0xc6, 0xb6, 0xf8, 0x71, 0x84, 0xdc, 0xfb, 0x57, 0x2f, 0x28, 0x15, 0xdf, 0x40, 0xeb,
+	0xfc, 0x0b, 0x43, 0xd6, 0x7f, 0x59, 0x5e, 0xff, 0x2c, 0xba, 0xfe, 0x55, 0xe9, 0x46, 0x6b, 0x2b,
+	0x3b, 0x3a, 0xf5, 0xac, 0xe3, 0x53, 0xcf, 0xfa, 0x7a, 0xea, 0x59, 0x1f, 0xce, 0xbc, 0xc6, 0xf1,
+	0x99, 0xd7, 0xf8, 0x74, 0xe6, 0x35, 0x5e, 0xf5, 0x6a, 0x53, 0x52, 0xb6, 0x62, 0x28, 0xd5, 0x20,
+	0x06, 0xba, 0xe5, 0x7a, 0x84, 0x79, 0xb5, 0xd1, 0x37, 0xd7, 0xcb, 0xd8, 0xbb, 0x4a, 0x8d, 0xd5,
+	0x60, 0x5a, 0x13, 0x1f, 0x7e, 0x0b, 0x00, 0x00, 0xff, 0xff, 0xe0, 0x03, 0x1b, 0x7f, 0xd7, 0x06,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -798,9 +566,6 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
-	SQLExec(ctx context.Context, in *SQLExecRequest, opts ...grpc.CallOption) (*SQLExecResponse, error)
-	SQLGrant(ctx context.Context, in *SQLGrantRequest, opts ...grpc.CallOption) (*SQLGrantResponse, error)
-	BindHost(ctx context.Context, in *BindHostRequest, opts ...grpc.CallOption) (*BindHostResponse, error)
 	CreateDataset(ctx context.Context, in *CreateDatasetRequest, opts ...grpc.CallOption) (*CreateDatasetResponse, error)
 	EditDataset(ctx context.Context, in *EditDatasetRequest, opts ...grpc.CallOption) (*EditDatasetResponse, error)
 	EditTable(ctx context.Context, in *EditTableRequest, opts ...grpc.CallOption) (*EditTableResponse, error)
@@ -812,33 +577,6 @@ type msgClient struct {
 
 func NewMsgClient(cc grpc1.ClientConn) MsgClient {
 	return &msgClient{cc}
-}
-
-func (c *msgClient) SQLExec(ctx context.Context, in *SQLExecRequest, opts ...grpc.CallOption) (*SQLExecResponse, error) {
-	out := new(SQLExecResponse)
-	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Msg/SQLExec", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) SQLGrant(ctx context.Context, in *SQLGrantRequest, opts ...grpc.CallOption) (*SQLGrantResponse, error) {
-	out := new(SQLGrantResponse)
-	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Msg/SQLGrant", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) BindHost(ctx context.Context, in *BindHostRequest, opts ...grpc.CallOption) (*BindHostResponse, error) {
-	out := new(BindHostResponse)
-	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Msg/BindHost", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *msgClient) CreateDataset(ctx context.Context, in *CreateDatasetRequest, opts ...grpc.CallOption) (*CreateDatasetResponse, error) {
@@ -870,9 +608,6 @@ func (c *msgClient) EditTable(ctx context.Context, in *EditTableRequest, opts ..
 
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
-	SQLExec(context.Context, *SQLExecRequest) (*SQLExecResponse, error)
-	SQLGrant(context.Context, *SQLGrantRequest) (*SQLGrantResponse, error)
-	BindHost(context.Context, *BindHostRequest) (*BindHostResponse, error)
 	CreateDataset(context.Context, *CreateDatasetRequest) (*CreateDatasetResponse, error)
 	EditDataset(context.Context, *EditDatasetRequest) (*EditDatasetResponse, error)
 	EditTable(context.Context, *EditTableRequest) (*EditTableResponse, error)
@@ -882,15 +617,6 @@ type MsgServer interface {
 type UnimplementedMsgServer struct {
 }
 
-func (*UnimplementedMsgServer) SQLExec(ctx context.Context, req *SQLExecRequest) (*SQLExecResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SQLExec not implemented")
-}
-func (*UnimplementedMsgServer) SQLGrant(ctx context.Context, req *SQLGrantRequest) (*SQLGrantResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SQLGrant not implemented")
-}
-func (*UnimplementedMsgServer) BindHost(ctx context.Context, req *BindHostRequest) (*BindHostResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BindHost not implemented")
-}
 func (*UnimplementedMsgServer) CreateDataset(ctx context.Context, req *CreateDatasetRequest) (*CreateDatasetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDataset not implemented")
 }
@@ -903,60 +629,6 @@ func (*UnimplementedMsgServer) EditTable(ctx context.Context, req *EditTableRequ
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
-}
-
-func _Msg_SQLExec_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SQLExecRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).SQLExec(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/blockved.glitterchain.index.Msg/SQLExec",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).SQLExec(ctx, req.(*SQLExecRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_SQLGrant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SQLGrantRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).SQLGrant(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/blockved.glitterchain.index.Msg/SQLGrant",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).SQLGrant(ctx, req.(*SQLGrantRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_BindHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BindHostRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).BindHost(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/blockved.glitterchain.index.Msg/BindHost",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).BindHost(ctx, req.(*BindHostRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Msg_CreateDataset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -1018,18 +690,6 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SQLExec",
-			Handler:    _Msg_SQLExec_Handler,
-		},
-		{
-			MethodName: "SQLGrant",
-			Handler:    _Msg_SQLGrant_Handler,
-		},
-		{
-			MethodName: "BindHost",
-			Handler:    _Msg_BindHost_Handler,
-		},
-		{
 			MethodName: "CreateDataset",
 			Handler:    _Msg_CreateDataset_Handler,
 		},
@@ -1044,181 +704,6 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "blockved/glitterchain/index/tx.proto",
-}
-
-func (m *SQLExecRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLExecRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLExecRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Arguments) > 0 {
-		for iNdEx := len(m.Arguments) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Arguments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintTx(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x1a
-		}
-	}
-	if len(m.Sql) > 0 {
-		i -= len(m.Sql)
-		copy(dAtA[i:], m.Sql)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Sql)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Uid) > 0 {
-		i -= len(m.Uid)
-		copy(dAtA[i:], m.Uid)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Uid)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLExecResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLExecResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLExecResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.TookTimes != 0 {
-		i -= 4
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(m.TookTimes))))
-		i--
-		dAtA[i] = 0x15
-	}
-	if len(m.Results) > 0 {
-		for iNdEx := len(m.Results) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Results[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintTx(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLGrantRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLGrantRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLGrantRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.OnDatabase) > 0 {
-		i -= len(m.OnDatabase)
-		copy(dAtA[i:], m.OnDatabase)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.OnDatabase)))
-		i--
-		dAtA[i] = 0x2a
-	}
-	if len(m.Role) > 0 {
-		i -= len(m.Role)
-		copy(dAtA[i:], m.Role)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Role)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.ToUID) > 0 {
-		i -= len(m.ToUID)
-		copy(dAtA[i:], m.ToUID)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.ToUID)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.OnTable) > 0 {
-		i -= len(m.OnTable)
-		copy(dAtA[i:], m.OnTable)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.OnTable)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Uid) > 0 {
-		i -= len(m.Uid)
-		copy(dAtA[i:], m.Uid)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Uid)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *SQLGrantResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *SQLGrantResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *SQLGrantResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
 }
 
 func (m *BindHostRequest) Marshal() (dAtA []byte, err error) {
@@ -1382,6 +867,13 @@ func (m *CreateDatasetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.DatasetMeta) > 0 {
+		i -= len(m.DatasetMeta)
+		copy(dAtA[i:], m.DatasetMeta)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.DatasetMeta)))
+		i--
+		dAtA[i] = 0x4a
+	}
 	if len(m.Description) > 0 {
 		i -= len(m.Description)
 		copy(dAtA[i:], m.Description)
@@ -1579,85 +1071,6 @@ func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *SQLExecRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Uid)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.Sql)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	if len(m.Arguments) > 0 {
-		for _, e := range m.Arguments {
-			l = e.Size()
-			n += 1 + l + sovTx(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *SQLExecResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Results) > 0 {
-		for _, e := range m.Results {
-			l = e.Size()
-			n += 1 + l + sovTx(uint64(l))
-		}
-	}
-	if m.TookTimes != 0 {
-		n += 5
-	}
-	return n
-}
-
-func (m *SQLGrantRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Uid)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.OnTable)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.ToUID)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.Role)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.OnDatabase)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	return n
-}
-
-func (m *SQLGrantResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
 func (m *BindHostRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1757,6 +1170,10 @@ func (m *CreateDatasetRequest) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	l = len(m.DatasetMeta)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
 	return n
 }
 
@@ -1821,509 +1238,6 @@ func sovTx(x uint64) (n int) {
 }
 func sozTx(x uint64) (n int) {
 	return sovTx(uint64((x << 1) ^ uint64((int64(x) >> 63))))
-}
-func (m *SQLExecRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLExecRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLExecRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Uid", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Uid = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Sql", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Sql = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Arguments", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Arguments = append(m.Arguments, &common.Argument{})
-			if err := m.Arguments[len(m.Arguments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLExecResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLExecResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLExecResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Results", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Results = append(m.Results, &common.ResultSet{})
-			if err := m.Results[len(m.Results)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 5 {
-				return fmt.Errorf("proto: wrong wireType = %d for field TookTimes", wireType)
-			}
-			var v uint32
-			if (iNdEx + 4) > l {
-				return io.ErrUnexpectedEOF
-			}
-			v = uint32(encoding_binary.LittleEndian.Uint32(dAtA[iNdEx:]))
-			iNdEx += 4
-			m.TookTimes = float32(math.Float32frombits(v))
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLGrantRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLGrantRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLGrantRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Uid", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Uid = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OnTable", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OnTable = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ToUID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.ToUID = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Role", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Role = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OnDatabase", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OnDatabase = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *SQLGrantResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: SQLGrantResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: SQLGrantResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
 }
 func (m *BindHostRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -3022,6 +1936,38 @@ func (m *CreateDatasetRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DatasetMeta", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DatasetMeta = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

@@ -6,6 +6,7 @@ package types
 import (
 	fmt "fmt"
 	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
+	common "github.com/glitternetwork/chain-dep/glitter_proto/common"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
@@ -30,60 +31,27 @@ var _ = time.Kitchen
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// BondStatus is the status of a validator.
-type BondStatus int32
-
-const (
-	// UNSPECIFIED defines an invalid validator status.
-	Unspecified BondStatus = 0
-	// UNBONDED defines a validator that is not bonded.
-	Unbonded BondStatus = 1
-	// UNBONDING defines a validator that is unbonding.
-	Unbonding BondStatus = 2
-	// BONDED defines a validator that is bonded.
-	Bonded BondStatus = 3
-)
-
-var BondStatus_name = map[int32]string{
-	0: "BOND_STATUS_UNSPECIFIED",
-	1: "BOND_STATUS_UNBONDED",
-	2: "BOND_STATUS_UNBONDING",
-	3: "BOND_STATUS_BONDED",
-}
-
-var BondStatus_value = map[string]int32{
-	"BOND_STATUS_UNSPECIFIED": 0,
-	"BOND_STATUS_UNBONDED":    1,
-	"BOND_STATUS_UNBONDING":   2,
-	"BOND_STATUS_BONDED":      3,
-}
-
-func (x BondStatus) String() string {
-	return proto.EnumName(BondStatus_name, int32(x))
-}
-
-func (BondStatus) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_30db0b27d43e4978, []int{0}
-}
-
 type ServiceStatus int32
 
 const (
-	unset     ServiceStatus = 0
-	preparing ServiceStatus = 1
-	ready     ServiceStatus = 2
+	unset  ServiceStatus = 0
+	start  ServiceStatus = 1
+	stop   ServiceStatus = 2
+	delete ServiceStatus = 3
 )
 
 var ServiceStatus_name = map[int32]string{
 	0: "Service_Status_Unset",
-	1: "Service_Status_Preparing",
-	2: "Service_Status_Ready",
+	1: "Service_Status_Start",
+	2: "Service_Status_Stop",
+	3: "Service_Status_Delete",
 }
 
 var ServiceStatus_value = map[string]int32{
-	"Service_Status_Unset":     0,
-	"Service_Status_Preparing": 1,
-	"Service_Status_Ready":     2,
+	"Service_Status_Unset":  0,
+	"Service_Status_Start":  1,
+	"Service_Status_Stop":   2,
+	"Service_Status_Delete": 3,
 }
 
 func (x ServiceStatus) String() string {
@@ -91,14 +59,13 @@ func (x ServiceStatus) String() string {
 }
 
 func (ServiceStatus) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_30db0b27d43e4978, []int{1}
+	return fileDescriptor_30db0b27d43e4978, []int{0}
 }
 
 type Table struct {
-	DatasetName string    `protobuf:"bytes,1,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
-	TableName   string    `protobuf:"bytes,2,opt,name=table_name,json=tableName,proto3" json:"table_name,omitempty"`
-	Meta        string    `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta,omitempty"`
-	UpdateTime  time.Time `protobuf:"bytes,4,opt,name=update_time,json=updateTime,proto3,stdtime" json:"update_time" yaml:"update_time"`
+	TableName  string    `protobuf:"bytes,1,opt,name=table_name,json=tableName,proto3" json:"table_name,omitempty"`
+	Meta       string    `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
+	UpdateTime time.Time `protobuf:"bytes,3,opt,name=update_time,json=updateTime,proto3,stdtime" json:"update_time" yaml:"update_time"`
 }
 
 func (m *Table) Reset()         { *m = Table{} }
@@ -134,13 +101,6 @@ func (m *Table) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Table proto.InternalMessageInfo
 
-func (m *Table) GetDatasetName() string {
-	if m != nil {
-		return m.DatasetName
-	}
-	return ""
-}
-
 func (m *Table) GetTableName() string {
 	if m != nil {
 		return m.TableName
@@ -166,12 +126,14 @@ type Dataset struct {
 	DatasetName     string                                 `protobuf:"bytes,1,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
 	WorkStatus      ServiceStatus                          `protobuf:"varint,2,opt,name=work_status,json=workStatus,proto3,enum=blockved.glitterchain.index.ServiceStatus" json:"work_status,omitempty"`
 	OwnerAddress    string                                 `protobuf:"bytes,3,opt,name=owner_address,json=ownerAddress,proto3" json:"owner_address,omitempty"`
-	OwnerStake      github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,4,opt,name=owner_stake,json=ownerStake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"owner_stake"`
-	Hosts           string                                 `protobuf:"bytes,5,opt,name=hosts,proto3" json:"hosts,omitempty"`
-	ManageAddresses string                                 `protobuf:"bytes,6,opt,name=manage_addresses,json=manageAddresses,proto3" json:"manage_addresses,omitempty"`
-	Description     string                                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
-	TableMap        map[string]*Table                      `protobuf:"bytes,8,rep,name=table_map,json=tableMap,proto3" json:"table_map,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	UpdateTime      time.Time                              `protobuf:"bytes,9,opt,name=update_time,json=updateTime,proto3,stdtime" json:"update_time" yaml:"update_time"`
+	OwnerStake      github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,4,opt,name=owner_stake,json=ownerStake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"owner_stake"`
+	ConsumerStake   github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,5,opt,name=consumer_stake,json=consumerStake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"consumer_stake"`
+	Hosts           string                                 `protobuf:"bytes,6,opt,name=hosts,proto3" json:"hosts,omitempty"`
+	ManageAddresses string                                 `protobuf:"bytes,7,opt,name=manage_addresses,json=manageAddresses,proto3" json:"manage_addresses,omitempty"`
+	Tables          []*Table                               `protobuf:"bytes,8,rep,name=tables,proto3" json:"tables,omitempty"`
+	ConsumerStakes  []*common.DatasetStake                 `protobuf:"bytes,9,rep,name=consumer_stakes,json=consumerStakes,proto3" json:"consumer_stakes,omitempty"`
+	Description     string                                 `protobuf:"bytes,10,opt,name=description,proto3" json:"description,omitempty"`
+	UpdateTime      time.Time                              `protobuf:"bytes,11,opt,name=update_time,json=updateTime,proto3,stdtime" json:"update_time" yaml:"update_time"`
 }
 
 func (m *Dataset) Reset()         { *m = Dataset{} }
@@ -242,18 +204,25 @@ func (m *Dataset) GetManageAddresses() string {
 	return ""
 }
 
+func (m *Dataset) GetTables() []*Table {
+	if m != nil {
+		return m.Tables
+	}
+	return nil
+}
+
+func (m *Dataset) GetConsumerStakes() []*common.DatasetStake {
+	if m != nil {
+		return m.ConsumerStakes
+	}
+	return nil
+}
+
 func (m *Dataset) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
 	return ""
-}
-
-func (m *Dataset) GetTableMap() map[string]*Table {
-	if m != nil {
-		return m.TableMap
-	}
-	return nil
 }
 
 func (m *Dataset) GetUpdateTime() time.Time {
@@ -264,11 +233,9 @@ func (m *Dataset) GetUpdateTime() time.Time {
 }
 
 func init() {
-	proto.RegisterEnum("blockved.glitterchain.index.BondStatus", BondStatus_name, BondStatus_value)
 	proto.RegisterEnum("blockved.glitterchain.index.ServiceStatus", ServiceStatus_name, ServiceStatus_value)
 	proto.RegisterType((*Table)(nil), "blockved.glitterchain.index.Table")
 	proto.RegisterType((*Dataset)(nil), "blockved.glitterchain.index.Dataset")
-	proto.RegisterMapType((map[string]*Table)(nil), "blockved.glitterchain.index.Dataset.TableMapEntry")
 }
 
 func init() {
@@ -276,54 +243,48 @@ func init() {
 }
 
 var fileDescriptor_30db0b27d43e4978 = []byte{
-	// 747 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xcd, 0x6e, 0xf3, 0x44,
-	0x14, 0x8d, 0xf3, 0xd3, 0xaf, 0x19, 0x37, 0x7c, 0xd6, 0x28, 0x08, 0x7f, 0x46, 0x38, 0x26, 0x95,
-	0xaa, 0xb4, 0x50, 0x5b, 0x0a, 0x9b, 0xaa, 0xbb, 0x86, 0x04, 0x54, 0x21, 0xd2, 0x2a, 0x3f, 0x1b,
-	0x58, 0x58, 0x13, 0x7b, 0xea, 0x5a, 0x89, 0x67, 0x2c, 0xcf, 0xa4, 0x25, 0x6f, 0x80, 0x22, 0x16,
-	0x7d, 0x81, 0xac, 0x78, 0x07, 0x16, 0x3c, 0x41, 0x97, 0x5d, 0x22, 0x16, 0x05, 0xda, 0x37, 0xe0,
-	0x09, 0x90, 0x67, 0x26, 0x22, 0x2d, 0x28, 0x62, 0xc1, 0xca, 0x73, 0xcf, 0x3d, 0xf7, 0xce, 0x19,
-	0x9f, 0x3b, 0x03, 0x0e, 0x27, 0x33, 0x1a, 0x4c, 0x6f, 0x70, 0xe8, 0x45, 0xb3, 0x98, 0x73, 0x9c,
-	0x05, 0xd7, 0x28, 0x26, 0x5e, 0x4c, 0x42, 0xfc, 0x9d, 0x17, 0x22, 0x8e, 0x18, 0xe6, 0x6e, 0x9a,
-	0x51, 0x4e, 0xe1, 0x87, 0x6b, 0xaa, 0xbb, 0x49, 0x75, 0x05, 0xd5, 0x7a, 0x17, 0x50, 0x96, 0x50,
-	0xe6, 0x0b, 0xaa, 0x27, 0x03, 0x59, 0x67, 0xd5, 0x23, 0x1a, 0x51, 0x89, 0xe7, 0x2b, 0x85, 0xbe,
-	0x8b, 0x28, 0x8d, 0x66, 0xd8, 0x13, 0xd1, 0x64, 0x7e, 0xe5, 0x21, 0xb2, 0x50, 0xa9, 0xc6, 0xeb,
-	0x14, 0x8f, 0x13, 0xcc, 0x38, 0x4a, 0x52, 0x49, 0x68, 0xfe, 0xac, 0x81, 0xca, 0x08, 0x4d, 0x66,
-	0x18, 0x7e, 0x0c, 0xf6, 0x94, 0x48, 0x9f, 0xa0, 0x04, 0x9b, 0x9a, 0xa3, 0xb5, 0xaa, 0x03, 0x5d,
-	0x61, 0x7d, 0x94, 0x60, 0xf8, 0x11, 0x00, 0x3c, 0xe7, 0x4a, 0x42, 0x51, 0x10, 0xaa, 0x02, 0x11,
-	0x69, 0x08, 0xca, 0x09, 0xe6, 0xc8, 0x2c, 0x89, 0x84, 0x58, 0xc3, 0x6f, 0x81, 0x3e, 0x4f, 0x43,
-	0xc4, 0xb1, 0x9f, 0xef, 0x6c, 0x96, 0x1d, 0xad, 0xa5, 0xb7, 0x2d, 0x57, 0xca, 0x72, 0xd7, 0xb2,
-	0xdc, 0xd1, 0x5a, 0x56, 0xc7, 0xbe, 0x7f, 0x6c, 0x14, 0xfe, 0x7c, 0x6c, 0xc0, 0x05, 0x4a, 0x66,
-	0xa7, 0xcd, 0x8d, 0xe2, 0xe6, 0xdd, 0x6f, 0x0d, 0x6d, 0x00, 0x24, 0x92, 0x17, 0x34, 0xff, 0x28,
-	0x83, 0x37, 0x5d, 0xa9, 0xef, 0xbf, 0xc8, 0xff, 0x0a, 0xe8, 0xb7, 0x34, 0x9b, 0xfa, 0x8c, 0x23,
-	0x3e, 0x67, 0x42, 0xff, 0x7b, 0xed, 0x23, 0x77, 0x8b, 0x17, 0xee, 0x10, 0x67, 0x37, 0x71, 0x80,
-	0x87, 0xa2, 0x62, 0x00, 0xf2, 0x72, 0xb9, 0x86, 0xfb, 0xa0, 0x46, 0x6f, 0x09, 0xce, 0x7c, 0x14,
-	0x86, 0x19, 0x66, 0x4c, 0x9d, 0x7a, 0x4f, 0x80, 0x67, 0x12, 0x83, 0x17, 0x40, 0x97, 0x24, 0xc6,
-	0xd1, 0x54, 0x9e, 0xbe, 0xda, 0x71, 0xf3, 0x13, 0xfe, 0xfa, 0xd8, 0x38, 0x88, 0x62, 0x7e, 0x3d,
-	0x9f, 0xb8, 0x01, 0x4d, 0x94, 0xcb, 0xea, 0x73, 0xcc, 0xc2, 0xa9, 0xc7, 0x17, 0x29, 0x66, 0x6e,
-	0x17, 0x07, 0x03, 0x20, 0x5a, 0x0c, 0xf3, 0x0e, 0xb0, 0x0e, 0x2a, 0xd7, 0x94, 0x71, 0x66, 0x56,
-	0xc4, 0x6e, 0x32, 0x80, 0x87, 0xc0, 0x48, 0x10, 0x41, 0x11, 0x5e, 0x8b, 0xc1, 0xcc, 0xdc, 0x11,
-	0x84, 0xb7, 0x12, 0x3f, 0x5b, 0xc3, 0xd0, 0x01, 0x7a, 0x88, 0x59, 0x90, 0xc5, 0x29, 0x8f, 0x29,
-	0x31, 0xdf, 0xa8, 0xbf, 0xf4, 0x37, 0x04, 0x2f, 0x80, 0xb4, 0xd4, 0x4f, 0x50, 0x6a, 0xee, 0x3a,
-	0xa5, 0x96, 0xde, 0x6e, 0x6f, 0xfd, 0x47, 0xca, 0x01, 0x57, 0x8c, 0xd1, 0xd7, 0x28, 0xed, 0x11,
-	0x9e, 0x2d, 0x06, 0xbb, 0x5c, 0x85, 0xaf, 0x47, 0xa0, 0xfa, 0x7f, 0x8e, 0x80, 0xe5, 0x83, 0xda,
-	0x8b, 0x7d, 0xa1, 0x01, 0x4a, 0x53, 0xbc, 0x50, 0xf6, 0xe7, 0x4b, 0x78, 0x02, 0x2a, 0x37, 0x68,
-	0x36, 0x97, 0x03, 0xab, 0xb7, 0x9b, 0x5b, 0x0f, 0x23, 0x9a, 0x0d, 0x64, 0xc1, 0x69, 0xf1, 0x44,
-	0x3b, 0xfa, 0x49, 0x03, 0xa0, 0x43, 0x49, 0xa8, 0x6c, 0xff, 0x14, 0x7c, 0xd0, 0xb9, 0xe8, 0x77,
-	0xfd, 0xe1, 0xe8, 0x6c, 0x34, 0x1e, 0xfa, 0xe3, 0xfe, 0xf0, 0xb2, 0xf7, 0xf9, 0xf9, 0x17, 0xe7,
-	0xbd, 0xae, 0x51, 0xb0, 0xde, 0x2e, 0x57, 0x8e, 0x3e, 0x26, 0x2c, 0xc5, 0x41, 0x7c, 0x15, 0xe3,
-	0x10, 0x1e, 0x80, 0xfa, 0x4b, 0x76, 0x1e, 0xf5, 0xba, 0x86, 0x66, 0xed, 0x2d, 0x57, 0xce, 0xee,
-	0x98, 0x4c, 0x28, 0x09, 0x71, 0x08, 0x5b, 0xe0, 0xfd, 0x7f, 0xf2, 0xce, 0xfb, 0x5f, 0x1a, 0x45,
-	0xab, 0xb6, 0x5c, 0x39, 0x55, 0x49, 0x8c, 0x49, 0x04, 0x9b, 0x00, 0x6e, 0x32, 0x55, 0xbf, 0x92,
-	0x05, 0x96, 0x2b, 0x67, 0xa7, 0x23, 0xba, 0x59, 0xe5, 0xef, 0x7f, 0xb4, 0x0b, 0x47, 0x3f, 0x68,
-	0xa0, 0xf6, 0x62, 0x7c, 0xe1, 0x3e, 0xa8, 0x2b, 0xc0, 0x97, 0x88, 0x3f, 0x26, 0x0c, 0x73, 0xa3,
-	0x60, 0x55, 0x97, 0x2b, 0xa7, 0x32, 0xcf, 0x03, 0xf8, 0x09, 0x30, 0x5f, 0x91, 0x2e, 0x33, 0x9c,
-	0xa2, 0x2c, 0x26, 0x91, 0xa1, 0x49, 0x35, 0xe9, 0x1a, 0xf8, 0x97, 0x8e, 0x03, 0x8c, 0xc2, 0x85,
-	0x51, 0x94, 0x1d, 0xb3, 0x3c, 0x90, 0x72, 0x3a, 0xc9, 0xfd, 0x93, 0xad, 0x3d, 0x3c, 0xd9, 0xda,
-	0xef, 0x4f, 0xb6, 0x76, 0xf7, 0x6c, 0x17, 0x1e, 0x9e, 0xed, 0xc2, 0x2f, 0xcf, 0x76, 0xe1, 0x9b,
-	0xe1, 0xc6, 0x3d, 0x50, 0x8e, 0x10, 0xcc, 0xf3, 0xab, 0xe6, 0x09, 0x67, 0x8e, 0x43, 0x9c, 0xae,
-	0x13, 0xea, 0x51, 0xdc, 0xf6, 0xd2, 0x8a, 0x8b, 0x33, 0xd9, 0x11, 0xc4, 0xcf, 0xfe, 0x0a, 0x00,
-	0x00, 0xff, 0xff, 0x4a, 0xba, 0x14, 0x24, 0x95, 0x05, 0x00, 0x00,
+	// 652 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0x3d, 0x4f, 0xdb, 0x50,
+	0x14, 0x8d, 0x21, 0x09, 0xe4, 0x9a, 0x8f, 0xe8, 0x15, 0x24, 0xe3, 0xaa, 0x8e, 0x09, 0x6a, 0x05,
+	0x48, 0xd8, 0x12, 0xdd, 0x18, 0x2a, 0x81, 0x58, 0xaa, 0x4a, 0xad, 0xe4, 0xc0, 0xd2, 0x0e, 0xd6,
+	0x8b, 0x7d, 0x6b, 0xac, 0xc4, 0x7e, 0x96, 0xdf, 0x0b, 0x94, 0xb5, 0x53, 0xc5, 0xc4, 0xd6, 0x89,
+	0xa9, 0x53, 0xff, 0x09, 0x23, 0x63, 0xd5, 0x81, 0x56, 0xf0, 0x0f, 0xfa, 0x0b, 0x2a, 0xbf, 0x67,
+	0xb7, 0x81, 0x56, 0x19, 0xaa, 0x4e, 0x79, 0xf7, 0xdc, 0x73, 0x4f, 0xee, 0xc7, 0x91, 0x61, 0xa3,
+	0x3f, 0x64, 0xc1, 0xe0, 0x18, 0x43, 0x37, 0x1a, 0xc6, 0x42, 0x60, 0x1e, 0x1c, 0xd1, 0x38, 0x75,
+	0xe3, 0x34, 0xc4, 0x77, 0x6e, 0x48, 0x05, 0xe5, 0x28, 0x9c, 0x2c, 0x67, 0x82, 0x91, 0x87, 0x15,
+	0xd5, 0x19, 0xa7, 0x3a, 0x92, 0x6a, 0xae, 0x04, 0x8c, 0x27, 0x8c, 0xfb, 0x92, 0xea, 0xaa, 0x40,
+	0xd5, 0x99, 0x4b, 0x11, 0x8b, 0x98, 0xc2, 0x8b, 0x57, 0x89, 0xae, 0x44, 0x8c, 0x45, 0x43, 0x74,
+	0x65, 0xd4, 0x1f, 0xbd, 0x75, 0x69, 0x7a, 0x5a, 0xa6, 0x3a, 0xf7, 0x53, 0x22, 0x4e, 0x90, 0x0b,
+	0x9a, 0x64, 0x95, 0x62, 0xc0, 0x92, 0x84, 0xa5, 0x2e, 0x17, 0x74, 0x10, 0xa7, 0x91, 0x42, 0xbb,
+	0x1f, 0x35, 0x68, 0x1c, 0xd0, 0xfe, 0x10, 0xc9, 0x23, 0x00, 0x51, 0x3c, 0xfc, 0x94, 0x26, 0x68,
+	0x68, 0xb6, 0xb6, 0xde, 0xf2, 0x5a, 0x12, 0x79, 0x49, 0x13, 0x24, 0x04, 0xea, 0x09, 0x0a, 0x6a,
+	0x4c, 0xc9, 0x84, 0x7c, 0x93, 0x37, 0xa0, 0x8f, 0xb2, 0x90, 0x0a, 0xf4, 0x8b, 0x3f, 0x33, 0xa6,
+	0x6d, 0x6d, 0x5d, 0xdf, 0x36, 0x1d, 0xd5, 0x89, 0x53, 0x75, 0xe2, 0x1c, 0x54, 0x9d, 0xec, 0x59,
+	0x97, 0xd7, 0x9d, 0xda, 0x8f, 0xeb, 0x0e, 0x39, 0xa5, 0xc9, 0x70, 0xa7, 0x3b, 0x56, 0xdc, 0x3d,
+	0xff, 0xd6, 0xd1, 0x3c, 0x50, 0x48, 0x51, 0xd0, 0x7d, 0xdf, 0x80, 0x99, 0x7d, 0xb5, 0x4b, 0xb2,
+	0x0a, 0x73, 0xe5, 0x5a, 0xc7, 0xbb, 0xd3, 0x4b, 0x4c, 0xf6, 0xf7, 0x02, 0xf4, 0x13, 0x96, 0x0f,
+	0x7c, 0x2e, 0xa8, 0x18, 0x71, 0xd9, 0xe6, 0xc2, 0xf6, 0xa6, 0x33, 0x61, 0xfd, 0x4e, 0x0f, 0xf3,
+	0xe3, 0x38, 0xc0, 0x9e, 0xac, 0xf0, 0xa0, 0x28, 0x57, 0x6f, 0xb2, 0x06, 0xf3, 0xec, 0x24, 0xc5,
+	0xdc, 0xa7, 0x61, 0x98, 0x23, 0xe7, 0x72, 0xb4, 0x96, 0x37, 0x27, 0xc1, 0x5d, 0x85, 0x91, 0x57,
+	0xa0, 0x2b, 0x52, 0xb1, 0x51, 0x34, 0xea, 0x05, 0x65, 0xcf, 0x29, 0x26, 0xfc, 0x7a, 0xdd, 0x79,
+	0x12, 0xc5, 0xe2, 0x68, 0xd4, 0x77, 0x02, 0x96, 0x94, 0x87, 0x2d, 0x7f, 0xb6, 0x78, 0x38, 0x70,
+	0xc5, 0x69, 0x86, 0xdc, 0x79, 0x9e, 0x0a, 0x0f, 0xa4, 0x44, 0xaf, 0x50, 0x20, 0x87, 0xb0, 0x10,
+	0xb0, 0x94, 0x8f, 0x92, 0x5f, 0x9a, 0x8d, 0x7f, 0xd2, 0x9c, 0xaf, 0x54, 0x94, 0xec, 0x12, 0x34,
+	0x8e, 0x18, 0x17, 0xdc, 0x68, 0xca, 0x21, 0x54, 0x40, 0x36, 0xa0, 0x9d, 0xd0, 0x94, 0x46, 0x58,
+	0xcd, 0x88, 0xdc, 0x98, 0x91, 0x84, 0x45, 0x85, 0xef, 0x56, 0x30, 0xd9, 0x81, 0xa6, 0xf4, 0x01,
+	0x37, 0x66, 0xed, 0xe9, 0x75, 0x7d, 0xbb, 0x3b, 0x71, 0xab, 0xd2, 0x4d, 0x5e, 0x59, 0x41, 0x9e,
+	0xc1, 0xe2, 0xdd, 0x99, 0xb8, 0xd1, 0x92, 0x22, 0xcb, 0x8e, 0xf2, 0xa3, 0x53, 0x1d, 0x56, 0x66,
+	0xbd, 0x85, 0x3b, 0xbd, 0x73, 0x62, 0x83, 0x1e, 0x22, 0x0f, 0xf2, 0x38, 0x13, 0x31, 0x4b, 0x0d,
+	0x28, 0x0f, 0xff, 0x1b, 0xba, 0x6f, 0x42, 0xfd, 0x7f, 0x9a, 0x70, 0xf3, 0xb3, 0x06, 0xf3, 0x77,
+	0x6c, 0x42, 0xd6, 0x60, 0xa9, 0x04, 0x7c, 0x85, 0xf8, 0x87, 0x29, 0x47, 0xd1, 0xae, 0x99, 0xad,
+	0xb3, 0x0b, 0xbb, 0x31, 0x2a, 0x82, 0xbf, 0x90, 0x7a, 0x82, 0xe6, 0xa2, 0xad, 0x29, 0x12, 0x2f,
+	0x02, 0xb2, 0x0a, 0x0f, 0xfe, 0x20, 0xb1, 0xac, 0x3d, 0x65, 0xce, 0x9e, 0x5d, 0xd8, 0x75, 0x2e,
+	0x58, 0x46, 0x1e, 0xc3, 0xf2, 0x3d, 0xca, 0x3e, 0x0e, 0x51, 0x60, 0x7b, 0xda, 0x84, 0xb3, 0x0b,
+	0xbb, 0x19, 0xca, 0xc8, 0xac, 0x7f, 0xf8, 0x64, 0xd5, 0xf6, 0x92, 0xcb, 0x1b, 0x4b, 0xbb, 0xba,
+	0xb1, 0xb4, 0xef, 0x37, 0x96, 0x76, 0x7e, 0x6b, 0xd5, 0xae, 0x6e, 0xad, 0xda, 0x97, 0x5b, 0xab,
+	0xf6, 0xba, 0x37, 0x66, 0x9c, 0xf2, 0x62, 0x29, 0x8a, 0xc2, 0xef, 0xae, 0xbc, 0xdc, 0x56, 0x88,
+	0x59, 0x95, 0x28, 0x3f, 0x46, 0x93, 0xbe, 0x70, 0xd2, 0x69, 0xfd, 0xa6, 0x24, 0x3e, 0xfd, 0x19,
+	0x00, 0x00, 0xff, 0xff, 0x25, 0x16, 0x37, 0xb6, 0x0d, 0x05, 0x00, 0x00,
 }
 
 func (m *Table) Marshal() (dAtA []byte, err error) {
@@ -353,25 +314,18 @@ func (m *Table) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i -= n1
 	i = encodeVarintDataset(dAtA, i, uint64(n1))
 	i--
-	dAtA[i] = 0x22
+	dAtA[i] = 0x1a
 	if len(m.Meta) > 0 {
 		i -= len(m.Meta)
 		copy(dAtA[i:], m.Meta)
 		i = encodeVarintDataset(dAtA, i, uint64(len(m.Meta)))
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x12
 	}
 	if len(m.TableName) > 0 {
 		i -= len(m.TableName)
 		copy(dAtA[i:], m.TableName)
 		i = encodeVarintDataset(dAtA, i, uint64(len(m.TableName)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.DatasetName) > 0 {
-		i -= len(m.DatasetName)
-		copy(dAtA[i:], m.DatasetName)
-		i = encodeVarintDataset(dAtA, i, uint64(len(m.DatasetName)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -405,54 +359,66 @@ func (m *Dataset) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i -= n2
 	i = encodeVarintDataset(dAtA, i, uint64(n2))
 	i--
-	dAtA[i] = 0x4a
-	if len(m.TableMap) > 0 {
-		for k := range m.TableMap {
-			v := m.TableMap[k]
-			baseI := i
-			if v != nil {
-				{
-					size, err := v.MarshalToSizedBuffer(dAtA[:i])
-					if err != nil {
-						return 0, err
-					}
-					i -= size
-					i = encodeVarintDataset(dAtA, i, uint64(size))
-				}
-				i--
-				dAtA[i] = 0x12
-			}
-			i -= len(k)
-			copy(dAtA[i:], k)
-			i = encodeVarintDataset(dAtA, i, uint64(len(k)))
-			i--
-			dAtA[i] = 0xa
-			i = encodeVarintDataset(dAtA, i, uint64(baseI-i))
-			i--
-			dAtA[i] = 0x42
-		}
-	}
+	dAtA[i] = 0x5a
 	if len(m.Description) > 0 {
 		i -= len(m.Description)
 		copy(dAtA[i:], m.Description)
 		i = encodeVarintDataset(dAtA, i, uint64(len(m.Description)))
 		i--
-		dAtA[i] = 0x3a
+		dAtA[i] = 0x52
+	}
+	if len(m.ConsumerStakes) > 0 {
+		for iNdEx := len(m.ConsumerStakes) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.ConsumerStakes[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDataset(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x4a
+		}
+	}
+	if len(m.Tables) > 0 {
+		for iNdEx := len(m.Tables) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Tables[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDataset(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x42
+		}
 	}
 	if len(m.ManageAddresses) > 0 {
 		i -= len(m.ManageAddresses)
 		copy(dAtA[i:], m.ManageAddresses)
 		i = encodeVarintDataset(dAtA, i, uint64(len(m.ManageAddresses)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0x3a
 	}
 	if len(m.Hosts) > 0 {
 		i -= len(m.Hosts)
 		copy(dAtA[i:], m.Hosts)
 		i = encodeVarintDataset(dAtA, i, uint64(len(m.Hosts)))
 		i--
-		dAtA[i] = 0x2a
+		dAtA[i] = 0x32
 	}
+	{
+		size := m.ConsumerStake.Size()
+		i -= size
+		if _, err := m.ConsumerStake.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintDataset(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x2a
 	{
 		size := m.OwnerStake.Size()
 		i -= size
@@ -502,10 +468,6 @@ func (m *Table) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.DatasetName)
-	if l > 0 {
-		n += 1 + l + sovDataset(uint64(l))
-	}
 	l = len(m.TableName)
 	if l > 0 {
 		n += 1 + l + sovDataset(uint64(l))
@@ -538,6 +500,8 @@ func (m *Dataset) Size() (n int) {
 	}
 	l = m.OwnerStake.Size()
 	n += 1 + l + sovDataset(uint64(l))
+	l = m.ConsumerStake.Size()
+	n += 1 + l + sovDataset(uint64(l))
 	l = len(m.Hosts)
 	if l > 0 {
 		n += 1 + l + sovDataset(uint64(l))
@@ -546,22 +510,21 @@ func (m *Dataset) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDataset(uint64(l))
 	}
+	if len(m.Tables) > 0 {
+		for _, e := range m.Tables {
+			l = e.Size()
+			n += 1 + l + sovDataset(uint64(l))
+		}
+	}
+	if len(m.ConsumerStakes) > 0 {
+		for _, e := range m.ConsumerStakes {
+			l = e.Size()
+			n += 1 + l + sovDataset(uint64(l))
+		}
+	}
 	l = len(m.Description)
 	if l > 0 {
 		n += 1 + l + sovDataset(uint64(l))
-	}
-	if len(m.TableMap) > 0 {
-		for k, v := range m.TableMap {
-			_ = k
-			_ = v
-			l = 0
-			if v != nil {
-				l = v.Size()
-				l += 1 + sovDataset(uint64(l))
-			}
-			mapEntrySize := 1 + len(k) + sovDataset(uint64(len(k))) + l
-			n += mapEntrySize + 1 + sovDataset(uint64(mapEntrySize))
-		}
 	}
 	l = github_com_gogo_protobuf_types.SizeOfStdTime(m.UpdateTime)
 	n += 1 + l + sovDataset(uint64(l))
@@ -605,38 +568,6 @@ func (m *Table) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field DatasetName", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDataset
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthDataset
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthDataset
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.DatasetName = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field TableName", wireType)
 			}
 			var stringLen uint64
@@ -667,7 +598,7 @@ func (m *Table) Unmarshal(dAtA []byte) error {
 			}
 			m.TableName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 3:
+		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Meta", wireType)
 			}
@@ -699,7 +630,7 @@ func (m *Table) Unmarshal(dAtA []byte) error {
 			}
 			m.Meta = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 4:
+		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdateTime", wireType)
 			}
@@ -901,6 +832,40 @@ func (m *Dataset) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ConsumerStake", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDataset
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDataset
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDataset
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ConsumerStake.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Hosts", wireType)
 			}
 			var stringLen uint64
@@ -931,7 +896,7 @@ func (m *Dataset) Unmarshal(dAtA []byte) error {
 			}
 			m.Hosts = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 6:
+		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ManageAddresses", wireType)
 			}
@@ -963,7 +928,75 @@ func (m *Dataset) Unmarshal(dAtA []byte) error {
 			}
 			m.ManageAddresses = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 7:
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Tables", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDataset
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDataset
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDataset
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Tables = append(m.Tables, &Table{})
+			if err := m.Tables[len(m.Tables)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ConsumerStakes", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDataset
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDataset
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDataset
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ConsumerStakes = append(m.ConsumerStakes, &common.DatasetStake{})
+			if err := m.ConsumerStakes[len(m.ConsumerStakes)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 10:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
 			}
@@ -995,136 +1028,7 @@ func (m *Dataset) Unmarshal(dAtA []byte) error {
 			}
 			m.Description = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 8:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field TableMap", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDataset
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthDataset
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthDataset
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.TableMap == nil {
-				m.TableMap = make(map[string]*Table)
-			}
-			var mapkey string
-			var mapvalue *Table
-			for iNdEx < postIndex {
-				entryPreIndex := iNdEx
-				var wire uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowDataset
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					wire |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				fieldNum := int32(wire >> 3)
-				if fieldNum == 1 {
-					var stringLenmapkey uint64
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowDataset
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						stringLenmapkey |= uint64(b&0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					intStringLenmapkey := int(stringLenmapkey)
-					if intStringLenmapkey < 0 {
-						return ErrInvalidLengthDataset
-					}
-					postStringIndexmapkey := iNdEx + intStringLenmapkey
-					if postStringIndexmapkey < 0 {
-						return ErrInvalidLengthDataset
-					}
-					if postStringIndexmapkey > l {
-						return io.ErrUnexpectedEOF
-					}
-					mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
-					iNdEx = postStringIndexmapkey
-				} else if fieldNum == 2 {
-					var mapmsglen int
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowDataset
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						mapmsglen |= int(b&0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					if mapmsglen < 0 {
-						return ErrInvalidLengthDataset
-					}
-					postmsgIndex := iNdEx + mapmsglen
-					if postmsgIndex < 0 {
-						return ErrInvalidLengthDataset
-					}
-					if postmsgIndex > l {
-						return io.ErrUnexpectedEOF
-					}
-					mapvalue = &Table{}
-					if err := mapvalue.Unmarshal(dAtA[iNdEx:postmsgIndex]); err != nil {
-						return err
-					}
-					iNdEx = postmsgIndex
-				} else {
-					iNdEx = entryPreIndex
-					skippy, err := skipDataset(dAtA[iNdEx:])
-					if err != nil {
-						return err
-					}
-					if (skippy < 0) || (iNdEx+skippy) < 0 {
-						return ErrInvalidLengthDataset
-					}
-					if (iNdEx + skippy) > postIndex {
-						return io.ErrUnexpectedEOF
-					}
-					iNdEx += skippy
-				}
-			}
-			m.TableMap[mapkey] = mapvalue
-			iNdEx = postIndex
-		case 9:
+		case 11:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdateTime", wireType)
 			}

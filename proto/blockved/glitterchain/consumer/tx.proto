@@ -1,0 +1,30 @@
+syntax = "proto3";
+package blockved.glitterchain.consumer;
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
+import "gogoproto/gogo.proto";
+
+service Msg {
+  rpc Stake      (StakeRequest     ) returns (StakeResponse     );
+  rpc UnStake    (UnStakeRequest   ) returns (UnStakeResponse   );
+}
+
+
+message StakeRequest {
+  string  address = 1;
+  string  dataset_name = 2;
+  string  amount = 3
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}
+
+message StakeResponse {
+}
+
+message UnStakeRequest{
+  string  address = 1;
+  string  dataset_name = 2;
+  string  amount = 3
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}
+
+message UnStakeResponse{}

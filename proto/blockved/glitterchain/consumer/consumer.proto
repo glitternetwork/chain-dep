@@ -1,0 +1,18 @@
+syntax = "proto3";
+package blockved.glitterchain.consumer;
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "common/staking.proto";
+
+
+
+message consumer {
+  string        stake_amount = 1
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  repeated      common.dataset_stake  stakes = 2;
+  string        description = 3;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package common;
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/common";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+message  dataset_stake {
+  string        address = 1;
+  string        dataset_name = 2;
+  string        amount = 3
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}

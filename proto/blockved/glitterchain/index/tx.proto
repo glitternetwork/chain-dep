@@ -9,11 +9,6 @@ import "common/sql_engine.proto";
 import "blockved/glitterchain/index/dataset.proto";
 
 service Msg {
-    rpc SQLExec(SQLExecRequest) returns (SQLExecResponse);
-
-    rpc SQLGrant(SQLGrantRequest) returns (SQLGrantResponse);
-
-    rpc BindHost(BindHostRequest ) returns (BindHostResponse);
 
     rpc CreateDataset(CreateDatasetRequest ) returns (CreateDatasetResponse);
 
@@ -22,27 +17,7 @@ service Msg {
     rpc EditTable(EditTableRequest ) returns (EditTableResponse);
 }
 
-message SQLExecRequest{
-  string uid = 1;
-  string sql = 2;
-  repeated common.Argument arguments = 3;
-}
 
-message SQLExecResponse{
-    repeated common.ResultSet results = 1;
-    float took_times = 2;
-}
-
-message SQLGrantRequest{
-  string uid = 1;
-  string onTable = 2;
-  string toUID = 3;
-  string role = 4;
-  string onDatabase = 5;
-}
-
-message SQLGrantResponse{
-}
 
 
 message BindHostRequest{
@@ -75,6 +50,7 @@ message CreateDatasetRequest{
   string        hosts = 6;
   string        manage_addresses = 7;
   string        description = 8;
+  string        dataset_meta = 9;
 }
 
 message CreateDatasetResponse{}

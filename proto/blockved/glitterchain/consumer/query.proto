@@ -1,0 +1,60 @@
+syntax = "proto3";
+package blockved.glitterchain.consumer;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+// this line is used by starport scaffolding # 1
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
+
+// Query defines the gRPC querier service.
+service Query {
+
+
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/dapp/params";
+  }
+
+  //query stake dataset by dapp
+  rpc QueryDelegations(QueryDelegationsRequest) returns (QueryDelegationsResponse) {
+    option (google.api.http) = {
+      post: "/blockved/glitterchain/dapp/delegation/{dapp_address}",
+      body: "*"
+    };
+  }
+
+  //query stake dataset by dapp
+  rpc QueryDelegation(QueryDelegationRequest) returns (QueryDelegationResponse) {
+    option (google.api.http) = {
+      post: "/blockved/glitterchain/dapp/delegation/{dapp_address}/dataset/{dataset_name}",
+      body: "*"
+    };
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {
+}
+
+message QueryParamsResponse {
+}
+
+message QueryDelegationsRequest{
+  string dapp_address = 1;
+}
+
+message QueryDelegationsResponse{
+}
+
+
+
+message QueryDelegationRequest{
+  string dapp_address = 1;
+  string dataset_name = 2;
+}
+
+message QueryDelegationResponse{
+}
+
+
