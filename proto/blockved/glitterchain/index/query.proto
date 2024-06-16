@@ -22,11 +22,6 @@ service Query {
   }
 
   // Parameters queries the parameters of the module.
-  rpc GetAllHosts(GetAllHostsRequest) returns (GetAllHostsResponse) {
-    option (google.api.http).get = "/blockved/glitterchain/index/sql/get_all_hosts";
-  }
-
-  // Parameters queries the parameters of the module.
   rpc QueryDateset(QueryDatesetRequest) returns (QueryDatesetResponse) {
     option (google.api.http).get = "/blockved/glitterchain/index/dataset/{dataset_name}";
   }

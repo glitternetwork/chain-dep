@@ -10,9 +10,15 @@ import "common/staking.proto";
 
 
 
-message consumer {
-  string        stake_amount = 1
+message stake {
+  string        dataset_name = 1
+  [(gogoproto.nullable) = true];
+  string        amount = 2
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
-  repeated      common.dataset_stake  stakes = 2;
+}
+
+message consumer {
+  string        address = 1;
+  repeated      stake  dataset_stakes = 2;
   string        description = 3;
 }

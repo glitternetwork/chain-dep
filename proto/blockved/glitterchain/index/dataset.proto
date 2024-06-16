@@ -23,20 +23,23 @@ message Table{
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
 }
 
-
+message stake {
+  string        address = 1
+  [(gogoproto.nullable) = true];
+  string        amount = 2
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}
 message Dataset {
   string        dataset_name = 1;
   ServiceStatus work_status =  2;
   string        owner_address = 3;
   string        owner_stake = 4
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
-  string        consumer_stake = 5
-  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
-  string        hosts = 6;
-  string        manage_addresses = 7;
-  repeated      Table tables = 8;
-  repeated      common.dataset_stake  consumer_stakes = 9;
-  string        description = 10;
-  google.protobuf.Timestamp update_time = 11
+  string        hosts = 5;
+  string        manage_addresses = 6;
+  repeated      Table tables = 7;
+  repeated      stake  consumer_stakes = 8;
+  string        description = 9;
+  google.protobuf.Timestamp update_time = 10
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
 }
