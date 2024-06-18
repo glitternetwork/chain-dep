@@ -17,7 +17,7 @@ const (
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_consumer"
 
-	CousumerStakePoolAccount = "cousumer_stake_pool_account"
+	AccountCousumerStakePool = "account_cousumer_stake_pool"
 )
 
 var (

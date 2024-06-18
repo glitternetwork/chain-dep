@@ -34,6 +34,13 @@ import (
 	glitterindex "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index"
 )
 
+const (
+	// DisplayDenom defines the denomination displayed to users in client applications.
+	DisplayDenom = "gli"
+	// BaseDenom defines to the default denomination used in canto (staking, EVM, governance, etc.)
+	BaseDenom = "agli"
+)
+
 // EncodingConfig specifies the concrete encoding types to use for a given app.
 // This is provided for compatibility between protobuf and amino implementations.
 type EncodingConfig struct {
