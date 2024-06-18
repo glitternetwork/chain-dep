@@ -15,13 +15,16 @@ const (
 	QuerierRoute = ModuleName
 
 	// MemStoreKey defines the in-memory store key
-	MemStoreKey = "mem_index"
+	MemStoreKey = "mem_consumer"
 
-	SchemaKey = "schema_"
-
-	DocKey = "doc_"
+	CousumerStakePoolAccount = "cousumer_stake_pool_account"
 )
 
-func KeyPrefix(p string) []byte {
-	return []byte(p)
+var (
+	KeyPrefixConsumer     = []byte{0x10} // prefix for the historical info
+	KeyPrefixDatasetStake = []byte{0x20} // prefix for the historical info
+)
+
+func GetConsumerKey(address []byte) []byte {
+	return append(KeyPrefixConsumer, address...)
 }
