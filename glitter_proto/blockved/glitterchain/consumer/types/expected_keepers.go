@@ -20,9 +20,11 @@ type AccountKeeper interface {
 type BankKeeper interface {
 	SpendableCoins(ctx sdk.Context, addr sdk.AccAddress) sdk.Coins
 	SendCoinsFromAccountToModule(ctx sdk.Context, senderAddr sdk.AccAddress, recipientModule string, amt sdk.Coins) error
+	SendCoinsFromModuleToAccount(ctx sdk.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error
 }
 
 type IndexKeeper interface {
 	CheckDatasetExist(ctx sdk.Context, datasetName string) bool
 	AddDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) bool
+	SubDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) bool
 }
