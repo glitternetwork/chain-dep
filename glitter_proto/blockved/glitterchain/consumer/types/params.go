@@ -5,6 +5,9 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+var (
+	KeyUnbondingTime = []byte("UnbondingTime")
+)
 var _ paramtypes.ParamSet = (*Params)(nil)
 
 // ParamKeyTable the param key table for launch module

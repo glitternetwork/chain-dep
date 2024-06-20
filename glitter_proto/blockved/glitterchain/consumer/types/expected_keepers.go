@@ -25,6 +25,6 @@ type BankKeeper interface {
 
 type IndexKeeper interface {
 	CheckDatasetExist(ctx sdk.Context, datasetName string) bool
-	AddDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) bool
-	SubDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) bool
+	AddDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) error
+	SubDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) error
 }

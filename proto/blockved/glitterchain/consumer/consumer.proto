@@ -10,15 +10,35 @@ import "common/staking.proto";
 
 
 
-message stake {
+message Stake {
   string        dataset_name = 1
   [(gogoproto.nullable) = true];
   string        amount = 2
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
 
-message consumer {
+message Consumer {
   string        address = 1;
-  repeated      stake  dataset_stakes = 2;
+  repeated      Stake  dataset_stakes = 2;
   string        description = 3;
+}
+
+
+message UnbondingStakePair {
+  string consumer_address = 1 [(gogoproto.moretags) = "yaml:\"consumer_address\""];
+  string dataset_name = 2 [(gogoproto.moretags) = "yaml:\"dataset_name\""];
+  repeated UnbondingStakeEntry entries = 3;
+}
+
+
+message UnbondingStakePairs {
+  repeated UnbondingStakePair pairs = 1 [(gogoproto.nullable) = false];
+}
+
+message UnbondingStakeEntry {
+  int64 creation_height = 1 [(gogoproto.moretags) = "yaml:\"creation_height\""];
+  google.protobuf.Timestamp completion_time = 2
+  [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"completion_time\""];
+  string        amount = 3
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }

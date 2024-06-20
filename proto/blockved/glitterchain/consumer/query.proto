@@ -38,7 +38,7 @@ message QueryConsumerRequest{
 }
 
 message QueryConsumerResponse{
-  consumer consumer = 1;
+  Consumer consumer = 1;
 }
 
 
@@ -47,5 +47,5 @@ message QueryConsumersRequest{
 }
 
 message QueryConsumersResponse{
-  repeated  consumer consumer = 1;
+  repeated  Consumer consumer = 1;
 }
