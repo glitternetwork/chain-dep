@@ -42,9 +42,7 @@ func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 
 // RegisterInterfaces registers the module's interface types
 func (a AppModuleBasic) RegisterInterfaces(reg cdctypes.InterfaceRegistry) {
-	fmt.Println("##########index1")
 	types.RegisterInterfaces(reg)
-	fmt.Println("##########index2")
 }
 
 // DefaultGenesis returns the capability module's default genesis state.

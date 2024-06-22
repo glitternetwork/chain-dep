@@ -5,7 +5,6 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "blockved/glitterchain/index/params.proto";
 import "blockved/glitterchain/index/index.proto";
-import "blockved/glitterchain/index/host.proto";
 import "blockved/glitterchain/index/dataset.proto";
 import "common/sql_engine.proto";
 // this line is used by starport scaffolding # 1
@@ -36,15 +35,6 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
-
-
-message GetAllHostsRequest{
-
-}
-
-message GetAllHostsResponse{
-  repeated Host list = 1;
-}
 
 message QueryDatesetRequest{
   string dataset_name = 1;

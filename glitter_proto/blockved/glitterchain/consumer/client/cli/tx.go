@@ -48,7 +48,7 @@ func GetCmdTxStake() *cobra.Command {
 			fromAddress := clientCtx.GetFromAddress()
 			var datasetName = args[0]
 			amount, _ := sdk.NewIntFromString(args[1])
-			msg := types.NewStakeRequest(fromAddress, datasetName, amount)
+			msg := types.NewPledgeRequest(fromAddress, datasetName, amount)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

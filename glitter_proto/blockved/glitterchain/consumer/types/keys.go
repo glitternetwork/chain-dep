@@ -36,7 +36,7 @@ func GetConsumerKey(address []byte) []byte {
 	return append(KeyPrefixConsumer, address...)
 }
 
-func GetUnboundingStakeKey(address sdk.AccAddress, datasetName string) []byte {
+func GetUBDKey(address sdk.AccAddress, datasetName string) []byte {
 	return append(append(KeyUnboundingStakeKey, address.Bytes()...), []byte(datasetName)...)
 }
 

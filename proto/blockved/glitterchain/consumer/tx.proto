@@ -3,6 +3,7 @@ package blockved.glitterchain.consumer;
 
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
 import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
 
 service Msg {
   rpc Pledge      (PledgeRequest     ) returns (PledgeResponse     );
@@ -27,4 +28,6 @@ message ReleasePledgeRequest{
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
 
-message ReleasePledgeResponse{}
+message ReleasePledgeResponse{
+  google.protobuf.Timestamp completion_time = 1 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}

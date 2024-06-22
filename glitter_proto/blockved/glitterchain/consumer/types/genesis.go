@@ -1,20 +1,33 @@
 package types
 
-// DefaultIndex is the default capability global index
-const DefaultIndex uint64 = 1
+import (
+	"encoding/json"
+	"github.com/cosmos/cosmos-sdk/codec"
+)
 
-// DefaultGenesis returns the default Capability genesis state
+func NewGenesisState(params Params, consumers []*Consumer) *GenesisState {
+	return &GenesisState{
+		Params:    params,
+		Consumers: consumers,
+	}
+
+}
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		// this line is used by starport scaffolding # genesis/types/default
-		//Params: DefaultParams(),
+		Params: DefaultParams(),
 	}
 }
 
-// Validate performs basic genesis state validation returning an error upon any
-// failure.
 func (gs GenesisState) Validate() error {
-	// this line is used by starport scaffolding # genesis/types/validate
-
 	return nil
+}
+
+func GetGenesisStateFromAppState(cdc codec.JSONCodec, appState map[string]json.RawMessage) *GenesisState {
+	var genesisState GenesisState
+
+	if appState[ModuleName] != nil {
+		cdc.MustUnmarshalJSON(appState[ModuleName], &genesisState)
+	}
+
+	return &genesisState
 }
