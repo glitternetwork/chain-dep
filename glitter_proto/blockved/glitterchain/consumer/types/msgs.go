@@ -5,32 +5,32 @@ import (
 )
 
 const (
-	TypeMsgStakeRequest   = "StakeRequest"
-	TypeMsgUnStakeRequest = "UnStakeRequest"
+	TypeMsgPledgeRequest        = "PledgeRequest"
+	TypeMsgReleasePledgeRequest = "ReleasePledgeRequest"
 )
 
-var _ sdk.Msg = &StakeRequest{}
+var _ sdk.Msg = &PledgeRequest{}
 
-func NewStakeRequest(address sdk.AccAddress, datasetName string, amount sdk.Int) *StakeRequest {
-	return &StakeRequest{
+func NewPledgeRequest(address sdk.AccAddress, datasetName string, amount sdk.Int) *PledgeRequest {
+	return &PledgeRequest{
 		Address:     address.String(),
 		DatasetName: datasetName,
 		Amount:      amount,
 	}
 }
-func (msg StakeRequest) Route() string {
+func (msg PledgeRequest) Route() string {
 	return RouterKey
 }
 
-func (m StakeRequest) Type() string {
-	return TypeMsgStakeRequest
+func (m PledgeRequest) Type() string {
+	return TypeMsgPledgeRequest
 }
 
-func (msg StakeRequest) ValidateBasic() error {
+func (msg PledgeRequest) ValidateBasic() error {
 	return nil
 }
 
-func (msg StakeRequest) GetSigners() []sdk.AccAddress {
+func (msg PledgeRequest) GetSigners() []sdk.AccAddress {
 	signer, err := sdk.AccAddressFromBech32(msg.Address)
 	if err != nil {
 		panic(err)
@@ -39,31 +39,31 @@ func (msg StakeRequest) GetSigners() []sdk.AccAddress {
 }
 
 // GetSignBytes Implements Msg.
-func (msg StakeRequest) GetSignBytes() []byte {
+func (msg PledgeRequest) GetSignBytes() []byte {
 	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
 }
 
-var _ sdk.Msg = &UnStakeRequest{}
+var _ sdk.Msg = &ReleasePledgeRequest{}
 
-func NeUnStakeRequest(address sdk.AccAddress, amount sdk.Int) *UnStakeRequest {
-	return &UnStakeRequest{
+func NeReleasePledgeRequest(address sdk.AccAddress, amount sdk.Int) *ReleasePledgeRequest {
+	return &ReleasePledgeRequest{
 		Address: address.String(),
 		Amount:  amount,
 	}
 }
-func (msg UnStakeRequest) Route() string {
+func (msg ReleasePledgeRequest) Route() string {
 	return RouterKey
 }
 
-func (m UnStakeRequest) Type() string {
-	return TypeMsgUnStakeRequest
+func (msg ReleasePledgeRequest) Type() string {
+	return TypeMsgReleasePledgeRequest
 }
 
-func (msg UnStakeRequest) ValidateBasic() error {
+func (msg ReleasePledgeRequest) ValidateBasic() error {
 	return nil
 }
 
-func (msg UnStakeRequest) GetSigners() []sdk.AccAddress {
+func (msg ReleasePledgeRequest) GetSigners() []sdk.AccAddress {
 	signer, err := sdk.AccAddressFromBech32(msg.Address)
 	if err != nil {
 		panic(err)
@@ -72,6 +72,6 @@ func (msg UnStakeRequest) GetSigners() []sdk.AccAddress {
 }
 
 // GetSignBytes Implements Msg.
-func (msg UnStakeRequest) GetSignBytes() []byte {
+func (msg ReleasePledgeRequest) GetSignBytes() []byte {
 	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
 }

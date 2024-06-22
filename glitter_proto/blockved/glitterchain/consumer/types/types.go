@@ -6,11 +6,11 @@ import (
 )
 
 // AddEntry - append entry to the unbonding delegation
-func (ubds *UnbondingStakePair) AddEntry(creationHeight int64, minTime time.Time, amount sdk.Int) {
-	entry := &UnbondingStakeEntry{
+func (rCPDT *ReleasingCPDT) AddEntry(creationHeight int64, minTime time.Time, amount sdk.Int) {
+	entry := &ReleasingCPDTEntry{
 		CreationHeight: creationHeight,
 		CompletionTime: minTime,
 		Amount:         amount,
 	}
-	ubds.Entries = append(ubds.Entries, entry)
+	rCPDT.Entries = append(rCPDT.Entries, entry)
 }

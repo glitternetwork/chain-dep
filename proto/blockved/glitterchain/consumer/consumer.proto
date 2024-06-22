@@ -10,7 +10,8 @@ import "common/staking.proto";
 
 
 
-message Stake {
+//consumer pledge dataset token
+message CPDT {
   string        dataset_name = 1
   [(gogoproto.nullable) = true];
   string        amount = 2
@@ -19,25 +20,24 @@ message Stake {
 
 message Consumer {
   string        address = 1;
-  repeated      Stake  dataset_stakes = 2;
+  repeated      CPDT  CPDTs = 2;
   string        description = 3;
 }
 
 
-message UnbondingStakePair {
+message ReleasingCPDT {
   string consumer_address = 1 [(gogoproto.moretags) = "yaml:\"consumer_address\""];
   string dataset_name = 2 [(gogoproto.moretags) = "yaml:\"dataset_name\""];
-  repeated UnbondingStakeEntry entries = 3;
+  repeated ReleasingCPDTEntry entries = 3;
 }
 
-
-message UnbondingStakePairs {
-  repeated UnbondingStakePair pairs = 1 [(gogoproto.nullable) = false];
+message ReleasingCPDTs {
+  repeated ReleasingCPDT pledges = 1 [(gogoproto.nullable) = false];
 }
 
-message UnbondingStakeEntry {
-  int64 creation_height = 1 [(gogoproto.moretags) = "yaml:\"creation_height\""];
-  google.protobuf.Timestamp completion_time = 2
+message ReleasingCPDTEntry {
+  int64 creationHeight = 1 [(gogoproto.moretags) = "yaml:\"creation_height\""];
+  google.protobuf.Timestamp completionTime = 2
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"completion_time\""];
   string        amount = 3
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];

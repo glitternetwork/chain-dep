@@ -31,23 +31,24 @@ var _ = time.Kitchen
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type Stake struct {
+// consumer pledge dataset token
+type CPDT struct {
 	DatasetName string                                 `protobuf:"bytes,1,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
 	Amount      github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,2,opt,name=amount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"amount"`
 }
 
-func (m *Stake) Reset()         { *m = Stake{} }
-func (m *Stake) String() string { return proto.CompactTextString(m) }
-func (*Stake) ProtoMessage()    {}
-func (*Stake) Descriptor() ([]byte, []int) {
+func (m *CPDT) Reset()         { *m = CPDT{} }
+func (m *CPDT) String() string { return proto.CompactTextString(m) }
+func (*CPDT) ProtoMessage()    {}
+func (*CPDT) Descriptor() ([]byte, []int) {
 	return fileDescriptor_62febd0321fd018a, []int{0}
 }
-func (m *Stake) XXX_Unmarshal(b []byte) error {
+func (m *CPDT) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Stake) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CPDT) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Stake.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CPDT.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -57,19 +58,19 @@ func (m *Stake) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *Stake) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Stake.Merge(m, src)
+func (m *CPDT) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CPDT.Merge(m, src)
 }
-func (m *Stake) XXX_Size() int {
+func (m *CPDT) XXX_Size() int {
 	return m.Size()
 }
-func (m *Stake) XXX_DiscardUnknown() {
-	xxx_messageInfo_Stake.DiscardUnknown(m)
+func (m *CPDT) XXX_DiscardUnknown() {
+	xxx_messageInfo_CPDT.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Stake proto.InternalMessageInfo
+var xxx_messageInfo_CPDT proto.InternalMessageInfo
 
-func (m *Stake) GetDatasetName() string {
+func (m *CPDT) GetDatasetName() string {
 	if m != nil {
 		return m.DatasetName
 	}
@@ -77,9 +78,9 @@ func (m *Stake) GetDatasetName() string {
 }
 
 type Consumer struct {
-	Address       string   `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	DatasetStakes []*Stake `protobuf:"bytes,2,rep,name=dataset_stakes,json=datasetStakes,proto3" json:"dataset_stakes,omitempty"`
-	Description   string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Address     string  `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	CPDTs       []*CPDT `protobuf:"bytes,2,rep,name=CPDTs,proto3" json:"CPDTs,omitempty"`
+	Description string  `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 }
 
 func (m *Consumer) Reset()         { *m = Consumer{} }
@@ -122,9 +123,9 @@ func (m *Consumer) GetAddress() string {
 	return ""
 }
 
-func (m *Consumer) GetDatasetStakes() []*Stake {
+func (m *Consumer) GetCPDTs() []*CPDT {
 	if m != nil {
-		return m.DatasetStakes
+		return m.CPDTs
 	}
 	return nil
 }
@@ -136,24 +137,24 @@ func (m *Consumer) GetDescription() string {
 	return ""
 }
 
-type UnbondingStakePair struct {
-	ConsumerAddress string                 `protobuf:"bytes,1,opt,name=consumer_address,json=consumerAddress,proto3" json:"consumer_address,omitempty" yaml:"consumer_address"`
-	DatasetName     string                 `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty" yaml:"dataset_name"`
-	Entries         []*UnbondingStakeEntry `protobuf:"bytes,3,rep,name=entries,proto3" json:"entries,omitempty"`
+type ReleasingCPDT struct {
+	ConsumerAddress string                `protobuf:"bytes,1,opt,name=consumer_address,json=consumerAddress,proto3" json:"consumer_address,omitempty" yaml:"consumer_address"`
+	DatasetName     string                `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty" yaml:"dataset_name"`
+	Entries         []*ReleasingCPDTEntry `protobuf:"bytes,3,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (m *UnbondingStakePair) Reset()         { *m = UnbondingStakePair{} }
-func (m *UnbondingStakePair) String() string { return proto.CompactTextString(m) }
-func (*UnbondingStakePair) ProtoMessage()    {}
-func (*UnbondingStakePair) Descriptor() ([]byte, []int) {
+func (m *ReleasingCPDT) Reset()         { *m = ReleasingCPDT{} }
+func (m *ReleasingCPDT) String() string { return proto.CompactTextString(m) }
+func (*ReleasingCPDT) ProtoMessage()    {}
+func (*ReleasingCPDT) Descriptor() ([]byte, []int) {
 	return fileDescriptor_62febd0321fd018a, []int{2}
 }
-func (m *UnbondingStakePair) XXX_Unmarshal(b []byte) error {
+func (m *ReleasingCPDT) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UnbondingStakePair) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ReleasingCPDT) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UnbondingStakePair.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ReleasingCPDT.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -163,55 +164,55 @@ func (m *UnbondingStakePair) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *UnbondingStakePair) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnbondingStakePair.Merge(m, src)
+func (m *ReleasingCPDT) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReleasingCPDT.Merge(m, src)
 }
-func (m *UnbondingStakePair) XXX_Size() int {
+func (m *ReleasingCPDT) XXX_Size() int {
 	return m.Size()
 }
-func (m *UnbondingStakePair) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnbondingStakePair.DiscardUnknown(m)
+func (m *ReleasingCPDT) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReleasingCPDT.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UnbondingStakePair proto.InternalMessageInfo
+var xxx_messageInfo_ReleasingCPDT proto.InternalMessageInfo
 
-func (m *UnbondingStakePair) GetConsumerAddress() string {
+func (m *ReleasingCPDT) GetConsumerAddress() string {
 	if m != nil {
 		return m.ConsumerAddress
 	}
 	return ""
 }
 
-func (m *UnbondingStakePair) GetDatasetName() string {
+func (m *ReleasingCPDT) GetDatasetName() string {
 	if m != nil {
 		return m.DatasetName
 	}
 	return ""
 }
 
-func (m *UnbondingStakePair) GetEntries() []*UnbondingStakeEntry {
+func (m *ReleasingCPDT) GetEntries() []*ReleasingCPDTEntry {
 	if m != nil {
 		return m.Entries
 	}
 	return nil
 }
 
-type UnbondingStakePairs struct {
-	Pairs []UnbondingStakePair `protobuf:"bytes,1,rep,name=pairs,proto3" json:"pairs"`
+type ReleasingCPDTs struct {
+	Pledges []ReleasingCPDT `protobuf:"bytes,1,rep,name=pledges,proto3" json:"pledges"`
 }
 
-func (m *UnbondingStakePairs) Reset()         { *m = UnbondingStakePairs{} }
-func (m *UnbondingStakePairs) String() string { return proto.CompactTextString(m) }
-func (*UnbondingStakePairs) ProtoMessage()    {}
-func (*UnbondingStakePairs) Descriptor() ([]byte, []int) {
+func (m *ReleasingCPDTs) Reset()         { *m = ReleasingCPDTs{} }
+func (m *ReleasingCPDTs) String() string { return proto.CompactTextString(m) }
+func (*ReleasingCPDTs) ProtoMessage()    {}
+func (*ReleasingCPDTs) Descriptor() ([]byte, []int) {
 	return fileDescriptor_62febd0321fd018a, []int{3}
 }
-func (m *UnbondingStakePairs) XXX_Unmarshal(b []byte) error {
+func (m *ReleasingCPDTs) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UnbondingStakePairs) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ReleasingCPDTs) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UnbondingStakePairs.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ReleasingCPDTs.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -221,43 +222,43 @@ func (m *UnbondingStakePairs) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *UnbondingStakePairs) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnbondingStakePairs.Merge(m, src)
+func (m *ReleasingCPDTs) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReleasingCPDTs.Merge(m, src)
 }
-func (m *UnbondingStakePairs) XXX_Size() int {
+func (m *ReleasingCPDTs) XXX_Size() int {
 	return m.Size()
 }
-func (m *UnbondingStakePairs) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnbondingStakePairs.DiscardUnknown(m)
+func (m *ReleasingCPDTs) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReleasingCPDTs.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UnbondingStakePairs proto.InternalMessageInfo
+var xxx_messageInfo_ReleasingCPDTs proto.InternalMessageInfo
 
-func (m *UnbondingStakePairs) GetPairs() []UnbondingStakePair {
+func (m *ReleasingCPDTs) GetPledges() []ReleasingCPDT {
 	if m != nil {
-		return m.Pairs
+		return m.Pledges
 	}
 	return nil
 }
 
-type UnbondingStakeEntry struct {
-	CreationHeight int64                                  `protobuf:"varint,1,opt,name=creation_height,json=creationHeight,proto3" json:"creation_height,omitempty" yaml:"creation_height"`
-	CompletionTime time.Time                              `protobuf:"bytes,2,opt,name=completion_time,json=completionTime,proto3,stdtime" json:"completion_time" yaml:"completion_time"`
+type ReleasingCPDTEntry struct {
+	CreationHeight int64                                  `protobuf:"varint,1,opt,name=creationHeight,proto3" json:"creationHeight,omitempty" yaml:"creation_height"`
+	CompletionTime time.Time                              `protobuf:"bytes,2,opt,name=completionTime,proto3,stdtime" json:"completionTime" yaml:"completion_time"`
 	Amount         github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,3,opt,name=amount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"amount"`
 }
 
-func (m *UnbondingStakeEntry) Reset()         { *m = UnbondingStakeEntry{} }
-func (m *UnbondingStakeEntry) String() string { return proto.CompactTextString(m) }
-func (*UnbondingStakeEntry) ProtoMessage()    {}
-func (*UnbondingStakeEntry) Descriptor() ([]byte, []int) {
+func (m *ReleasingCPDTEntry) Reset()         { *m = ReleasingCPDTEntry{} }
+func (m *ReleasingCPDTEntry) String() string { return proto.CompactTextString(m) }
+func (*ReleasingCPDTEntry) ProtoMessage()    {}
+func (*ReleasingCPDTEntry) Descriptor() ([]byte, []int) {
 	return fileDescriptor_62febd0321fd018a, []int{4}
 }
-func (m *UnbondingStakeEntry) XXX_Unmarshal(b []byte) error {
+func (m *ReleasingCPDTEntry) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UnbondingStakeEntry) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ReleasingCPDTEntry) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UnbondingStakeEntry.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ReleasingCPDTEntry.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -267,26 +268,26 @@ func (m *UnbondingStakeEntry) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *UnbondingStakeEntry) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnbondingStakeEntry.Merge(m, src)
+func (m *ReleasingCPDTEntry) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReleasingCPDTEntry.Merge(m, src)
 }
-func (m *UnbondingStakeEntry) XXX_Size() int {
+func (m *ReleasingCPDTEntry) XXX_Size() int {
 	return m.Size()
 }
-func (m *UnbondingStakeEntry) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnbondingStakeEntry.DiscardUnknown(m)
+func (m *ReleasingCPDTEntry) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReleasingCPDTEntry.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UnbondingStakeEntry proto.InternalMessageInfo
+var xxx_messageInfo_ReleasingCPDTEntry proto.InternalMessageInfo
 
-func (m *UnbondingStakeEntry) GetCreationHeight() int64 {
+func (m *ReleasingCPDTEntry) GetCreationHeight() int64 {
 	if m != nil {
 		return m.CreationHeight
 	}
 	return 0
 }
 
-func (m *UnbondingStakeEntry) GetCompletionTime() time.Time {
+func (m *ReleasingCPDTEntry) GetCompletionTime() time.Time {
 	if m != nil {
 		return m.CompletionTime
 	}
@@ -294,11 +295,11 @@ func (m *UnbondingStakeEntry) GetCompletionTime() time.Time {
 }
 
 func init() {
-	proto.RegisterType((*Stake)(nil), "blockved.glitterchain.consumer.Stake")
+	proto.RegisterType((*CPDT)(nil), "blockved.glitterchain.consumer.CPDT")
 	proto.RegisterType((*Consumer)(nil), "blockved.glitterchain.consumer.Consumer")
-	proto.RegisterType((*UnbondingStakePair)(nil), "blockved.glitterchain.consumer.UnbondingStakePair")
-	proto.RegisterType((*UnbondingStakePairs)(nil), "blockved.glitterchain.consumer.UnbondingStakePairs")
-	proto.RegisterType((*UnbondingStakeEntry)(nil), "blockved.glitterchain.consumer.UnbondingStakeEntry")
+	proto.RegisterType((*ReleasingCPDT)(nil), "blockved.glitterchain.consumer.ReleasingCPDT")
+	proto.RegisterType((*ReleasingCPDTs)(nil), "blockved.glitterchain.consumer.ReleasingCPDTs")
+	proto.RegisterType((*ReleasingCPDTEntry)(nil), "blockved.glitterchain.consumer.ReleasingCPDTEntry")
 }
 
 func init() {
@@ -306,47 +307,46 @@ func init() {
 }
 
 var fileDescriptor_62febd0321fd018a = []byte{
-	// 582 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0xcf, 0x6f, 0xd3, 0x30,
-	0x14, 0x6e, 0x5a, 0xb6, 0x81, 0x0b, 0x2d, 0xca, 0x10, 0xcb, 0x8a, 0x94, 0x54, 0x91, 0x80, 0x5d,
-	0xea, 0x48, 0xdd, 0x6d, 0x37, 0x3a, 0x31, 0x81, 0x04, 0x13, 0x0a, 0x3f, 0x0e, 0x5c, 0x2a, 0x37,
-	0x31, 0xa9, 0xd5, 0xda, 0x8e, 0x62, 0x17, 0xe8, 0xdf, 0xc0, 0x65, 0x07, 0xfe, 0xa8, 0x1e, 0x77,
-	0x44, 0x1c, 0x02, 0x6a, 0x0f, 0xdc, 0xfb, 0x17, 0xa0, 0x38, 0x36, 0xa4, 0x45, 0x62, 0x42, 0x9c,
-	0x62, 0x7f, 0xef, 0x7b, 0xdf, 0x7b, 0xef, 0xd3, 0x73, 0x40, 0x6f, 0x34, 0xe5, 0xd1, 0xe4, 0x3d,
-	0x8e, 0x83, 0x64, 0x4a, 0xa4, 0xc4, 0x59, 0x34, 0x46, 0x84, 0x05, 0x11, 0x67, 0x62, 0x46, 0x71,
-	0xf6, 0xeb, 0x00, 0xd3, 0x8c, 0x4b, 0x6e, 0xbb, 0x86, 0x0e, 0xab, 0x74, 0x68, 0x58, 0x9d, 0xc3,
-	0x88, 0x0b, 0xca, 0xc5, 0x50, 0xb1, 0x83, 0xf2, 0x52, 0xa6, 0x76, 0xee, 0x24, 0x3c, 0xe1, 0x25,
-	0x5e, 0x9c, 0x34, 0x7a, 0x98, 0x70, 0x9e, 0x4c, 0x71, 0xa0, 0x6e, 0xa3, 0xd9, 0xbb, 0x00, 0xb1,
-	0xb9, 0x0e, 0x79, 0xdb, 0x21, 0x49, 0x28, 0x16, 0x12, 0xd1, 0xd4, 0x28, 0x46, 0x9c, 0x52, 0xce,
-	0x02, 0x21, 0xd1, 0x84, 0xb0, 0xa4, 0x44, 0xfd, 0x8f, 0x60, 0xe7, 0xa5, 0x44, 0x13, 0x6c, 0x3f,
-	0x04, 0x37, 0x63, 0x24, 0x91, 0xc0, 0x72, 0xc8, 0x10, 0xc5, 0x8e, 0xd5, 0xb5, 0x8e, 0x6e, 0x0c,
-	0xae, 0x2d, 0x72, 0xcf, 0x0a, 0x9b, 0x3a, 0x72, 0x8e, 0x28, 0xb6, 0xcf, 0xc0, 0x2e, 0xa2, 0x7c,
-	0xc6, 0xa4, 0x53, 0x57, 0x14, 0xb8, 0xc8, 0xbd, 0xda, 0xd7, 0xdc, 0x7b, 0x90, 0x10, 0x39, 0x9e,
-	0x8d, 0x60, 0xc4, 0xa9, 0x1e, 0x45, 0x7f, 0x7a, 0x22, 0x9e, 0x04, 0x72, 0x9e, 0x62, 0x01, 0x9f,
-	0x32, 0x19, 0xea, 0x6c, 0xff, 0xb3, 0x05, 0xae, 0x9f, 0x6a, 0x27, 0x6c, 0x07, 0xec, 0xa1, 0x38,
-	0xce, 0xb0, 0x10, 0x65, 0xe1, 0xd0, 0x5c, 0xed, 0x67, 0xa0, 0x65, 0xfa, 0x2a, 0x3a, 0xc7, 0xc2,
-	0xa9, 0x77, 0x1b, 0x47, 0xcd, 0xfe, 0x7d, 0xf8, 0x77, 0x73, 0xa1, 0x1a, 0x2b, 0xbc, 0xa5, 0x93,
-	0xd5, 0x4d, 0xd8, 0x5d, 0xd0, 0x8c, 0xb1, 0x88, 0x32, 0x92, 0x4a, 0xc2, 0x99, 0xd3, 0x50, 0xb5,
-	0xaa, 0x90, 0xff, 0xc3, 0x02, 0xf6, 0x6b, 0x36, 0xe2, 0x2c, 0x26, 0x2c, 0x51, 0x59, 0x2f, 0x10,
-	0xc9, 0xec, 0x33, 0x70, 0xdb, 0x28, 0x0f, 0x37, 0x3a, 0x1d, 0xdc, 0x5b, 0xe7, 0xde, 0xc1, 0x1c,
-	0xd1, 0xe9, 0x89, 0xbf, 0xcd, 0xf0, 0xc3, 0xb6, 0x81, 0x1e, 0xe9, 0x71, 0x4e, 0xb6, 0x6c, 0x2e,
-	0x3d, 0x3c, 0x58, 0xe7, 0xde, 0x7e, 0xa9, 0x51, 0x8d, 0xfa, 0x9b, 0xce, 0x3f, 0x07, 0x7b, 0x98,
-	0xc9, 0x8c, 0x60, 0xe1, 0x34, 0x94, 0x07, 0xc7, 0x57, 0x79, 0xb0, 0x39, 0xc8, 0x63, 0x26, 0xb3,
-	0x79, 0x68, 0x34, 0x7c, 0x0c, 0xf6, 0xff, 0x1c, 0x54, 0xd8, 0xe7, 0x60, 0x27, 0x2d, 0x0e, 0x8e,
-	0xa5, 0x6a, 0xf4, 0xff, 0xad, 0x46, 0xa1, 0xa1, 0xb6, 0xa6, 0x16, 0x96, 0x32, 0xfe, 0xa7, 0xfa,
-	0x76, 0x1d, 0xd5, 0x87, 0x7d, 0x0a, 0xda, 0x51, 0x86, 0x51, 0x61, 0xfa, 0x70, 0x8c, 0x49, 0x32,
-	0x96, 0xca, 0xd0, 0xc6, 0xa0, 0xb3, 0xce, 0xbd, 0xbb, 0xda, 0xd0, 0x4d, 0x82, 0x1f, 0xb6, 0x0c,
-	0xf2, 0x44, 0x01, 0x76, 0x02, 0xda, 0x11, 0xa7, 0xe9, 0x14, 0x2b, 0x56, 0xb1, 0xf2, 0xca, 0xd1,
-	0x66, 0xbf, 0x03, 0xcb, 0xf7, 0x00, 0xcd, 0x7b, 0x80, 0xaf, 0xcc, 0x7b, 0x18, 0xf8, 0x45, 0x7b,
-	0x95, 0x22, 0x9b, 0x02, 0xfe, 0xc5, 0x37, 0xcf, 0x0a, 0x5b, 0xbf, 0xd1, 0x22, 0xb1, 0xb2, 0xf5,
-	0x8d, 0xff, 0xd9, 0xfa, 0x41, 0xba, 0x58, 0xba, 0xd6, 0xe5, 0xd2, 0xb5, 0xbe, 0x2f, 0x5d, 0xeb,
-	0x62, 0xe5, 0xd6, 0x2e, 0x57, 0x6e, 0xed, 0xcb, 0xca, 0xad, 0xbd, 0x7d, 0x53, 0x51, 0xd2, 0x4e,
-	0x33, 0x2c, 0x3f, 0xf0, 0x6c, 0x12, 0x28, 0xc7, 0x7b, 0x31, 0x4e, 0x4d, 0x40, 0xff, 0x31, 0xae,
-	0xf8, 0x1b, 0xa9, 0xea, 0xa3, 0x5d, 0xc5, 0x3d, 0xfe, 0x19, 0x00, 0x00, 0xff, 0xff, 0x07, 0xbb,
-	0xc4, 0xd6, 0xbc, 0x04, 0x00, 0x00,
+	// 570 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0x41, 0x6f, 0xd3, 0x4c,
+	0x10, 0x8d, 0x9b, 0x7e, 0xed, 0xc7, 0x06, 0x02, 0x32, 0x88, 0xba, 0x41, 0xb2, 0x23, 0x0b, 0x41,
+	0x2f, 0xb1, 0xa5, 0x70, 0xeb, 0x0d, 0x17, 0x2a, 0x90, 0x00, 0x21, 0x2b, 0xe2, 0xc0, 0xc5, 0xda,
+	0xd8, 0x53, 0xc7, 0x8a, 0x77, 0xd7, 0xf2, 0x6e, 0xa8, 0x72, 0xe5, 0xc4, 0xb1, 0x3f, 0x2b, 0xc7,
+	0x1e, 0x11, 0x07, 0x03, 0xc9, 0x3f, 0xc8, 0x2f, 0x40, 0x5e, 0xaf, 0x23, 0x27, 0x48, 0x54, 0x88,
+	0x93, 0x77, 0xe7, 0xbd, 0x79, 0x33, 0xf3, 0x34, 0x5e, 0x34, 0x18, 0xa7, 0x2c, 0x9c, 0x7e, 0x82,
+	0xc8, 0x8d, 0xd3, 0x44, 0x08, 0xc8, 0xc3, 0x09, 0x4e, 0xa8, 0x1b, 0x32, 0xca, 0x67, 0x04, 0xf2,
+	0xcd, 0xc1, 0xc9, 0x72, 0x26, 0x98, 0x6e, 0xd6, 0x74, 0xa7, 0x49, 0x77, 0x6a, 0x56, 0xef, 0x38,
+	0x64, 0x9c, 0x30, 0x1e, 0x48, 0xb6, 0x5b, 0x5d, 0xaa, 0xd4, 0xde, 0x83, 0x98, 0xc5, 0xac, 0x8a,
+	0x97, 0x27, 0x15, 0x3d, 0x8e, 0x19, 0x8b, 0x53, 0x70, 0xe5, 0x6d, 0x3c, 0xbb, 0x70, 0x31, 0x9d,
+	0x2b, 0xc8, 0xda, 0x85, 0x44, 0x42, 0x80, 0x0b, 0x4c, 0xb2, 0x5a, 0x31, 0x64, 0x84, 0x30, 0xea,
+	0x72, 0x81, 0xa7, 0x09, 0x8d, 0xab, 0xa8, 0x7d, 0x89, 0xf6, 0xcf, 0xde, 0xbf, 0x18, 0xe9, 0x4f,
+	0xd1, 0xed, 0x08, 0x0b, 0xcc, 0x41, 0x04, 0x14, 0x13, 0x30, 0xb4, 0xbe, 0x76, 0x72, 0xcb, 0xdb,
+	0x5f, 0x14, 0x96, 0xe6, 0x77, 0x14, 0xf2, 0x0e, 0x13, 0xd0, 0xcf, 0xd1, 0x01, 0x26, 0x6c, 0x46,
+	0x85, 0xb1, 0x27, 0x29, 0xce, 0xa2, 0xb0, 0x5a, 0xdf, 0x0a, 0xeb, 0x49, 0x9c, 0x88, 0xc9, 0x6c,
+	0xec, 0x84, 0x8c, 0xa8, 0x49, 0xd4, 0x67, 0xc0, 0xa3, 0xa9, 0x2b, 0xe6, 0x19, 0x70, 0xe7, 0x35,
+	0x15, 0xbe, 0xca, 0xb6, 0x3f, 0x6b, 0xe8, 0xff, 0x33, 0x65, 0x84, 0x6e, 0xa0, 0x43, 0x1c, 0x45,
+	0x39, 0x70, 0x5e, 0x15, 0xf6, 0xeb, 0xab, 0x7e, 0x8a, 0xfe, 0x2b, 0xfb, 0xe3, 0xc6, 0x5e, 0xbf,
+	0x7d, 0xd2, 0x19, 0x3e, 0x76, 0xfe, 0x6c, 0xa9, 0x53, 0x92, 0xfd, 0x2a, 0x45, 0xef, 0xa3, 0x4e,
+	0x04, 0x3c, 0xcc, 0x93, 0x4c, 0x24, 0x8c, 0x1a, 0x6d, 0xa9, 0xdc, 0x0c, 0xd9, 0x3f, 0x35, 0x74,
+	0xc7, 0x87, 0x14, 0x30, 0x4f, 0x68, 0x2c, 0x7d, 0x38, 0x47, 0xf7, 0x6a, 0xad, 0x60, 0xab, 0x25,
+	0xef, 0xd1, 0xba, 0xb0, 0x8e, 0xe6, 0x98, 0xa4, 0xa7, 0xf6, 0x2e, 0xc3, 0xf6, 0xef, 0xd6, 0xa1,
+	0xe7, 0x9b, 0xbe, 0xb7, 0xfd, 0xac, 0xcc, 0x3a, 0x5a, 0x17, 0xd6, 0xfd, 0x4a, 0xa3, 0x89, 0xda,
+	0xdb, 0x16, 0xbf, 0x41, 0x87, 0x40, 0x45, 0x9e, 0x00, 0x37, 0xda, 0x72, 0xea, 0xe1, 0x4d, 0x53,
+	0x6f, 0xcd, 0xf0, 0x92, 0x8a, 0x7c, 0xee, 0xd7, 0x12, 0x76, 0x80, 0xba, 0x5b, 0x30, 0xd7, 0xdf,
+	0xa2, 0xc3, 0x2c, 0x85, 0x28, 0x86, 0x72, 0xb4, 0x52, 0x7f, 0xf0, 0x57, 0xfa, 0x72, 0x2b, 0x5a,
+	0x7e, 0xad, 0x61, 0x7f, 0xd9, 0x43, 0xfa, 0xef, 0x0d, 0xe8, 0x1e, 0xea, 0x86, 0x39, 0xe0, 0xd2,
+	0xe7, 0x57, 0x90, 0xc4, 0x13, 0x21, 0x7d, 0x6c, 0x7b, 0xbd, 0x75, 0x61, 0x3d, 0x54, 0x3e, 0x2a,
+	0x3c, 0x98, 0x48, 0x82, 0xed, 0xef, 0x64, 0xe8, 0x17, 0xa8, 0x1b, 0x32, 0x92, 0xa5, 0x50, 0xc6,
+	0x46, 0x89, 0xf2, 0xb1, 0x33, 0xec, 0x39, 0xd5, 0xb6, 0x3b, 0xf5, 0xb6, 0x3b, 0xa3, 0x7a, 0xdb,
+	0x3d, 0xbb, 0xec, 0xae, 0x51, 0x63, 0x93, 0x1f, 0x94, 0x7f, 0x84, 0x7d, 0xf5, 0xdd, 0xd2, 0xfc,
+	0x1d, 0xd5, 0xc6, 0x52, 0xb7, 0xff, 0x65, 0xa9, 0xbd, 0x6c, 0xb1, 0x34, 0xb5, 0xeb, 0xa5, 0xa9,
+	0xfd, 0x58, 0x9a, 0xda, 0xd5, 0xca, 0x6c, 0x5d, 0xaf, 0xcc, 0xd6, 0xd7, 0x95, 0xd9, 0xfa, 0xf8,
+	0xa1, 0xa1, 0xa4, 0x3c, 0xa6, 0x20, 0x2e, 0x59, 0x3e, 0x75, 0xa5, 0xd7, 0x83, 0x08, 0xb2, 0x1a,
+	0x50, 0xef, 0xc1, 0x0d, 0x6f, 0x8d, 0xac, 0x3e, 0x3e, 0x90, 0xdc, 0x67, 0xbf, 0x02, 0x00, 0x00,
+	0xff, 0xff, 0xf8, 0xe1, 0x75, 0x9b, 0x9a, 0x04, 0x00, 0x00,
 }
 
-func (m *Stake) Marshal() (dAtA []byte, err error) {
+func (m *CPDT) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -356,12 +356,12 @@ func (m *Stake) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Stake) MarshalTo(dAtA []byte) (int, error) {
+func (m *CPDT) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Stake) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CPDT) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -413,10 +413,10 @@ func (m *Consumer) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x1a
 	}
-	if len(m.DatasetStakes) > 0 {
-		for iNdEx := len(m.DatasetStakes) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.CPDTs) > 0 {
+		for iNdEx := len(m.CPDTs) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.DatasetStakes[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.CPDTs[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -437,7 +437,7 @@ func (m *Consumer) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *UnbondingStakePair) Marshal() (dAtA []byte, err error) {
+func (m *ReleasingCPDT) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -447,12 +447,12 @@ func (m *UnbondingStakePair) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UnbondingStakePair) MarshalTo(dAtA []byte) (int, error) {
+func (m *ReleasingCPDT) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UnbondingStakePair) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ReleasingCPDT) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -488,7 +488,7 @@ func (m *UnbondingStakePair) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *UnbondingStakePairs) Marshal() (dAtA []byte, err error) {
+func (m *ReleasingCPDTs) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -498,20 +498,20 @@ func (m *UnbondingStakePairs) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UnbondingStakePairs) MarshalTo(dAtA []byte) (int, error) {
+func (m *ReleasingCPDTs) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UnbondingStakePairs) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ReleasingCPDTs) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Pairs) > 0 {
-		for iNdEx := len(m.Pairs) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.Pledges) > 0 {
+		for iNdEx := len(m.Pledges) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.Pairs[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.Pledges[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -525,7 +525,7 @@ func (m *UnbondingStakePairs) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *UnbondingStakeEntry) Marshal() (dAtA []byte, err error) {
+func (m *ReleasingCPDTEntry) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -535,12 +535,12 @@ func (m *UnbondingStakeEntry) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UnbondingStakeEntry) MarshalTo(dAtA []byte) (int, error) {
+func (m *ReleasingCPDTEntry) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UnbondingStakeEntry) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ReleasingCPDTEntry) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -582,7 +582,7 @@ func encodeVarintConsumer(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *Stake) Size() (n int) {
+func (m *CPDT) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -607,8 +607,8 @@ func (m *Consumer) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovConsumer(uint64(l))
 	}
-	if len(m.DatasetStakes) > 0 {
-		for _, e := range m.DatasetStakes {
+	if len(m.CPDTs) > 0 {
+		for _, e := range m.CPDTs {
 			l = e.Size()
 			n += 1 + l + sovConsumer(uint64(l))
 		}
@@ -620,7 +620,7 @@ func (m *Consumer) Size() (n int) {
 	return n
 }
 
-func (m *UnbondingStakePair) Size() (n int) {
+func (m *ReleasingCPDT) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -643,14 +643,14 @@ func (m *UnbondingStakePair) Size() (n int) {
 	return n
 }
 
-func (m *UnbondingStakePairs) Size() (n int) {
+func (m *ReleasingCPDTs) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.Pairs) > 0 {
-		for _, e := range m.Pairs {
+	if len(m.Pledges) > 0 {
+		for _, e := range m.Pledges {
 			l = e.Size()
 			n += 1 + l + sovConsumer(uint64(l))
 		}
@@ -658,7 +658,7 @@ func (m *UnbondingStakePairs) Size() (n int) {
 	return n
 }
 
-func (m *UnbondingStakeEntry) Size() (n int) {
+func (m *ReleasingCPDTEntry) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -680,7 +680,7 @@ func sovConsumer(x uint64) (n int) {
 func sozConsumer(x uint64) (n int) {
 	return sovConsumer(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *Stake) Unmarshal(dAtA []byte) error {
+func (m *CPDT) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -703,10 +703,10 @@ func (m *Stake) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Stake: wiretype end group for non-group")
+			return fmt.Errorf("proto: CPDT: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Stake: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CPDT: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -859,7 +859,7 @@ func (m *Consumer) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field DatasetStakes", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field CPDTs", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -886,8 +886,8 @@ func (m *Consumer) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.DatasetStakes = append(m.DatasetStakes, &Stake{})
-			if err := m.DatasetStakes[len(m.DatasetStakes)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.CPDTs = append(m.CPDTs, &CPDT{})
+			if err := m.CPDTs[len(m.CPDTs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -944,7 +944,7 @@ func (m *Consumer) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *UnbondingStakePair) Unmarshal(dAtA []byte) error {
+func (m *ReleasingCPDT) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -967,10 +967,10 @@ func (m *UnbondingStakePair) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UnbondingStakePair: wiretype end group for non-group")
+			return fmt.Errorf("proto: ReleasingCPDT: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UnbondingStakePair: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ReleasingCPDT: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1066,7 +1066,7 @@ func (m *UnbondingStakePair) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Entries = append(m.Entries, &UnbondingStakeEntry{})
+			m.Entries = append(m.Entries, &ReleasingCPDTEntry{})
 			if err := m.Entries[len(m.Entries)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1092,7 +1092,7 @@ func (m *UnbondingStakePair) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *UnbondingStakePairs) Unmarshal(dAtA []byte) error {
+func (m *ReleasingCPDTs) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1115,15 +1115,15 @@ func (m *UnbondingStakePairs) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UnbondingStakePairs: wiretype end group for non-group")
+			return fmt.Errorf("proto: ReleasingCPDTs: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UnbondingStakePairs: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ReleasingCPDTs: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Pairs", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Pledges", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1150,8 +1150,8 @@ func (m *UnbondingStakePairs) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Pairs = append(m.Pairs, UnbondingStakePair{})
-			if err := m.Pairs[len(m.Pairs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.Pledges = append(m.Pledges, ReleasingCPDT{})
+			if err := m.Pledges[len(m.Pledges)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1176,7 +1176,7 @@ func (m *UnbondingStakePairs) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *UnbondingStakeEntry) Unmarshal(dAtA []byte) error {
+func (m *ReleasingCPDTEntry) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1199,10 +1199,10 @@ func (m *UnbondingStakeEntry) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UnbondingStakeEntry: wiretype end group for non-group")
+			return fmt.Errorf("proto: ReleasingCPDTEntry: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UnbondingStakeEntry: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ReleasingCPDTEntry: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

@@ -1,5 +1,10 @@
 package types
 
+import (
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/types/address"
+)
+
 const (
 	// ModuleName defines the module name
 	ModuleName = "index"
@@ -15,30 +20,30 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_index"
-
-	SchemaKey = "schema_"
-
-	DocKey = "doc_"
 )
 
 var (
-	HostKeyByDB      = []byte{0x50} // prefix for the historical info
-	KeyPrefixDataset = []byte{0x60} // prefix for the historical info
-	KeyPrefixTable   = []byte{0x70} // prefix for the historical info
+	KeyDataset        = []byte{0x10}
+	KeyTable          = []byte{0x20}
+	KeyConsumerPledge = []byte{0x30}
 )
 
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
 
-func GetHostKeyByDB(db string) []byte {
-	return append(HostKeyByDB, []byte(db)...)
-}
-
 func GetDatasetKey(datasetName string) []byte {
-	return append(KeyPrefixTable, []byte(datasetName)...)
+	return append(KeyDataset, []byte(datasetName)...)
 }
 
 func GetTableKey(datasetName string, tableName string) []byte {
-	return append(KeyPrefixTable, []byte(datasetName+":"+tableName)...)
+	return append(KeyTable, []byte(datasetName+":"+tableName)...)
+}
+
+func GetConsumerPledgeKey(datasetName string, consumerAddress sdk.AccAddress) []byte {
+	return append(GetConsumerPledgesKey(datasetName), address.MustLengthPrefix(consumerAddress)...)
+}
+
+func GetConsumerPledgesKey(datasetName string) []byte {
+	return append(KeyTable, []byte(datasetName)...)
 }

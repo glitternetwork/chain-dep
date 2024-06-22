@@ -5,26 +5,26 @@ option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/
 import "gogoproto/gogo.proto";
 
 service Msg {
-  rpc Stake      (StakeRequest     ) returns (StakeResponse     );
-  rpc UnStake    (UnStakeRequest   ) returns (UnStakeResponse   );
+  rpc Pledge      (PledgeRequest     ) returns (PledgeResponse     );
+  rpc ReleasePledge    (ReleasePledgeRequest   ) returns (ReleasePledgeResponse);
 }
 
 
-message StakeRequest {
+message PledgeRequest {
   string  address = 1;
   string  dataset_name = 2;
   string  amount = 3
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
 
-message StakeResponse {
+message PledgeResponse {
 }
 
-message UnStakeRequest{
+message ReleasePledgeRequest{
   string  address = 1;
   string  dataset_name = 2;
   string  amount = 3
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
 
-message UnStakeResponse{}
+message ReleasePledgeResponse{}

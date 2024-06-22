@@ -3,6 +3,13 @@ package types
 import (
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"gopkg.in/yaml.v2"
+	"time"
+)
+
+const (
+	DefaultUnbondingTime       time.Duration = time.Hour * 24 * 7 * 3
+	DefaultMaxEntries          uint32        = 7
+	DefaultMaxStakePerConsumer int32         = 1000
 )
 
 var (

@@ -29,24 +29,24 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type StakeRequest struct {
+type PledgeRequest struct {
 	Address     string                                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	DatasetName string                                 `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
 	Amount      github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,3,opt,name=amount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"amount"`
 }
 
-func (m *StakeRequest) Reset()         { *m = StakeRequest{} }
-func (m *StakeRequest) String() string { return proto.CompactTextString(m) }
-func (*StakeRequest) ProtoMessage()    {}
-func (*StakeRequest) Descriptor() ([]byte, []int) {
+func (m *PledgeRequest) Reset()         { *m = PledgeRequest{} }
+func (m *PledgeRequest) String() string { return proto.CompactTextString(m) }
+func (*PledgeRequest) ProtoMessage()    {}
+func (*PledgeRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_652f521dec787ba7, []int{0}
 }
-func (m *StakeRequest) XXX_Unmarshal(b []byte) error {
+func (m *PledgeRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *StakeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *PledgeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_StakeRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_PledgeRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -56,47 +56,47 @@ func (m *StakeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
-func (m *StakeRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StakeRequest.Merge(m, src)
+func (m *PledgeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PledgeRequest.Merge(m, src)
 }
-func (m *StakeRequest) XXX_Size() int {
+func (m *PledgeRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *StakeRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_StakeRequest.DiscardUnknown(m)
+func (m *PledgeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PledgeRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_StakeRequest proto.InternalMessageInfo
+var xxx_messageInfo_PledgeRequest proto.InternalMessageInfo
 
-func (m *StakeRequest) GetAddress() string {
+func (m *PledgeRequest) GetAddress() string {
 	if m != nil {
 		return m.Address
 	}
 	return ""
 }
 
-func (m *StakeRequest) GetDatasetName() string {
+func (m *PledgeRequest) GetDatasetName() string {
 	if m != nil {
 		return m.DatasetName
 	}
 	return ""
 }
 
-type StakeResponse struct {
+type PledgeResponse struct {
 }
 
-func (m *StakeResponse) Reset()         { *m = StakeResponse{} }
-func (m *StakeResponse) String() string { return proto.CompactTextString(m) }
-func (*StakeResponse) ProtoMessage()    {}
-func (*StakeResponse) Descriptor() ([]byte, []int) {
+func (m *PledgeResponse) Reset()         { *m = PledgeResponse{} }
+func (m *PledgeResponse) String() string { return proto.CompactTextString(m) }
+func (*PledgeResponse) ProtoMessage()    {}
+func (*PledgeResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_652f521dec787ba7, []int{1}
 }
-func (m *StakeResponse) XXX_Unmarshal(b []byte) error {
+func (m *PledgeResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *StakeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *PledgeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_StakeResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_PledgeResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -106,36 +106,36 @@ func (m *StakeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
-func (m *StakeResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StakeResponse.Merge(m, src)
+func (m *PledgeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PledgeResponse.Merge(m, src)
 }
-func (m *StakeResponse) XXX_Size() int {
+func (m *PledgeResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *StakeResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_StakeResponse.DiscardUnknown(m)
+func (m *PledgeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PledgeResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_StakeResponse proto.InternalMessageInfo
+var xxx_messageInfo_PledgeResponse proto.InternalMessageInfo
 
-type UnStakeRequest struct {
+type ReleasePledgeRequest struct {
 	Address     string                                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	DatasetName string                                 `protobuf:"bytes,2,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
 	Amount      github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,3,opt,name=amount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"amount"`
 }
 
-func (m *UnStakeRequest) Reset()         { *m = UnStakeRequest{} }
-func (m *UnStakeRequest) String() string { return proto.CompactTextString(m) }
-func (*UnStakeRequest) ProtoMessage()    {}
-func (*UnStakeRequest) Descriptor() ([]byte, []int) {
+func (m *ReleasePledgeRequest) Reset()         { *m = ReleasePledgeRequest{} }
+func (m *ReleasePledgeRequest) String() string { return proto.CompactTextString(m) }
+func (*ReleasePledgeRequest) ProtoMessage()    {}
+func (*ReleasePledgeRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_652f521dec787ba7, []int{2}
 }
-func (m *UnStakeRequest) XXX_Unmarshal(b []byte) error {
+func (m *ReleasePledgeRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UnStakeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ReleasePledgeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UnStakeRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ReleasePledgeRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -145,47 +145,47 @@ func (m *UnStakeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *UnStakeRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnStakeRequest.Merge(m, src)
+func (m *ReleasePledgeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReleasePledgeRequest.Merge(m, src)
 }
-func (m *UnStakeRequest) XXX_Size() int {
+func (m *ReleasePledgeRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *UnStakeRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnStakeRequest.DiscardUnknown(m)
+func (m *ReleasePledgeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReleasePledgeRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UnStakeRequest proto.InternalMessageInfo
+var xxx_messageInfo_ReleasePledgeRequest proto.InternalMessageInfo
 
-func (m *UnStakeRequest) GetAddress() string {
+func (m *ReleasePledgeRequest) GetAddress() string {
 	if m != nil {
 		return m.Address
 	}
 	return ""
 }
 
-func (m *UnStakeRequest) GetDatasetName() string {
+func (m *ReleasePledgeRequest) GetDatasetName() string {
 	if m != nil {
 		return m.DatasetName
 	}
 	return ""
 }
 
-type UnStakeResponse struct {
+type ReleasePledgeResponse struct {
 }
 
-func (m *UnStakeResponse) Reset()         { *m = UnStakeResponse{} }
-func (m *UnStakeResponse) String() string { return proto.CompactTextString(m) }
-func (*UnStakeResponse) ProtoMessage()    {}
-func (*UnStakeResponse) Descriptor() ([]byte, []int) {
+func (m *ReleasePledgeResponse) Reset()         { *m = ReleasePledgeResponse{} }
+func (m *ReleasePledgeResponse) String() string { return proto.CompactTextString(m) }
+func (*ReleasePledgeResponse) ProtoMessage()    {}
+func (*ReleasePledgeResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_652f521dec787ba7, []int{3}
 }
-func (m *UnStakeResponse) XXX_Unmarshal(b []byte) error {
+func (m *ReleasePledgeResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UnStakeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ReleasePledgeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UnStakeResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ReleasePledgeResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -195,23 +195,23 @@ func (m *UnStakeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, err
 		return b[:n], nil
 	}
 }
-func (m *UnStakeResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnStakeResponse.Merge(m, src)
+func (m *ReleasePledgeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReleasePledgeResponse.Merge(m, src)
 }
-func (m *UnStakeResponse) XXX_Size() int {
+func (m *ReleasePledgeResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *UnStakeResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnStakeResponse.DiscardUnknown(m)
+func (m *ReleasePledgeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReleasePledgeResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UnStakeResponse proto.InternalMessageInfo
+var xxx_messageInfo_ReleasePledgeResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*StakeRequest)(nil), "blockved.glitterchain.consumer.StakeRequest")
-	proto.RegisterType((*StakeResponse)(nil), "blockved.glitterchain.consumer.StakeResponse")
-	proto.RegisterType((*UnStakeRequest)(nil), "blockved.glitterchain.consumer.UnStakeRequest")
-	proto.RegisterType((*UnStakeResponse)(nil), "blockved.glitterchain.consumer.UnStakeResponse")
+	proto.RegisterType((*PledgeRequest)(nil), "blockved.glitterchain.consumer.PledgeRequest")
+	proto.RegisterType((*PledgeResponse)(nil), "blockved.glitterchain.consumer.PledgeResponse")
+	proto.RegisterType((*ReleasePledgeRequest)(nil), "blockved.glitterchain.consumer.ReleasePledgeRequest")
+	proto.RegisterType((*ReleasePledgeResponse)(nil), "blockved.glitterchain.consumer.ReleasePledgeResponse")
 }
 
 func init() {
@@ -219,29 +219,30 @@ func init() {
 }
 
 var fileDescriptor_652f521dec787ba7 = []byte{
-	// 348 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x92, 0xbd, 0x4e, 0x02, 0x41,
-	0x10, 0xc7, 0x6f, 0x25, 0x42, 0x5c, 0x51, 0xe2, 0xc6, 0xe2, 0x42, 0xb1, 0x28, 0x85, 0x5a, 0xc8,
-	0x6e, 0xa2, 0x6f, 0x40, 0x61, 0x62, 0xa1, 0x05, 0x46, 0x0b, 0x1b, 0xb2, 0xdc, 0x4e, 0x0e, 0x3c,
-	0x6e, 0xf7, 0xbc, 0xdd, 0xf3, 0xe3, 0x2d, 0x4c, 0x8c, 0xef, 0x44, 0x49, 0xa7, 0xb1, 0x20, 0x06,
-	0x5e, 0xc4, 0x70, 0x1f, 0x06, 0x1b, 0xa1, 0xb4, 0xda, 0x8f, 0xff, 0x6f, 0x66, 0xfe, 0x3b, 0x3b,
-	0xf8, 0xb0, 0x37, 0xd4, 0x5e, 0xf0, 0x00, 0x92, 0xfb, 0xc3, 0x81, 0xb5, 0x10, 0x7b, 0x7d, 0x31,
-	0x50, 0xdc, 0xd3, 0xca, 0x24, 0x21, 0xc4, 0xdc, 0x3e, 0xb1, 0x28, 0xd6, 0x56, 0x13, 0x5a, 0x80,
-	0x6c, 0x11, 0x64, 0x05, 0x58, 0xdf, 0xf5, 0xb5, 0xaf, 0x53, 0x94, 0xcf, 0x77, 0x59, 0x54, 0xf3,
-	0x15, 0xe1, 0xea, 0x95, 0x15, 0x01, 0x74, 0xe0, 0x3e, 0x01, 0x63, 0x89, 0x8b, 0x2b, 0x42, 0xca,
-	0x18, 0x8c, 0x71, 0xd1, 0x1e, 0x3a, 0xda, 0xe8, 0x14, 0x47, 0xb2, 0x8f, 0xab, 0x52, 0x58, 0x61,
-	0xc0, 0x76, 0x95, 0x08, 0xc1, 0x5d, 0x4b, 0xe5, 0xcd, 0xfc, 0xee, 0x52, 0x84, 0x40, 0xce, 0x70,
-	0x59, 0x84, 0x3a, 0x51, 0xd6, 0x2d, 0xcd, 0xc5, 0x36, 0x1b, 0x4d, 0x1a, 0xce, 0xe7, 0xa4, 0x71,
-	0xe0, 0x0f, 0x6c, 0x3f, 0xe9, 0x31, 0x4f, 0x87, 0xdc, 0xd3, 0x26, 0xd4, 0x26, 0x5f, 0x5a, 0x46,
-	0x06, 0xdc, 0x3e, 0x47, 0x60, 0xd8, 0xb9, 0xb2, 0x9d, 0x3c, 0xba, 0x59, 0xc3, 0x5b, 0xb9, 0x29,
-	0x13, 0x69, 0x65, 0xa0, 0xf9, 0x86, 0xf0, 0xf6, 0xb5, 0xfa, 0x7f, 0x46, 0x77, 0x70, 0xed, 0xc7,
-	0x56, 0x66, 0xf5, 0xe4, 0x1d, 0xe1, 0xd2, 0x85, 0xf1, 0x89, 0xc4, 0xeb, 0xa9, 0x40, 0x8e, 0xd9,
-	0xdf, 0x3f, 0xc3, 0x16, 0x9f, 0x55, 0x6f, 0xad, 0x48, 0x67, 0xd5, 0xc8, 0x1d, 0xae, 0xe4, 0x06,
-	0x08, 0x5b, 0x16, 0xf9, 0xbb, 0x81, 0x75, 0xbe, 0x32, 0x9f, 0xd5, 0x6a, 0x47, 0xa3, 0x29, 0x45,
-	0xe3, 0x29, 0x45, 0x5f, 0x53, 0x8a, 0x5e, 0x66, 0xd4, 0x19, 0xcf, 0xa8, 0xf3, 0x31, 0xa3, 0xce,
-	0xed, 0xcd, 0x42, 0xdb, 0xf2, 0x5c, 0x0a, 0xec, 0xa3, 0x8e, 0x03, 0x9e, 0xe6, 0x6c, 0x49, 0x88,
-	0x0a, 0xa1, 0x9b, 0xcd, 0xe0, 0xb2, 0xb1, 0x9e, 0xb7, 0xba, 0x57, 0x4e, 0xd9, 0xd3, 0xef, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0x4a, 0xce, 0x28, 0x35, 0x05, 0x03, 0x00, 0x00,
+	// 361 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4f, 0xca, 0xc9, 0x4f,
+	0xce, 0x2e, 0x4b, 0x4d, 0xd1, 0x4f, 0xcf, 0xc9, 0x2c, 0x29, 0x49, 0x2d, 0x4a, 0xce, 0x48, 0xcc,
+	0xcc, 0xd3, 0x4f, 0xce, 0xcf, 0x2b, 0x2e, 0xcd, 0x4d, 0x2d, 0xd2, 0x2f, 0xa9, 0xd0, 0x2b, 0x28,
+	0xca, 0x2f, 0xc9, 0x17, 0x92, 0x83, 0x29, 0xd4, 0x43, 0x56, 0xa8, 0x07, 0x53, 0x28, 0x25, 0x92,
+	0x9e, 0x9f, 0x9e, 0x0f, 0x56, 0xaa, 0x0f, 0x62, 0x41, 0x74, 0x29, 0x4d, 0x61, 0xe4, 0xe2, 0x0d,
+	0xc8, 0x49, 0x4d, 0x49, 0x4f, 0x0d, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0x92, 0xe0, 0x62,
+	0x4f, 0x4c, 0x49, 0x29, 0x4a, 0x2d, 0x2e, 0x96, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x82, 0x71,
+	0x85, 0x14, 0xb9, 0x78, 0x52, 0x12, 0x4b, 0x12, 0x8b, 0x53, 0x4b, 0xe2, 0xf3, 0x12, 0x73, 0x53,
+	0x25, 0x98, 0xc0, 0xd2, 0xdc, 0x50, 0x31, 0xbf, 0xc4, 0xdc, 0x54, 0x21, 0x37, 0x2e, 0xb6, 0xc4,
+	0xdc, 0xfc, 0xd2, 0xbc, 0x12, 0x09, 0x66, 0x90, 0xa4, 0x93, 0xde, 0x89, 0x7b, 0xf2, 0x0c, 0xb7,
+	0xee, 0xc9, 0xab, 0xa5, 0x67, 0x96, 0x64, 0x94, 0x26, 0xe9, 0x25, 0xe7, 0xe7, 0xea, 0x27, 0xe7,
+	0x17, 0xe7, 0xe6, 0x17, 0x43, 0x29, 0xdd, 0xe2, 0x94, 0x6c, 0xfd, 0x92, 0xca, 0x82, 0xd4, 0x62,
+	0x3d, 0xcf, 0xbc, 0x92, 0x20, 0xa8, 0x6e, 0x25, 0x01, 0x2e, 0x3e, 0x98, 0xab, 0x8a, 0x0b, 0xf2,
+	0xf3, 0x8a, 0x53, 0x95, 0x66, 0x33, 0x72, 0x89, 0x04, 0xa5, 0xe6, 0xa4, 0x26, 0x16, 0xa7, 0x0e,
+	0x42, 0xf7, 0x8a, 0x73, 0x89, 0xa2, 0x39, 0x0e, 0xe2, 0x6c, 0xa3, 0x37, 0x8c, 0x5c, 0xcc, 0xbe,
+	0xc5, 0xe9, 0x42, 0xe9, 0x5c, 0x6c, 0x10, 0x19, 0x21, 0x5d, 0x3d, 0xfc, 0x11, 0xa5, 0x87, 0xe2,
+	0x3d, 0x29, 0x3d, 0x62, 0x95, 0x43, 0x2c, 0x14, 0xaa, 0xe1, 0xe2, 0x45, 0x71, 0x89, 0x90, 0x09,
+	0x21, 0x03, 0xb0, 0x85, 0xaa, 0x94, 0x29, 0x89, 0xba, 0x20, 0xb6, 0x3b, 0x15, 0x9c, 0x78, 0x24,
+	0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78,
+	0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x54, 0x18, 0x52, 0x88, 0x42, 0x4d, 0xcc, 0x4b, 0x2d,
+	0x29, 0xcf, 0x2f, 0xca, 0xd6, 0x07, 0x9b, 0xac, 0x9b, 0x92, 0x5a, 0x00, 0x93, 0x88, 0x87, 0x24,
+	0x53, 0x42, 0x29, 0x1f, 0x14, 0x0b, 0x49, 0x6c, 0x60, 0xb5, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0xfc, 0x2b, 0x3c, 0xfd, 0x28, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -256,8 +257,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
-	Stake(ctx context.Context, in *StakeRequest, opts ...grpc.CallOption) (*StakeResponse, error)
-	UnStake(ctx context.Context, in *UnStakeRequest, opts ...grpc.CallOption) (*UnStakeResponse, error)
+	Pledge(ctx context.Context, in *PledgeRequest, opts ...grpc.CallOption) (*PledgeResponse, error)
+	ReleasePledge(ctx context.Context, in *ReleasePledgeRequest, opts ...grpc.CallOption) (*ReleasePledgeResponse, error)
 }
 
 type msgClient struct {
@@ -268,18 +269,18 @@ func NewMsgClient(cc grpc1.ClientConn) MsgClient {
 	return &msgClient{cc}
 }
 
-func (c *msgClient) Stake(ctx context.Context, in *StakeRequest, opts ...grpc.CallOption) (*StakeResponse, error) {
-	out := new(StakeResponse)
-	err := c.cc.Invoke(ctx, "/blockved.glitterchain.consumer.Msg/Stake", in, out, opts...)
+func (c *msgClient) Pledge(ctx context.Context, in *PledgeRequest, opts ...grpc.CallOption) (*PledgeResponse, error) {
+	out := new(PledgeResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.consumer.Msg/Pledge", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *msgClient) UnStake(ctx context.Context, in *UnStakeRequest, opts ...grpc.CallOption) (*UnStakeResponse, error) {
-	out := new(UnStakeResponse)
-	err := c.cc.Invoke(ctx, "/blockved.glitterchain.consumer.Msg/UnStake", in, out, opts...)
+func (c *msgClient) ReleasePledge(ctx context.Context, in *ReleasePledgeRequest, opts ...grpc.CallOption) (*ReleasePledgeResponse, error) {
+	out := new(ReleasePledgeResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.consumer.Msg/ReleasePledge", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -288,57 +289,57 @@ func (c *msgClient) UnStake(ctx context.Context, in *UnStakeRequest, opts ...grp
 
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
-	Stake(context.Context, *StakeRequest) (*StakeResponse, error)
-	UnStake(context.Context, *UnStakeRequest) (*UnStakeResponse, error)
+	Pledge(context.Context, *PledgeRequest) (*PledgeResponse, error)
+	ReleasePledge(context.Context, *ReleasePledgeRequest) (*ReleasePledgeResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
 type UnimplementedMsgServer struct {
 }
 
-func (*UnimplementedMsgServer) Stake(ctx context.Context, req *StakeRequest) (*StakeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Stake not implemented")
+func (*UnimplementedMsgServer) Pledge(ctx context.Context, req *PledgeRequest) (*PledgeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Pledge not implemented")
 }
-func (*UnimplementedMsgServer) UnStake(ctx context.Context, req *UnStakeRequest) (*UnStakeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnStake not implemented")
+func (*UnimplementedMsgServer) ReleasePledge(ctx context.Context, req *ReleasePledgeRequest) (*ReleasePledgeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReleasePledge not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
 }
 
-func _Msg_Stake_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StakeRequest)
+func _Msg_Pledge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PledgeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).Stake(ctx, in)
+		return srv.(MsgServer).Pledge(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/blockved.glitterchain.consumer.Msg/Stake",
+		FullMethod: "/blockved.glitterchain.consumer.Msg/Pledge",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).Stake(ctx, req.(*StakeRequest))
+		return srv.(MsgServer).Pledge(ctx, req.(*PledgeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_UnStake_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnStakeRequest)
+func _Msg_ReleasePledge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleasePledgeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).UnStake(ctx, in)
+		return srv.(MsgServer).ReleasePledge(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/blockved.glitterchain.consumer.Msg/UnStake",
+		FullMethod: "/blockved.glitterchain.consumer.Msg/ReleasePledge",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UnStake(ctx, req.(*UnStakeRequest))
+		return srv.(MsgServer).ReleasePledge(ctx, req.(*ReleasePledgeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -348,19 +349,19 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Stake",
-			Handler:    _Msg_Stake_Handler,
+			MethodName: "Pledge",
+			Handler:    _Msg_Pledge_Handler,
 		},
 		{
-			MethodName: "UnStake",
-			Handler:    _Msg_UnStake_Handler,
+			MethodName: "ReleasePledge",
+			Handler:    _Msg_ReleasePledge_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "blockved/glitterchain/consumer/tx.proto",
 }
 
-func (m *StakeRequest) Marshal() (dAtA []byte, err error) {
+func (m *PledgeRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -370,12 +371,12 @@ func (m *StakeRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *StakeRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *PledgeRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *StakeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *PledgeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -407,7 +408,7 @@ func (m *StakeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *StakeResponse) Marshal() (dAtA []byte, err error) {
+func (m *PledgeResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -417,12 +418,12 @@ func (m *StakeResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *StakeResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *PledgeResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *StakeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *PledgeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -430,7 +431,7 @@ func (m *StakeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *UnStakeRequest) Marshal() (dAtA []byte, err error) {
+func (m *ReleasePledgeRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -440,12 +441,12 @@ func (m *UnStakeRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UnStakeRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *ReleasePledgeRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UnStakeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ReleasePledgeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -477,7 +478,7 @@ func (m *UnStakeRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *UnStakeResponse) Marshal() (dAtA []byte, err error) {
+func (m *ReleasePledgeResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -487,12 +488,12 @@ func (m *UnStakeResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UnStakeResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *ReleasePledgeResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UnStakeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ReleasePledgeResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -511,7 +512,7 @@ func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *StakeRequest) Size() (n int) {
+func (m *PledgeRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -530,7 +531,7 @@ func (m *StakeRequest) Size() (n int) {
 	return n
 }
 
-func (m *StakeResponse) Size() (n int) {
+func (m *PledgeResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -539,7 +540,7 @@ func (m *StakeResponse) Size() (n int) {
 	return n
 }
 
-func (m *UnStakeRequest) Size() (n int) {
+func (m *ReleasePledgeRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -558,7 +559,7 @@ func (m *UnStakeRequest) Size() (n int) {
 	return n
 }
 
-func (m *UnStakeResponse) Size() (n int) {
+func (m *ReleasePledgeResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -573,7 +574,7 @@ func sovTx(x uint64) (n int) {
 func sozTx(x uint64) (n int) {
 	return sovTx(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *StakeRequest) Unmarshal(dAtA []byte) error {
+func (m *PledgeRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -596,10 +597,10 @@ func (m *StakeRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: StakeRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: PledgeRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: StakeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: PledgeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -721,7 +722,7 @@ func (m *StakeRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *StakeResponse) Unmarshal(dAtA []byte) error {
+func (m *PledgeResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -744,10 +745,10 @@ func (m *StakeResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: StakeResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: PledgeResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: StakeResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: PledgeResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -771,7 +772,7 @@ func (m *StakeResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *UnStakeRequest) Unmarshal(dAtA []byte) error {
+func (m *ReleasePledgeRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -794,10 +795,10 @@ func (m *UnStakeRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UnStakeRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: ReleasePledgeRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UnStakeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ReleasePledgeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -919,7 +920,7 @@ func (m *UnStakeRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *UnStakeResponse) Unmarshal(dAtA []byte) error {
+func (m *ReleasePledgeResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -942,10 +943,10 @@ func (m *UnStakeResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UnStakeResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: ReleasePledgeResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UnStakeResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ReleasePledgeResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
