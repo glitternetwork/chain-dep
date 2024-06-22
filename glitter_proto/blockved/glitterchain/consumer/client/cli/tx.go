@@ -31,14 +31,15 @@ func GetTxCmd() *cobra.Command {
 		RunE:                       client.ValidateCmd,
 	}
 
-	cmd.AddCommand(GetCmdTxStake())
+	cmd.AddCommand(GetCmdTxPledge())
+	cmd.AddCommand(GetCmdTxReleasePledge())
 	return cmd
 }
 
-func GetCmdTxStake() *cobra.Command {
+func GetCmdTxPledge() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "stake <dataset_name> <amount> ",
-		Short: "edit table",
+		Use:   "pledge <dataset_name> <amount> ",
+		Short: "pledge",
 		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
@@ -49,6 +50,32 @@ func GetCmdTxStake() *cobra.Command {
 			var datasetName = args[0]
 			amount, _ := sdk.NewIntFromString(args[1])
 			msg := types.NewPledgeRequest(fromAddress, datasetName, amount)
+			if err := msg.ValidateBasic(); err != nil {
+				return err
+			}
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+
+	flags.AddTxFlagsToCmd(cmd)
+
+	return cmd
+}
+
+func GetCmdTxReleasePledge() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "release_pledge <dataset_name> <amount> ",
+		Short: "release_pledge",
+		Args:  cobra.ExactArgs(2),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+			fromAddress := clientCtx.GetFromAddress()
+			var datasetName = args[0]
+			amount, _ := sdk.NewIntFromString(args[1])
+			msg := types.NewReleasePledgeRequest(fromAddress, datasetName, amount)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

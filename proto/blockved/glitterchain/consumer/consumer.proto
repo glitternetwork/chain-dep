@@ -46,3 +46,11 @@ message ReleasingCPDTEntry {
   string        amount = 3
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }
+
+
+/**event**/
+message ReleasingCPDTEvents {
+  string        dataset_name = 1;
+  string        consumer_address = 2;
+  string        coins = 3;
+}

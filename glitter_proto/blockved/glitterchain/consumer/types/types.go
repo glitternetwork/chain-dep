@@ -14,3 +14,12 @@ func (rCPDT *ReleasingCPDT) AddEntry(creationHeight int64, minTime time.Time, am
 	}
 	rCPDT.Entries = append(rCPDT.Entries, entry)
 }
+
+// IsMature - is the current entry mature
+func (e *ReleasingCPDTEntry) IsMature(currentTime time.Time) bool {
+	return !e.CompletionTime.After(currentTime)
+}
+
+func (ubd *ReleasingCPDT) RemoveEntry(i int64) {
+	ubd.Entries = append(ubd.Entries[:i], ubd.Entries[i+1:]...)
+}

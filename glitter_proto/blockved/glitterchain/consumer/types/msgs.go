@@ -45,10 +45,11 @@ func (msg PledgeRequest) GetSignBytes() []byte {
 
 var _ sdk.Msg = &ReleasePledgeRequest{}
 
-func NeReleasePledgeRequest(address sdk.AccAddress, amount sdk.Int) *ReleasePledgeRequest {
+func NewReleasePledgeRequest(address sdk.AccAddress, datasetName string, amount sdk.Int) *ReleasePledgeRequest {
 	return &ReleasePledgeRequest{
-		Address: address.String(),
-		Amount:  amount,
+		Address:     address.String(),
+		DatasetName: datasetName,
+		Amount:      amount,
 	}
 }
 func (msg ReleasePledgeRequest) Route() string {
