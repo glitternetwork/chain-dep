@@ -7,6 +7,15 @@ package blockved.glitterchain.index;
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
 import "gogoproto/gogo.proto";
 import "blockved/glitterchain/index/index.proto";
+import "blockved/glitterchain/index/params.proto";
+import "blockved/glitterchain/index/dataset.proto";
 // GenesisState defines the index module's genesis state.
 message GenesisState {
+  Params params = 1[(gogoproto.nullable) = false];
+  repeated Dataset datasets = 2[(gogoproto.nullable) = false];
+  repeated CPDT    CPDTs = 3
+  [
+    (gogoproto.nullable) = false,
+    (gogoproto.customname) = "CPDTs"
+  ];
 }

@@ -39,6 +39,8 @@ const (
 	DisplayDenom = "gli"
 	// BaseDenom defines to the default denomination used in canto (staking, EVM, governance, etc.)
 	BaseDenom = "agli"
+
+	NoData = "no data"
 )
 
 // EncodingConfig specifies the concrete encoding types to use for a given app.

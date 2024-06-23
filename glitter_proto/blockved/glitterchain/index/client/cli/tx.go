@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+	"github.com/pkg/errors"
 	"time"
 
 	"github.com/cosmos/cosmos-sdk/client"
@@ -77,13 +78,29 @@ func GetCmdTxCreateDataset() *cobra.Command {
 				return err
 			}
 
+			meta, err := cmd.Flags().GetString(FlagMeta)
+			if err != nil {
+				return err
+			}
+
+			duration, err := cmd.Flags().GetInt64(FlagDuration)
+			if err != nil {
+				return err
+			}
+
+			if duration == 0 {
+				return errors.New("param useYear must greater than 0")
+			}
+
 			msg := types.NewCreateDatasetRequest(
 				fromAddress,
 				datasetName,
 				types.ServiceStatus(workstatus),
 				hosts,
+				meta,
 				manageAddresses,
 				description,
+				duration,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
@@ -96,6 +113,8 @@ func GetCmdTxCreateDataset() *cobra.Command {
 	cmd.Flags().AddFlagSet(FlagSetWorkStatus())
 	cmd.Flags().AddFlagSet(FlagSetHosts())
 	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
+	cmd.Flags().AddFlagSet(FlagSetMeta())
+	cmd.Flags().AddFlagSet(FlagSetDuration())
 	flags.AddTxFlagsToCmd(cmd)
 
 	return cmd

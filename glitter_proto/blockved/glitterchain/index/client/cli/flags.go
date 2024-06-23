@@ -9,6 +9,8 @@ const (
 	FlagWorkStatus      = "work-status"
 	FlagHosts           = "hosts"
 	FlagManageAddresses = "manage-addresses"
+	FlagMeta            = "meta"
+	FlagDuration        = "duration"
 )
 
 func FlagSetdescription() *flag.FlagSet {
@@ -32,5 +34,17 @@ func FlagSetHosts() *flag.FlagSet {
 func FlagSetManageAddresses() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
 	fs.String(FlagManageAddresses, "", "The manage addresses required on the dataset")
+	return fs
+}
+
+func FlagSetMeta() *flag.FlagSet {
+	fs := flag.NewFlagSet("", flag.ContinueOnError)
+	fs.String(FlagMeta, "", "The meta required on the dataset")
+	return fs
+}
+
+func FlagSetDuration() *flag.FlagSet {
+	fs := flag.NewFlagSet("", flag.ContinueOnError)
+	fs.Int64(FlagDuration, 1, "duration(year) required on the dataset")
 	return fs
 }

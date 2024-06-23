@@ -71,16 +71,20 @@ func NewCreateDatasetRequest(
 	workStatus ServiceStatus,
 	hosts string,
 	manageAddresses string,
+	meta string,
 	description string,
+	duration int64,
+
 ) *CreateDatasetRequest {
 	return &CreateDatasetRequest{
 		FromAddress:     fromAddress.String(),
 		DatasetName:     datasetName,
 		WorkStatus:      workStatus,
-		OwnerAddress:    fromAddress.String(),
 		Hosts:           hosts,
 		ManageAddresses: manageAddresses,
+		Meta:            meta,
 		Description:     description,
+		Duration:        duration,
 	}
 }
 func (msg CreateDatasetRequest) Route() string {
@@ -120,7 +124,6 @@ func NewEditDatasetRequest(
 		FromAddress:     fromAddress.String(),
 		DatasetName:     datasetName,
 		WorkStatus:      workStatus,
-		OwnerAddress:    fromAddress.String(),
 		Hosts:           hosts,
 		ManageAddresses: manageAddresses,
 		Description:     description,

@@ -1,8 +1,14 @@
 package types
 
 import (
+	"fmt"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	"gopkg.in/yaml.v2"
+)
+
+var (
+	KeyFeePerDatasetPerYear = []byte("FeePerDatasetPerYear")
 )
 
 var _ paramtypes.ParamSet = (*Params)(nil)
@@ -13,18 +19,23 @@ func ParamKeyTable() paramtypes.KeyTable {
 }
 
 // NewParams creates a new Params instance
-func NewParams() Params {
-	return Params{}
+func NewParams(feePerDatasetPerYear sdk.Int) Params {
+	return Params{
+		FeePerDatasetPerYear: feePerDatasetPerYear,
+	}
 }
 
 // DefaultParams returns a default set of parameters
 func DefaultParams() Params {
-	return NewParams()
+	DefaultFeePerDatasetPerYear, _ := sdk.NewIntFromString("1000000000000000000000")
+	return NewParams(DefaultFeePerDatasetPerYear)
 }
 
 // ParamSetPairs get the params.ParamSet
 func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
-	return paramtypes.ParamSetPairs{}
+	return paramtypes.ParamSetPairs{
+		paramtypes.NewParamSetPair(KeyFeePerDatasetPerYear, &p.FeePerDatasetPerYear, validateFeePerDatasetPerYear),
+	}
 }
 
 // Validate validates the set of params
@@ -36,4 +47,17 @@ func (p Params) Validate() error {
 func (p Params) String() string {
 	out, _ := yaml.Marshal(p)
 	return string(out)
+}
+
+func validateFeePerDatasetPerYear(i interface{}) error {
+	v, ok := i.(sdk.Int)
+	if !ok {
+		return fmt.Errorf("invalid parameter type: %T", i)
+	}
+
+	if v.LT(sdk.ZeroInt()) {
+		return fmt.Errorf("max entries must be positive: %d", v)
+	}
+
+	return nil
 }

@@ -3,6 +3,7 @@ package types
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/address"
+	"time"
 )
 
 const (
@@ -20,12 +21,15 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_index"
+
+	AccountDatasePurchaseFeePool = "account_datase_purchase_fee_pool"
 )
 
 var (
-	KeyDataset        = []byte{0x10}
-	KeyTable          = []byte{0x20}
-	KeyConsumerPledge = []byte{0x30}
+	KeyDataset               = []byte{0x10}
+	KeyTable                 = []byte{0x20}
+	KeyConsumerPledge        = []byte{0x30}
+	KeyDatasetExpiratioQueue = []byte{0x40}
 )
 
 func KeyPrefix(p string) []byte {
@@ -46,4 +50,9 @@ func GetConsumerPledgeKey(datasetName string, consumerAddress sdk.AccAddress) []
 
 func GetConsumerPledgesKey(datasetName string) []byte {
 	return append(KeyTable, []byte(datasetName)...)
+}
+
+func GetDatasetExpirationKey(timestamp time.Time) []byte {
+	bz := sdk.FormatTimeBytes(timestamp)
+	return append(KeyDatasetExpiratioQueue, bz...)
 }

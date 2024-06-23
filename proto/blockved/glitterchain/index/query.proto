@@ -6,7 +6,8 @@ import "google/api/annotations.proto";
 import "blockved/glitterchain/index/params.proto";
 import "blockved/glitterchain/index/index.proto";
 import "blockved/glitterchain/index/dataset.proto";
-import "common/sql_engine.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
@@ -24,6 +25,12 @@ service Query {
   rpc QueryDateset(QueryDatesetRequest) returns (QueryDatesetResponse) {
     option (google.api.http).get = "/blockved/glitterchain/index/dataset/{dataset_name}";
   }
+
+
+  rpc QueryDatasetExpiration(QueryDatasetExpirationRequest) returns (QueryDatasetExpirationResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/index/datasetexpiration";
+  }
+
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -42,4 +49,16 @@ message QueryDatesetRequest{
 
 message QueryDatesetResponse{
   Dataset dateset = 1;
+}
+
+
+message QueryDatasetExpirationRequest {
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryDatasetExpirationResponse {
+    repeated DatasetExpiration datasets = 1 [(gogoproto.nullable) = false];
+    cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
