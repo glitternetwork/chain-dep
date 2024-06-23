@@ -34,13 +34,21 @@ message Dataset {
   string        dataset_name = 1;
   ServiceStatus work_status =  2;
   string        owner_address = 3;
-  string        opdt_amount = 4 //owner pledge dataset token
-  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  string        sum_opdt_amount = 4 //owner pledge dataset token
+  [
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false,
+    (gogoproto.customname) = "SumOPDTAmount"
+  ];
   string        hosts = 5;
   string        manage_addresses = 6;
   repeated      Table tables = 7;
-  string        cpdt_amount = 8 //consumer pledge dataset token
-  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+  string        sum_cpdt_amount = 8 //consumer pledge dataset token
+  [
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false,
+    (gogoproto.customname) = "SumCPDTAmount"
+  ];
   string        description = 9;
   google.protobuf.Timestamp update_time = 10
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];

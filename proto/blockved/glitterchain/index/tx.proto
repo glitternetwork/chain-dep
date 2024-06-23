@@ -45,12 +45,13 @@ message CreateDatasetRequest{
   string  dataset_name = 2;
   ServiceStatus work_status =  3;
   string        owner_address = 4;
-  string        owner_stake = 5
+  string        opdt_coin = 5
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (gogoproto.nullable) = false];
   string        hosts = 6;
   string        manage_addresses = 7;
-  string        description = 8;
-  string        dataset_meta = 9;
+  string        meta = 8;
+  string        description = 9;
+
 }
 
 message CreateDatasetResponse{}
