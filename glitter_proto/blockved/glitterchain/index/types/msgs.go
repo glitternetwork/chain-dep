@@ -118,6 +118,7 @@ func NewEditDatasetRequest(
 	workStatus ServiceStatus,
 	hosts string,
 	manageAddresses string,
+	meta string,
 	description string,
 ) *EditDatasetRequest {
 	return &EditDatasetRequest{
@@ -126,6 +127,7 @@ func NewEditDatasetRequest(
 		WorkStatus:      workStatus,
 		Hosts:           hosts,
 		ManageAddresses: manageAddresses,
+		Meta:            meta,
 		Description:     description,
 	}
 }

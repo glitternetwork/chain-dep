@@ -2,6 +2,7 @@ package cli
 
 import (
 	"fmt"
+	"github.com/glitternetwork/chain-dep/utils"
 	"github.com/pkg/errors"
 	"time"
 
@@ -58,6 +59,9 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if err != nil {
 				return err
 			}
+			if datasetName == "" {
+				return errors.New("param dataset name error")
+			}
 			description, err := cmd.Flags().GetString(FlagDescription)
 			if err != nil {
 				return err
@@ -73,22 +77,31 @@ func GetCmdTxCreateDataset() *cobra.Command {
 				return err
 			}
 
-			workstatus, err := cmd.Flags().GetInt32(FlagWorkStatus)
+			workstatus, err := cmd.Flags().GetInt64(FlagWorkStatus)
 			if err != nil {
 				return err
+			}
+			if workstatus == utils.DefaultInt64FieldUnsetdata {
+				return errors.New("param work status error")
 			}
 
 			meta, err := cmd.Flags().GetString(FlagMeta)
 			if err != nil {
 				return err
 			}
+			if meta == utils.DefaultStringFieldUnsetData {
+				return errors.New("param meta error")
+			}
 
 			duration, err := cmd.Flags().GetInt64(FlagDuration)
 			if err != nil {
 				return err
 			}
+			if duration == utils.DefaultInt64FieldUnsetdata {
+				return errors.New("unset param duration")
+			}
 
-			if duration == 0 {
+			if duration <= 0 {
 				return errors.New("param useYear must greater than 0")
 			}
 
@@ -154,17 +167,22 @@ func GetCmdTxEditDataset() *cobra.Command {
 				return err
 			}
 
-			workstatus, err := cmd.Flags().GetInt32(FlagWorkStatus)
+			workstatus, err := cmd.Flags().GetInt64(FlagWorkStatus)
 			if err != nil {
 				return err
 			}
 
+			meta, err := cmd.Flags().GetString(FlagMeta)
+			if err != nil {
+				return err
+			}
 			msg := types.NewEditDatasetRequest(
 				fromAddress,
 				datasetName,
 				types.ServiceStatus(workstatus),
 				hosts,
 				manageAddresses,
+				meta,
 				description,
 			)
 			if err := msg.ValidateBasic(); err != nil {
