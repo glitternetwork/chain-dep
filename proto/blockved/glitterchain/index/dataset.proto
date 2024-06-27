@@ -38,11 +38,11 @@ message Dataset {
   string        hosts = 5;
   string        manage_addresses = 6;
   repeated      Table tables = 7;
-  string        sum_cpdt_amount = 8 //consumer pledge dataset token
+  string        sum_cpdt = 8 //consumer pledge dataset token
   [
     (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
     (gogoproto.nullable) = false,
-    (gogoproto.customname) = "SumCPDTAmount"
+    (gogoproto.customname) = "SumCPDT"
   ];
   string        meta = 9;
   string        description = 10;

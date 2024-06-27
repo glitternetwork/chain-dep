@@ -84,6 +84,16 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if workstatus == utils.DefaultInt64FieldUnsetdata {
 				return errors.New("param work status error")
 			}
+			isFind := false
+			for k, _ := range types.ServiceStatus_name {
+				if k == int32(workstatus) {
+					isFind = true
+					break
+				}
+			}
+			if !isFind {
+				return errors.New("param work status error")
+			}
 
 			meta, err := cmd.Flags().GetString(FlagMeta)
 			if err != nil {
@@ -100,9 +110,8 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if duration == utils.DefaultInt64FieldUnsetdata {
 				return errors.New("unset param duration")
 			}
-
 			if duration <= 0 {
-				return errors.New("param useYear must greater than 0")
+				return errors.New("param duration must greater than 0")
 			}
 
 			msg := types.NewCreateDatasetRequest(
