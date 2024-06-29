@@ -4,6 +4,7 @@ import (
 	"fmt"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 )
 
@@ -40,6 +41,9 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 
 // Validate validates the set of params
 func (p Params) Validate() error {
+	if p.FeePerDatasetPerSecond.LT(sdk.ZeroInt()) {
+		return errors.New("param fee_per_dataset_per_second less than 0;fee_per_dataset_per_second=" + p.FeePerDatasetPerSecond.String())
+	}
 	return nil
 }
 

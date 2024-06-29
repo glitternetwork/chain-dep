@@ -19,6 +19,9 @@ func DefaultGenesis() *GenesisState {
 }
 
 func (gs GenesisState) Validate() error {
+	if err := gs.Params.Validate(); err != nil {
+		return err
+	}
 	return nil
 }
 
