@@ -181,6 +181,7 @@ func GetCmdTxEditDataset() *cobra.Command {
 	cmd.Flags().AddFlagSet(FlagSetWorkStatus())
 	cmd.Flags().AddFlagSet(FlagSetHosts())
 	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
+	cmd.Flags().AddFlagSet(FlagSetMeta())
 	flags.AddTxFlagsToCmd(cmd)
 	return cmd
 }
