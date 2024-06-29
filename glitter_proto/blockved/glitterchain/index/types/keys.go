@@ -49,7 +49,7 @@ func GetConsumerPledgeKey(datasetName string, consumerAddress sdk.AccAddress) []
 }
 
 func GetConsumerPledgesKey(datasetName string) []byte {
-	return append(KeyTable, []byte(datasetName)...)
+	return append(KeyConsumerPledge, []byte(datasetName)...)
 }
 
 func GetDatasetExpirationKey(timestamp time.Time) []byte {

@@ -28,3 +28,7 @@ type IndexKeeper interface {
 	AddDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) error
 	SubDatasetStake(ctx sdk.Context, datasetName string, address sdk.AccAddress, amount sdk.Int) error
 }
+
+type IndexHooks interface {
+	AfterDatasetExpired(ctx sdk.Context, datasetName string, address sdk.AccAddress, amt sdk.Coins)
+}

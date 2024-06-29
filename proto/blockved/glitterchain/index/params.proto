@@ -8,6 +8,6 @@ option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/
 // Params defines the parameters for the module.
 message Params {
   option (gogoproto.goproto_stringer) = false;
-  string  fee_per_dataset_per_year = 1
+  string  fee_per_dataset_per_second = 1
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
 }

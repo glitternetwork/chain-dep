@@ -46,6 +46,6 @@ func FlagSetMeta() *flag.FlagSet {
 
 func FlagSetDuration() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.Int64(FlagDuration, utils.DefaultInt64FieldUnsetdata, "duration(year) required on the dataset")
+	fs.Int64(FlagDuration, utils.DefaultInt64FieldUnsetdata, "duration(second) required on the dataset")
 	return fs
 }

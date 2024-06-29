@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// AddEntry - append entry to the unbonding delegation
+// ReleasingCPDT
 func (rCPDT *ReleasingCPDT) AddEntry(creationHeight int64, minTime time.Time, amount sdk.Int) {
 	entry := &ReleasingCPDTEntry{
 		CreationHeight: creationHeight,
@@ -15,11 +15,17 @@ func (rCPDT *ReleasingCPDT) AddEntry(creationHeight int64, minTime time.Time, am
 	rCPDT.Entries = append(rCPDT.Entries, entry)
 }
 
+func (rCPDT *ReleasingCPDT) RemoveEntryByIndex(i int64) {
+	rCPDT.Entries = append(rCPDT.Entries[:i], rCPDT.Entries[i+1:]...)
+}
+
+// ReleasingCPDTEntry
 // IsMature - is the current entry mature
 func (e *ReleasingCPDTEntry) IsMature(currentTime time.Time) bool {
 	return !e.CompletionTime.After(currentTime)
 }
 
-func (ubd *ReleasingCPDT) RemoveEntry(i int64) {
-	ubd.Entries = append(ubd.Entries[:i], ubd.Entries[i+1:]...)
+// consumer
+func (c *Consumer) RemoveCPDTByIndex(i int64) {
+	c.CPDTs = append(c.CPDTs[:i], c.CPDTs[i+1:]...)
 }

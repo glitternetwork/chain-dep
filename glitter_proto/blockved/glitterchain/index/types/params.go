@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	KeyFeePerDatasetPerYear = []byte("FeePerDatasetPerYear")
+	KeyFeePerDatasetPerSecond = []byte("FeePerDatasetPerSecond")
 )
 
 var _ paramtypes.ParamSet = (*Params)(nil)
@@ -19,22 +19,22 @@ func ParamKeyTable() paramtypes.KeyTable {
 }
 
 // NewParams creates a new Params instance
-func NewParams(feePerDatasetPerYear sdk.Int) Params {
+func NewParams(feePerDatasetPerSecond sdk.Int) Params {
 	return Params{
-		FeePerDatasetPerYear: feePerDatasetPerYear,
+		FeePerDatasetPerSecond: feePerDatasetPerSecond,
 	}
 }
 
 // DefaultParams returns a default set of parameters
 func DefaultParams() Params {
-	DefaultFeePerDatasetPerYear, _ := sdk.NewIntFromString("1000000000000000000000")
-	return NewParams(DefaultFeePerDatasetPerYear)
+	DefaultFeePerDatasetPerSecond, _ := sdk.NewIntFromString("1000000000000")
+	return NewParams(DefaultFeePerDatasetPerSecond)
 }
 
 // ParamSetPairs get the params.ParamSet
 func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 	return paramtypes.ParamSetPairs{
-		paramtypes.NewParamSetPair(KeyFeePerDatasetPerYear, &p.FeePerDatasetPerYear, validateFeePerDatasetPerYear),
+		paramtypes.NewParamSetPair(KeyFeePerDatasetPerSecond, &p.FeePerDatasetPerSecond, validateFeePerDatasetPerSecond),
 	}
 }
 
@@ -49,7 +49,7 @@ func (p Params) String() string {
 	return string(out)
 }
 
-func validateFeePerDatasetPerYear(i interface{}) error {
+func validateFeePerDatasetPerSecond(i interface{}) error {
 	v, ok := i.(sdk.Int)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)

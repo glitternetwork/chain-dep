@@ -53,3 +53,9 @@ message ReleasingCPDTEvents {
   string        consumer_address = 2;
   string        coins = 3;
 }
+
+message ReleasingDatasetExpiredEvents {
+  string        dataset_name = 1;
+  string        consumer_address = 2;
+  string        coins = 3;
+}
