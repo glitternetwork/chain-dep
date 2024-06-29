@@ -2,24 +2,14 @@ package cli
 
 import (
 	"fmt"
-	"github.com/glitternetwork/chain-dep/utils"
-	"github.com/pkg/errors"
-	"time"
-
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types"
+	"github.com/glitternetwork/chain-dep/utils"
+	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-)
-
-var (
-	DefaultRelativePacketTimeoutTimestamp = uint64((time.Duration(10) * time.Minute).Nanoseconds())
-)
-
-const (
-	flagPacketTimeoutTimestamp = "packet-timeout-timestamp"
-	listSeparator              = ","
+	"strconv"
 )
 
 // GetTxCmd returns the transaction commands for this module
@@ -32,15 +22,13 @@ func GetTxCmd() *cobra.Command {
 		RunE:                       client.ValidateCmd,
 	}
 
-	// this line is used by starport scaffolding # 1
-
 	cmd.AddCommand(GetCmdTxCreateDataset())
 	cmd.AddCommand(GetCmdTxEditDataset())
 	cmd.AddCommand(GetCmdTxEditTable())
+	cmd.AddCommand(GetCmdTxRenewalDataset())
 	return cmd
 }
 
-// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
 func GetCmdTxCreateDataset() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "create-dataset <dataset_name>",
@@ -84,16 +72,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if workstatus == utils.DefaultInt64FieldUnsetdata {
 				return errors.New("param work status error")
 			}
-			isFind := false
-			for k, _ := range types.ServiceStatus_name {
-				if k == int32(workstatus) {
-					isFind = true
-					break
-				}
-			}
-			if !isFind {
-				return errors.New("param work status error")
-			}
 
 			meta, err := cmd.Flags().GetString(FlagMeta)
 			if err != nil {
@@ -102,7 +80,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if meta == utils.DefaultStringFieldUnsetData {
 				return errors.New("param meta error")
 			}
-
 			duration, err := cmd.Flags().GetInt64(FlagDuration)
 			if err != nil {
 				return err
@@ -142,7 +119,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 	return cmd
 }
 
-// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
 func GetCmdTxEditDataset() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "edit-dataset <dataset_name>",
@@ -206,11 +182,9 @@ func GetCmdTxEditDataset() *cobra.Command {
 	cmd.Flags().AddFlagSet(FlagSetHosts())
 	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
 	flags.AddTxFlagsToCmd(cmd)
-
 	return cmd
 }
 
-// GetCmdTxSQLExec returns the command that broadcasts to sql-grant
 func GetCmdTxEditTable() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "edit-table <dataset_name> <table_name> <meta>",
@@ -234,8 +208,34 @@ func GetCmdTxEditTable() *cobra.Command {
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
 		},
 	}
-
 	flags.AddTxFlagsToCmd(cmd)
+	return cmd
+}
 
+func GetCmdTxRenewalDataset() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "renewal-dataset <dataset_name>",
+		Short: "renewal dataset",
+		Args:  cobra.ExactArgs(2),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientTxContext(cmd)
+			if err != nil {
+				return err
+			}
+			fromAddress := clientCtx.GetFromAddress()
+			var datasetName string
+			duration, err := strconv.ParseInt(args[1], 10, 64)
+			if err != nil {
+				return err
+			}
+
+			msg := types.NewRenewalDatasetRequest(fromAddress, datasetName, duration)
+			if err := msg.ValidateBasic(); err != nil {
+				return err
+			}
+			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
+		},
+	}
+	flags.AddTxFlagsToCmd(cmd)
 	return cmd
 }

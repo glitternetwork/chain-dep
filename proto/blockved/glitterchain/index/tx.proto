@@ -15,6 +15,8 @@ service Msg {
 
     rpc EditDataset(EditDatasetRequest ) returns (EditDatasetResponse);
 
+    rpc RenewalDataset(RenewalDatasetRequest) returns (RenewalDatasetResponse);
+
     rpc EditTable(EditTableRequest ) returns (EditTableResponse);
 }
 
@@ -58,3 +60,14 @@ message EditDatasetRequest{
 
 
 message EditDatasetResponse{}
+
+
+message RenewalDatasetRequest{
+  string  from_address = 1;
+  string  dataset_name = 2;
+  int64   duration = 3;
+}
+
+message RenewalDatasetResponse{
+  google.protobuf.Timestamp expiration_time = 1 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}

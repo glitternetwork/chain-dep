@@ -7,9 +7,10 @@ import (
 )
 
 const (
-	TypeMsgEditTable     = "EditTable"
-	TypeMsgCreateDataset = "CreateDataset"
-	TypeMsgEditDataset   = "EditDataset"
+	TypeMsgEditTable      = "EditTable"
+	TypeMsgCreateDataset  = "CreateDataset"
+	TypeMsgEditDataset    = "EditDataset"
+	TypeMsgRenewalDataset = "RenewalDataset"
 )
 
 func strSholudNotEmpty(name string, s string) error {
@@ -94,6 +95,39 @@ func (m CreateDatasetRequest) Type() string {
 	return TypeMsgCreateDataset
 }
 func (msg CreateDatasetRequest) ValidateBasic() error {
+	if err := strSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+		return err
+	}
+
+	isFind := false
+	workstatus := msg.GetWorkStatus()
+	for k, _ := range ServiceStatus_name {
+		if k == int32(workstatus) {
+			isFind = true
+			break
+		}
+	}
+	if !isFind {
+		return errors.New("param work status error")
+	}
+	if err := strSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("description", msg.GetDescription()); err != nil {
+		return err
+	}
+	if msg.GetDuration() <= 0 {
+		return errors.New("param duration error")
+	}
 	return nil
 }
 func (msg CreateDatasetRequest) GetSigners() []sdk.AccAddress {
@@ -138,6 +172,35 @@ func (m EditDatasetRequest) Type() string {
 	return TypeMsgEditDataset
 }
 func (msg EditDatasetRequest) ValidateBasic() error {
+	if err := strSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+		return err
+	}
+	isFind := false
+	workstatus := msg.GetWorkStatus()
+	for k, _ := range ServiceStatus_name {
+		if k == int32(workstatus) {
+			isFind = true
+			break
+		}
+	}
+	if !isFind {
+		return errors.New("param work status error")
+	}
+	if err := strSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("description", msg.GetDescription()); err != nil {
+		return err
+	}
 	return nil
 }
 func (msg EditDatasetRequest) GetSigners() []sdk.AccAddress {
@@ -148,6 +211,51 @@ func (msg EditDatasetRequest) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{signer}
 }
 func (msg EditDatasetRequest) GetSignBytes() []byte {
+	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
+}
+
+/*end*/
+
+// EditDatasetRequest
+var _ sdk.Msg = &RenewalDatasetRequest{}
+
+func NewRenewalDatasetRequest(
+	fromAddress sdk.AccAddress,
+	datasetName string,
+	duration int64,
+) *RenewalDatasetRequest {
+	return &RenewalDatasetRequest{
+		FromAddress: fromAddress.String(),
+		DatasetName: datasetName,
+		Duration:    duration,
+	}
+}
+func (msg RenewalDatasetRequest) Route() string {
+	return RouterKey
+}
+func (m RenewalDatasetRequest) Type() string {
+	return TypeMsgRenewalDataset
+}
+func (msg RenewalDatasetRequest) ValidateBasic() error {
+	if err := strSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
+		return err
+	}
+	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+		return err
+	}
+	if msg.GetDuration() <= 0 {
+		return errors.New("param duration error")
+	}
+	return nil
+}
+func (msg RenewalDatasetRequest) GetSigners() []sdk.AccAddress {
+	signer, err := sdk.AccAddressFromBech32(msg.GetFromAddress())
+	if err != nil {
+		panic(err)
+	}
+	return []sdk.AccAddress{signer}
+}
+func (msg RenewalDatasetRequest) GetSignBytes() []byte {
 	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&msg))
 }
 

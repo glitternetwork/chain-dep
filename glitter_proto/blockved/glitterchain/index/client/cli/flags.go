@@ -22,7 +22,7 @@ func FlagSetdescription() *flag.FlagSet {
 
 func FlagSetWorkStatus() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.Int64(FlagWorkStatus, utils.DefaultInt64FieldUnsetdata, "The work status required on the dataset")
+	fs.Int32(FlagWorkStatus, 0, "The work status required on the dataset")
 	return fs
 }
 
