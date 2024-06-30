@@ -36,7 +36,10 @@ message Dataset {
   google.protobuf.Timestamp expiration_time = 4 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
   string        hosts = 5;
   string        manage_addresses = 6;
-  repeated      Table tables = 7;
+  repeated      Table tables = 7
+  [
+    (gogoproto.nullable) = false
+  ];
   string        sum_cpdt = 8 //consumer pledge dataset token
   [
     (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
