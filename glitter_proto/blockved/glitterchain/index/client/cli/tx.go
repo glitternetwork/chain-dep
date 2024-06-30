@@ -224,7 +224,7 @@ func GetCmdTxRenewalDataset() *cobra.Command {
 				return err
 			}
 			fromAddress := clientCtx.GetFromAddress()
-			var datasetName string
+			var datasetName = args[0]
 			duration, err := strconv.ParseInt(args[1], 10, 64)
 			if err != nil {
 				return err
