@@ -28,9 +28,7 @@ var _ = time.Kitchen
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// Params defines the parameters for the module.
 type Params struct {
-	// unbonding_time is the time duration of unbonding.
 	ReleasingCPDTWaitTime time.Duration `protobuf:"bytes,1,opt,name=releasing_cpdt_wait_time,json=releasingCpdtWaitTime,proto3,stdduration" json:"releasing_cpdt_wait_time" yaml:"releasing_cpdt_wait_time"`
 	MaxCPDTEntries        uint32        `protobuf:"varint,2,opt,name=max_cpdt_entries,json=maxCpdtEntries,proto3" json:"max_cpdt_entries,omitempty" yaml:"max_cpdt_entries"`
 }

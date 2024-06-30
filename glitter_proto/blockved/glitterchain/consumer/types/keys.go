@@ -22,14 +22,14 @@ const (
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_consumer"
 
-	AccountCousumerStakePool = "account_cousumer_stake_pool"
+	AccountCousumerPledgePool = "account_cousumer_pledge_pool"
 )
 
 var (
-	KeyPrefixConsumer     = []byte{0x10}
-	KeyPrefixDatasetStake = []byte{0x20}
-	KeyReleasingCPDT      = []byte{0x30}
-	UnbondingQueueKey     = []byte{0x41} // prefix for the timestamps in unbonding queue
+	KeyPrefixConsumer        = []byte{0x10}
+	KeyPrefixDatasetStake    = []byte{0x20}
+	KeyReleasingCPDT         = []byte{0x30}
+	KeyReleasingCPDTQueueKey = []byte{0x41} // prefix for the timestamps in unbonding queue
 )
 
 func GetConsumerKey(address []byte) []byte {
@@ -43,8 +43,7 @@ func GetReleasingCPDTsKey(address sdk.AccAddress) []byte {
 	return append(KeyReleasingCPDT, address.Bytes()...)
 }
 
-// GetUnbondingDelegationTimeKey creates the prefix for all unbonding delegations from a delegator
-func GetUnbondingDelegationTimeKey(timestamp time.Time) []byte {
+func GetReleasingCPDTQueueKey(timestamp time.Time) []byte {
 	bz := sdk.FormatTimeBytes(timestamp)
-	return append(UnbondingQueueKey, bz...)
+	return append(KeyReleasingCPDTQueueKey, bz...)
 }

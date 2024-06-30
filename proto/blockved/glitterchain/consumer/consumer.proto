@@ -35,7 +35,7 @@ message ReleasingCPDT {
 }
 
 message ReleasingCPDTs {
-  repeated ReleasingCPDT pledges = 1 [(gogoproto.nullable) = false];
+  repeated ReleasingCPDT rCPDTs = 1 [(gogoproto.nullable) = false];
 }
 
 message ReleasingCPDTEntry {

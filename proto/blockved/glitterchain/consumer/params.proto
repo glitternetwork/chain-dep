@@ -7,10 +7,8 @@ import "google/protobuf/descriptor.proto";
 
 
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
-// Params defines the parameters for the module.
 message Params {
   option (gogoproto.goproto_stringer) = false;
-  // unbonding_time is the time duration of unbonding.
   google.protobuf.Duration releasing_cpdt_wait_time = 1
   [ (gogoproto.nullable) = false,
     (gogoproto.stdduration) = true,
