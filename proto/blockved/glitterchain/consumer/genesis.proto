@@ -14,9 +14,10 @@ message GenesisState {
   [
     (gogoproto.nullable) = false
   ];
-  repeated ReleasingCPDT ReleasingCPDTs = 3
+  repeated ReleasingCPDT releasing_CPDTs = 3
   [
     (gogoproto.nullable) = false,
+    (gogoproto.jsontag)  = "releasing_cpdts",
     (gogoproto.customname) = "ReleasingCPDTs"
   ];
 }

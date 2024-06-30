@@ -15,7 +15,7 @@ const (
 )
 
 var (
-	KeyCPDTReleasingWaitTime = []byte("CPDTReleasingWaitTime")
+	KeyReleasingCPDTWaitTime = []byte("ReleasingCPDTWaitTime")
 	KeyMaxCPDTNumPerConsumer = []byte("MaxCPDTNumPerConsumer")
 	KeyMaxCPDTEntries        = []byte("MaxCPDTEntries")
 )
@@ -27,9 +27,9 @@ func ParamKeyTable() paramtypes.KeyTable {
 }
 
 // NewParams creates a new Params instance
-func NewParams(cpdtReleasingWaitTime time.Duration, maxCPDTNumPerConsumer uint32, maxCPDTEntries uint32) Params {
+func NewParams(releasingCPDTWaitTime time.Duration, maxCPDTNumPerConsumer uint32, maxCPDTEntries uint32) Params {
 	return Params{
-		CpdtReleasingWaitTime: cpdtReleasingWaitTime,
+		ReleasingCPDTWaitTime: releasingCPDTWaitTime,
 		MaxCPDTNumPerConsumer: maxCPDTNumPerConsumer,
 		MaxCPDTEntries:        maxCPDTEntries,
 	}
@@ -38,7 +38,7 @@ func NewParams(cpdtReleasingWaitTime time.Duration, maxCPDTNumPerConsumer uint32
 // ParamSetPairs get the params.ParamSet
 func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 	return paramtypes.ParamSetPairs{
-		paramtypes.NewParamSetPair(KeyCPDTReleasingWaitTime, &p.CpdtReleasingWaitTime, validateCPDTReleasingTime),
+		paramtypes.NewParamSetPair(KeyReleasingCPDTWaitTime, &p.ReleasingCPDTWaitTime, validateReleasingCPDTWaitTime),
 		paramtypes.NewParamSetPair(KeyMaxCPDTNumPerConsumer, &p.MaxCPDTNumPerConsumer, validateMaxCPDTNumPerConsumer),
 		paramtypes.NewParamSetPair(KeyMaxCPDTEntries, &p.MaxCPDTEntries, validateMaxCPDTEntries),
 	}
@@ -60,7 +60,7 @@ func (p Params) String() string {
 	return string(out)
 }
 
-func validateCPDTReleasingTime(i interface{}) error {
+func validateReleasingCPDTWaitTime(i interface{}) error {
 	v, ok := i.(time.Duration)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
