@@ -5,12 +5,12 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 )
 
-func NewGenesisState(params Params, consumers []*Consumer) *GenesisState {
+func NewGenesisState(params Params, consumers []Consumer, releasingCPDTs []ReleasingCPDT) *GenesisState {
 	return &GenesisState{
-		Params:    params,
-		Consumers: consumers,
+		Params:         params,
+		Consumers:      consumers,
+		ReleasingCPDTs: releasingCPDTs,
 	}
-
 }
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{

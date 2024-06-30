@@ -1,6 +1,7 @@
 package types
 
 import (
+	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"time"
 )
@@ -28,4 +29,22 @@ func (e *ReleasingCPDTEntry) IsMature(currentTime time.Time) bool {
 // consumer
 func (c *Consumer) RemoveCPDTByIndex(i int64) {
 	c.CPDTs = append(c.CPDTs[:i], c.CPDTs[i+1:]...)
+}
+
+func MustUnmarshalReleasingCPDT(cdc codec.BinaryCodec, value []byte) (r ReleasingCPDT) {
+	r = ReleasingCPDT{}
+	err := cdc.Unmarshal(value, &r)
+	if err != nil {
+		panic(err)
+	}
+	return r
+}
+
+func MustUnmarshalConsumer(cdc codec.BinaryCodec, value []byte) (r Consumer) {
+	r = Consumer{}
+	err := cdc.Unmarshal(value, &r)
+	if err != nil {
+		panic(err)
+	}
+	return r
 }
