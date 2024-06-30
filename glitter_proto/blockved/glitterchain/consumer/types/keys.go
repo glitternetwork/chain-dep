@@ -39,6 +39,9 @@ func GetConsumerKey(address []byte) []byte {
 func GetReleasingCPDTKey(address sdk.AccAddress, datasetName string) []byte {
 	return append(append(KeyReleasingCPDT, address.Bytes()...), []byte(datasetName)...)
 }
+func GetReleasingCPDTsKey(address sdk.AccAddress) []byte {
+	return append(KeyReleasingCPDT, address.Bytes()...)
+}
 
 // GetUnbondingDelegationTimeKey creates the prefix for all unbonding delegations from a delegator
 func GetUnbondingDelegationTimeKey(timestamp time.Time) []byte {

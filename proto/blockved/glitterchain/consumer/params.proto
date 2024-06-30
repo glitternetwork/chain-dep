@@ -16,11 +16,7 @@ message Params {
     (gogoproto.stdduration) = true,
     (gogoproto.customname) = "ReleasingCPDTWaitTime",
     (gogoproto.moretags) = "yaml:\"releasing_cpdt_wait_time\""];
-  uint32 max_cpdt_num_per_consumer = 2 [
-    (gogoproto.moretags)  = "yaml:\"max_cpdt_num_per_consumer\"",
-    (gogoproto.customname) = "MaxCPDTNumPerConsumer"
-  ];
-  uint32 max_cpdt_entries  = 3 [
+  uint32 max_cpdt_entries  = 2 [
     (gogoproto.moretags) = "yaml:\"max_cpdt_entries\"",
     (gogoproto.customname) = "MaxCPDTEntries"
   ];

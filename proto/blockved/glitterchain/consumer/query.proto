@@ -4,11 +4,10 @@ package blockved.glitterchain.consumer;
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "blockved/glitterchain/consumer/consumer.proto";
-// this line is used by starport scaffolding # 1
+import "cosmos/base/query/v1beta1/pagination.proto";
 
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types";
 
-// Query defines the gRPC querier service.
 service Query {
 
 
@@ -22,6 +21,14 @@ service Query {
 
   rpc QueryConsumers(QueryConsumersRequest) returns (QueryConsumersResponse) {
     option (google.api.http).get = "/blockved/glitterchain/consumers";
+  }
+
+  rpc QueryReleasingCPDT(QueryReleasingCPDTRequest) returns (QueryReleasingCPDTResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/consumer/releasingCPDT/{consumer_address}";
+  }
+
+  rpc QueryReleasingCPDTs(QueryReleasingCPDTsRequest) returns (QueryReleasingCPDTsResponse) {
+    option (google.api.http).get = "/blockved/glitterchain/consumer/releasingCPDTs";
   }
 
 
@@ -43,9 +50,30 @@ message QueryConsumerResponse{
 
 
 message QueryConsumersRequest{
-  string address = 1;
+  string consumer_address = 1;
 }
 
 message QueryConsumersResponse{
   repeated  Consumer consumer = 1;
+}
+
+message QueryReleasingCPDTRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  string consumer_address = 1;
+}
+
+message QueryReleasingCPDTResponse{
+  repeated ReleasingCPDT releasingCPDTs = 1  [(gogoproto.nullable) = false];
+}
+
+message QueryReleasingCPDTsRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryReleasingCPDTsResponse{
+  repeated ReleasingCPDT releasingCPDTs = 1  [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
