@@ -201,22 +201,22 @@ func (m *QueryDatesetResponse) GetDateset() *Dataset {
 	return nil
 }
 
-type QueryDatasetExpirationRequest struct {
+type QueryDatasetExpirationsRequest struct {
 	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryDatasetExpirationRequest) Reset()         { *m = QueryDatasetExpirationRequest{} }
-func (m *QueryDatasetExpirationRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryDatasetExpirationRequest) ProtoMessage()    {}
-func (*QueryDatasetExpirationRequest) Descriptor() ([]byte, []int) {
+func (m *QueryDatasetExpirationsRequest) Reset()         { *m = QueryDatasetExpirationsRequest{} }
+func (m *QueryDatasetExpirationsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryDatasetExpirationsRequest) ProtoMessage()    {}
+func (*QueryDatasetExpirationsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca9e41ba7f204b1d, []int{4}
 }
-func (m *QueryDatasetExpirationRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryDatasetExpirationsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryDatasetExpirationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryDatasetExpirationsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryDatasetExpirationRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryDatasetExpirationsRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -226,35 +226,35 @@ func (m *QueryDatasetExpirationRequest) XXX_Marshal(b []byte, deterministic bool
 		return b[:n], nil
 	}
 }
-func (m *QueryDatasetExpirationRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryDatasetExpirationRequest.Merge(m, src)
+func (m *QueryDatasetExpirationsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryDatasetExpirationsRequest.Merge(m, src)
 }
-func (m *QueryDatasetExpirationRequest) XXX_Size() int {
+func (m *QueryDatasetExpirationsRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryDatasetExpirationRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryDatasetExpirationRequest.DiscardUnknown(m)
+func (m *QueryDatasetExpirationsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryDatasetExpirationsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryDatasetExpirationRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryDatasetExpirationsRequest proto.InternalMessageInfo
 
-type QueryDatasetExpirationResponse struct {
+type QueryDatasetExpirationsResponse struct {
 	Datasets   []DatasetExpiration `protobuf:"bytes,1,rep,name=datasets,proto3" json:"datasets"`
 	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryDatasetExpirationResponse) Reset()         { *m = QueryDatasetExpirationResponse{} }
-func (m *QueryDatasetExpirationResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryDatasetExpirationResponse) ProtoMessage()    {}
-func (*QueryDatasetExpirationResponse) Descriptor() ([]byte, []int) {
+func (m *QueryDatasetExpirationsResponse) Reset()         { *m = QueryDatasetExpirationsResponse{} }
+func (m *QueryDatasetExpirationsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryDatasetExpirationsResponse) ProtoMessage()    {}
+func (*QueryDatasetExpirationsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca9e41ba7f204b1d, []int{5}
 }
-func (m *QueryDatasetExpirationResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryDatasetExpirationsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryDatasetExpirationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryDatasetExpirationsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryDatasetExpirationResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryDatasetExpirationsResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -264,26 +264,286 @@ func (m *QueryDatasetExpirationResponse) XXX_Marshal(b []byte, deterministic boo
 		return b[:n], nil
 	}
 }
-func (m *QueryDatasetExpirationResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryDatasetExpirationResponse.Merge(m, src)
+func (m *QueryDatasetExpirationsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryDatasetExpirationsResponse.Merge(m, src)
 }
-func (m *QueryDatasetExpirationResponse) XXX_Size() int {
+func (m *QueryDatasetExpirationsResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryDatasetExpirationResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryDatasetExpirationResponse.DiscardUnknown(m)
+func (m *QueryDatasetExpirationsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryDatasetExpirationsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryDatasetExpirationResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryDatasetExpirationsResponse proto.InternalMessageInfo
 
-func (m *QueryDatasetExpirationResponse) GetDatasets() []DatasetExpiration {
+func (m *QueryDatasetExpirationsResponse) GetDatasets() []DatasetExpiration {
 	if m != nil {
 		return m.Datasets
 	}
 	return nil
 }
 
-func (m *QueryDatasetExpirationResponse) GetPagination() *query.PageResponse {
+func (m *QueryDatasetExpirationsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryDatesetsRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryDatesetsRequest) Reset()         { *m = QueryDatesetsRequest{} }
+func (m *QueryDatesetsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryDatesetsRequest) ProtoMessage()    {}
+func (*QueryDatesetsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca9e41ba7f204b1d, []int{6}
+}
+func (m *QueryDatesetsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryDatesetsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryDatesetsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryDatesetsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryDatesetsRequest.Merge(m, src)
+}
+func (m *QueryDatesetsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryDatesetsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryDatesetsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryDatesetsRequest proto.InternalMessageInfo
+
+type QueryDatesetsResponse struct {
+	Datasets   []Dataset           `protobuf:"bytes,1,rep,name=datasets,proto3" json:"datasets"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryDatesetsResponse) Reset()         { *m = QueryDatesetsResponse{} }
+func (m *QueryDatesetsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryDatesetsResponse) ProtoMessage()    {}
+func (*QueryDatesetsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca9e41ba7f204b1d, []int{7}
+}
+func (m *QueryDatesetsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryDatesetsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryDatesetsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryDatesetsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryDatesetsResponse.Merge(m, src)
+}
+func (m *QueryDatesetsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryDatesetsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryDatesetsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryDatesetsResponse proto.InternalMessageInfo
+
+func (m *QueryDatesetsResponse) GetDatasets() []Dataset {
+	if m != nil {
+		return m.Datasets
+	}
+	return nil
+}
+
+func (m *QueryDatesetsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryCPDTRequest struct {
+	DatasetName string             `protobuf:"bytes,1,opt,name=dataset_name,json=datasetName,proto3" json:"dataset_name,omitempty"`
+	Pagination  *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryCPDTRequest) Reset()         { *m = QueryCPDTRequest{} }
+func (m *QueryCPDTRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryCPDTRequest) ProtoMessage()    {}
+func (*QueryCPDTRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca9e41ba7f204b1d, []int{8}
+}
+func (m *QueryCPDTRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryCPDTRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryCPDTRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryCPDTRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryCPDTRequest.Merge(m, src)
+}
+func (m *QueryCPDTRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryCPDTRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryCPDTRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryCPDTRequest proto.InternalMessageInfo
+
+type QueryCPDTResponse struct {
+	CPDTs []CPDT `protobuf:"bytes,1,rep,name=CPDTs,proto3" json:"CPDTs"`
+}
+
+func (m *QueryCPDTResponse) Reset()         { *m = QueryCPDTResponse{} }
+func (m *QueryCPDTResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryCPDTResponse) ProtoMessage()    {}
+func (*QueryCPDTResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca9e41ba7f204b1d, []int{9}
+}
+func (m *QueryCPDTResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryCPDTResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryCPDTResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryCPDTResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryCPDTResponse.Merge(m, src)
+}
+func (m *QueryCPDTResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryCPDTResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryCPDTResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryCPDTResponse proto.InternalMessageInfo
+
+func (m *QueryCPDTResponse) GetCPDTs() []CPDT {
+	if m != nil {
+		return m.CPDTs
+	}
+	return nil
+}
+
+type QueryCPDTsRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryCPDTsRequest) Reset()         { *m = QueryCPDTsRequest{} }
+func (m *QueryCPDTsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryCPDTsRequest) ProtoMessage()    {}
+func (*QueryCPDTsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca9e41ba7f204b1d, []int{10}
+}
+func (m *QueryCPDTsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryCPDTsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryCPDTsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryCPDTsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryCPDTsRequest.Merge(m, src)
+}
+func (m *QueryCPDTsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryCPDTsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryCPDTsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryCPDTsRequest proto.InternalMessageInfo
+
+type QueryCPDTsResponse struct {
+	CPDTs      []CPDT              `protobuf:"bytes,1,rep,name=CPDTs,proto3" json:"CPDTs"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryCPDTsResponse) Reset()         { *m = QueryCPDTsResponse{} }
+func (m *QueryCPDTsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryCPDTsResponse) ProtoMessage()    {}
+func (*QueryCPDTsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ca9e41ba7f204b1d, []int{11}
+}
+func (m *QueryCPDTsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryCPDTsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryCPDTsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryCPDTsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryCPDTsResponse.Merge(m, src)
+}
+func (m *QueryCPDTsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryCPDTsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryCPDTsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryCPDTsResponse proto.InternalMessageInfo
+
+func (m *QueryCPDTsResponse) GetCPDTs() []CPDT {
+	if m != nil {
+		return m.CPDTs
+	}
+	return nil
+}
+
+func (m *QueryCPDTsResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
@@ -295,8 +555,14 @@ func init() {
 	proto.RegisterType((*QueryParamsResponse)(nil), "blockved.glitterchain.index.QueryParamsResponse")
 	proto.RegisterType((*QueryDatesetRequest)(nil), "blockved.glitterchain.index.QueryDatesetRequest")
 	proto.RegisterType((*QueryDatesetResponse)(nil), "blockved.glitterchain.index.QueryDatesetResponse")
-	proto.RegisterType((*QueryDatasetExpirationRequest)(nil), "blockved.glitterchain.index.QueryDatasetExpirationRequest")
-	proto.RegisterType((*QueryDatasetExpirationResponse)(nil), "blockved.glitterchain.index.QueryDatasetExpirationResponse")
+	proto.RegisterType((*QueryDatasetExpirationsRequest)(nil), "blockved.glitterchain.index.QueryDatasetExpirationsRequest")
+	proto.RegisterType((*QueryDatasetExpirationsResponse)(nil), "blockved.glitterchain.index.QueryDatasetExpirationsResponse")
+	proto.RegisterType((*QueryDatesetsRequest)(nil), "blockved.glitterchain.index.QueryDatesetsRequest")
+	proto.RegisterType((*QueryDatesetsResponse)(nil), "blockved.glitterchain.index.QueryDatesetsResponse")
+	proto.RegisterType((*QueryCPDTRequest)(nil), "blockved.glitterchain.index.QueryCPDTRequest")
+	proto.RegisterType((*QueryCPDTResponse)(nil), "blockved.glitterchain.index.QueryCPDTResponse")
+	proto.RegisterType((*QueryCPDTsRequest)(nil), "blockved.glitterchain.index.QueryCPDTsRequest")
+	proto.RegisterType((*QueryCPDTsResponse)(nil), "blockved.glitterchain.index.QueryCPDTsResponse")
 }
 
 func init() {
@@ -304,43 +570,54 @@ func init() {
 }
 
 var fileDescriptor_ca9e41ba7f204b1d = []byte{
-	// 569 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x54, 0x41, 0x6b, 0x13, 0x41,
-	0x18, 0xdd, 0xad, 0xb5, 0xd6, 0x49, 0x4f, 0x63, 0x10, 0x89, 0xba, 0xd1, 0xad, 0xda, 0xa8, 0x38,
-	0xd3, 0xa4, 0x28, 0xd2, 0x82, 0xa0, 0x54, 0xbd, 0x49, 0x8c, 0x20, 0xe2, 0xa5, 0x4c, 0xb2, 0x1f,
-	0xdb, 0xa5, 0xd9, 0x9d, 0xcd, 0xce, 0xa4, 0xb6, 0x88, 0x17, 0x4f, 0x1e, 0x05, 0x2f, 0x1e, 0xeb,
-	0x3f, 0xf0, 0xee, 0x1f, 0xa8, 0xb7, 0x82, 0x17, 0x4f, 0x22, 0x89, 0x07, 0x7f, 0x86, 0xec, 0xcc,
-	0xac, 0xd9, 0x60, 0xdd, 0xae, 0x5e, 0x42, 0x98, 0x79, 0xef, 0xfb, 0xde, 0x7b, 0x79, 0x13, 0xb4,
-	0xd4, 0xed, 0xf3, 0xde, 0xd6, 0x36, 0x78, 0xd4, 0xef, 0x07, 0x52, 0x42, 0xd2, 0xdb, 0x64, 0x41,
-	0x44, 0x83, 0xc8, 0x83, 0x1d, 0x3a, 0x18, 0x42, 0xb2, 0x4b, 0xe2, 0x84, 0x4b, 0x8e, 0xcf, 0x66,
-	0x40, 0x92, 0x07, 0x12, 0x05, 0xac, 0x55, 0x7d, 0xee, 0x73, 0x85, 0xa3, 0xe9, 0x37, 0x4d, 0xa9,
-	0x9d, 0xf3, 0x39, 0xf7, 0xfb, 0x40, 0x59, 0x1c, 0x50, 0x16, 0x45, 0x5c, 0x32, 0x19, 0xf0, 0x48,
-	0x98, 0xdb, 0x46, 0xd1, 0xe6, 0x98, 0x25, 0x2c, 0xcc, 0x90, 0x85, 0x1a, 0xd5, 0xa7, 0x01, 0x5e,
-	0x2d, 0x02, 0x7a, 0x4c, 0x32, 0x01, 0xd2, 0x40, 0xaf, 0xf5, 0xb8, 0x08, 0xb9, 0xa0, 0x5d, 0x26,
-	0x40, 0xfb, 0xa4, 0xdb, 0xcd, 0x2e, 0x48, 0xd6, 0xa4, 0x31, 0xf3, 0x83, 0x48, 0x49, 0xd5, 0x58,
-	0xb7, 0x8a, 0xf0, 0xe3, 0x14, 0xd1, 0x56, 0xa2, 0x3a, 0x30, 0x18, 0x82, 0x90, 0xee, 0x33, 0x74,
-	0x6a, 0xea, 0x54, 0xc4, 0x3c, 0x12, 0x80, 0xef, 0xa2, 0x39, 0x2d, 0xfe, 0x8c, 0x7d, 0xc1, 0x6e,
-	0x54, 0x5a, 0x8b, 0xa4, 0x20, 0x38, 0xa2, 0xc9, 0xf7, 0x66, 0xf7, 0xbf, 0xd5, 0xad, 0x8e, 0x21,
-	0xba, 0xb7, 0xcd, 0xe4, 0x75, 0x26, 0x41, 0x80, 0x34, 0x0b, 0xf1, 0x45, 0xb4, 0x60, 0x3c, 0x6c,
-	0x44, 0x2c, 0x04, 0x35, 0xff, 0x64, 0xa7, 0x62, 0xce, 0x1e, 0xb1, 0x10, 0xdc, 0xa7, 0xa8, 0x3a,
-	0xcd, 0x34, 0xa2, 0xee, 0xa0, 0x13, 0x9e, 0x3e, 0x32, 0xaa, 0x2e, 0x15, 0xaa, 0x5a, 0xd7, 0x23,
-	0x3b, 0x19, 0xc9, 0x1d, 0xa0, 0xf3, 0xd9, 0xdc, 0xf4, 0xe2, 0xfe, 0x4e, 0x1c, 0x24, 0x2a, 0xa1,
-	0x4c, 0xdb, 0x03, 0x84, 0x26, 0xb1, 0x99, 0x1d, 0x57, 0x88, 0xce, 0x98, 0xa4, 0x19, 0x13, 0xdd,
-	0x25, 0x93, 0x31, 0x69, 0x33, 0x1f, 0x0c, 0xb7, 0x93, 0x63, 0xae, 0xce, 0xbf, 0xd9, 0xab, 0x5b,
-	0x3f, 0xf7, 0xea, 0x96, 0xfb, 0xc9, 0x46, 0xce, 0xdf, 0x76, 0x1a, 0x57, 0x6d, 0x34, 0x6f, 0xcc,
-	0xa7, 0x61, 0x1f, 0x6b, 0x54, 0x5a, 0xa4, 0x8c, 0xad, 0xc9, 0x24, 0x93, 0xfb, 0xef, 0x29, 0xf8,
-	0xe1, 0x94, 0x8d, 0x19, 0x65, 0x63, 0xe9, 0x48, 0x1b, 0x5a, 0x4e, 0xde, 0x47, 0xeb, 0xc3, 0x2c,
-	0x3a, 0xae, 0xd4, 0xe3, 0xf7, 0x36, 0x9a, 0xd3, 0xbf, 0x32, 0xa6, 0x85, 0xea, 0xfe, 0xac, 0x58,
-	0x6d, 0xb9, 0x3c, 0x41, 0x6b, 0x70, 0xaf, 0xbf, 0xfe, 0xf2, 0xe3, 0xdd, 0xcc, 0x65, 0xbc, 0x48,
-	0x8f, 0x7e, 0x5d, 0xf8, 0xa3, 0x8d, 0x16, 0xf2, 0x75, 0xc1, 0x25, 0xf6, 0x4d, 0x77, 0xb2, 0xd6,
-	0xfc, 0x07, 0x86, 0x91, 0xb8, 0xa6, 0x24, 0xde, 0xc4, 0x2b, 0xb4, 0xc4, 0x6b, 0xa5, 0x2f, 0xf3,
-	0x95, 0x7f, 0x85, 0x3f, 0xdb, 0xe8, 0xf4, 0xe1, 0xad, 0xc0, 0xab, 0xa5, 0xa4, 0x1c, 0x5a, 0xdf,
-	0xda, 0xda, 0x7f, 0x71, 0x8d, 0xa1, 0x5b, 0xca, 0xd0, 0x32, 0x26, 0x65, 0x0c, 0xc1, 0xa4, 0x7c,
-	0xe1, 0xfe, 0xc8, 0xb1, 0x0f, 0x46, 0x8e, 0xfd, 0x7d, 0xe4, 0xd8, 0x6f, 0xc7, 0x8e, 0x75, 0x30,
-	0x76, 0xac, 0xaf, 0x63, 0xc7, 0x7a, 0xfe, 0xc4, 0x0f, 0xe4, 0xe6, 0xb0, 0x4b, 0x7a, 0x3c, 0xcc,
-	0x46, 0x45, 0x20, 0x5f, 0xf0, 0x64, 0x8b, 0xaa, 0x91, 0x37, 0x3c, 0x88, 0xb3, 0x8b, 0x0d, 0xfd,
-	0xb7, 0x5b, 0xb4, 0x5a, 0xee, 0xc6, 0x20, 0xba, 0x73, 0x0a, 0xb8, 0xf2, 0x2b, 0x00, 0x00, 0xff,
-	0xff, 0x77, 0x73, 0x0b, 0x8d, 0xf2, 0x05, 0x00, 0x00,
+	// 746 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x96, 0x41, 0x4f, 0x13, 0x4d,
+	0x18, 0xc7, 0x3b, 0xbc, 0x2f, 0xbc, 0x30, 0xf0, 0x26, 0x3a, 0x62, 0x34, 0xd5, 0x6c, 0x65, 0x01,
+	0x41, 0x0c, 0x3b, 0x50, 0xa2, 0x21, 0xa2, 0x26, 0x22, 0xe2, 0xcd, 0xd4, 0x6a, 0x8c, 0xf1, 0x42,
+	0xa6, 0xed, 0x64, 0xd9, 0x40, 0x77, 0x96, 0xdd, 0x01, 0x21, 0xc6, 0x8b, 0x17, 0xbd, 0x69, 0xe2,
+	0x45, 0x13, 0x0f, 0x1c, 0x34, 0xf1, 0xe8, 0x07, 0xf0, 0x03, 0x70, 0xf0, 0x40, 0xe2, 0xc5, 0x93,
+	0x31, 0xe0, 0xc1, 0x8f, 0x61, 0x76, 0xe6, 0xd9, 0xb2, 0x05, 0xd9, 0x0e, 0x06, 0x2e, 0x4d, 0xbb,
+	0xfb, 0xff, 0x3f, 0xcf, 0xef, 0xf9, 0xcf, 0xce, 0x6c, 0xf1, 0x50, 0x65, 0x51, 0x54, 0x17, 0x56,
+	0x78, 0x8d, 0xba, 0x8b, 0x9e, 0x94, 0x3c, 0xac, 0xce, 0x33, 0xcf, 0xa7, 0x9e, 0x5f, 0xe3, 0xab,
+	0x74, 0x69, 0x99, 0x87, 0x6b, 0x4e, 0x10, 0x0a, 0x29, 0xc8, 0x99, 0x44, 0xe8, 0xa4, 0x85, 0x8e,
+	0x12, 0xe6, 0x7b, 0x5d, 0xe1, 0x0a, 0xa5, 0xa3, 0xf1, 0x37, 0x6d, 0xc9, 0x9f, 0x75, 0x85, 0x70,
+	0x17, 0x39, 0x65, 0x81, 0x47, 0x99, 0xef, 0x0b, 0xc9, 0xa4, 0x27, 0xfc, 0x08, 0xee, 0x0e, 0x67,
+	0x75, 0x0e, 0x58, 0xc8, 0xea, 0x89, 0x32, 0x93, 0x51, 0x7d, 0x82, 0xf0, 0x42, 0x96, 0xb0, 0xc6,
+	0x24, 0x8b, 0xb8, 0x04, 0xe9, 0x48, 0x55, 0x44, 0x75, 0x11, 0xd1, 0x0a, 0x8b, 0xb8, 0x9e, 0x93,
+	0xae, 0x8c, 0x57, 0xb8, 0x64, 0xe3, 0x34, 0x60, 0xae, 0xe7, 0x2b, 0x54, 0xad, 0xb5, 0x7b, 0x31,
+	0xb9, 0x1b, 0x2b, 0x4a, 0x0a, 0xaa, 0xcc, 0x97, 0x96, 0x79, 0x24, 0xed, 0x87, 0xf8, 0x44, 0xd3,
+	0xd5, 0x28, 0x10, 0x7e, 0xc4, 0xc9, 0x0d, 0xdc, 0xa1, 0xe1, 0x4f, 0xa3, 0x73, 0x68, 0xb8, 0xbb,
+	0xd8, 0xef, 0x64, 0x04, 0xe7, 0x68, 0xf3, 0xf4, 0xbf, 0x1b, 0xdf, 0x0b, 0xb9, 0x32, 0x18, 0xed,
+	0x49, 0xa8, 0x3c, 0xc3, 0x24, 0x8f, 0xb8, 0x84, 0x86, 0xa4, 0x0f, 0xf7, 0xc0, 0x0c, 0x73, 0x3e,
+	0xab, 0x73, 0x55, 0xbf, 0xab, 0xdc, 0x0d, 0xd7, 0xee, 0xb0, 0x3a, 0xb7, 0x1f, 0xe0, 0xde, 0x66,
+	0x27, 0x40, 0x5d, 0xc7, 0xff, 0xd5, 0xf4, 0x25, 0xa0, 0x1a, 0xc8, 0xa4, 0x9a, 0xd1, 0x25, 0xcb,
+	0x89, 0xc9, 0x0e, 0xb1, 0x95, 0xd4, 0x8d, 0x6f, 0xdc, 0x5a, 0x0d, 0xbc, 0x50, 0x2f, 0x66, 0x02,
+	0x37, 0x8b, 0xf1, 0x4e, 0x6e, 0xd0, 0xe4, 0xbc, 0xa3, 0x43, 0x76, 0xe2, 0x90, 0x1d, 0xfd, 0x30,
+	0x41, 0xc8, 0x4e, 0x89, 0xb9, 0x1c, 0xbc, 0xe5, 0x94, 0xf3, 0x4a, 0xe7, 0x8b, 0xf5, 0x42, 0xee,
+	0xd7, 0x7a, 0x21, 0x67, 0x7f, 0x46, 0xb8, 0xb0, 0x6f, 0x53, 0x98, 0xab, 0x84, 0x3b, 0x61, 0xfc,
+	0x38, 0xee, 0x7f, 0x86, 0xbb, 0x8b, 0x8e, 0xc9, 0x60, 0x3b, 0xa5, 0x20, 0xf9, 0x46, 0x15, 0x72,
+	0xbb, 0x69, 0x8e, 0x36, 0x35, 0xc7, 0x50, 0xcb, 0x39, 0x34, 0x4e, 0x7a, 0x10, 0x7b, 0xbe, 0x79,
+	0x29, 0x8e, 0x30, 0xa8, 0x8f, 0x08, 0x9f, 0xdc, 0xd5, 0x0a, 0xe2, 0x99, 0xdd, 0x13, 0x8f, 0xd1,
+	0xba, 0x1f, 0x5d, 0x28, 0xcf, 0x11, 0x3e, 0xa6, 0x50, 0x6f, 0x96, 0x66, 0xee, 0x9b, 0x3f, 0xd7,
+	0xbb, 0x42, 0x6b, 0x3b, 0x84, 0xd0, 0xca, 0xf8, 0x78, 0x0a, 0x04, 0xf2, 0xba, 0x86, 0xdb, 0xe3,
+	0xdf, 0x49, 0x58, 0x7d, 0x99, 0x61, 0xc5, 0x4a, 0x48, 0x4a, 0xbb, 0x6c, 0x9e, 0xaa, 0x79, 0x84,
+	0xeb, 0xfd, 0x0e, 0xc1, 0x79, 0x04, 0x7d, 0x0e, 0x05, 0xfe, 0xd0, 0xd6, 0xb8, 0xf8, 0xb2, 0x13,
+	0xb7, 0x2b, 0x3c, 0xf2, 0x06, 0xe1, 0x0e, 0x7d, 0xc0, 0x11, 0x9a, 0x49, 0xb3, 0xf7, 0x74, 0xcd,
+	0x8f, 0x99, 0x1b, 0x34, 0x83, 0x7d, 0xf1, 0xd9, 0xd7, 0x9f, 0xaf, 0xdb, 0x06, 0x49, 0x3f, 0x6d,
+	0xfd, 0x62, 0x21, 0x9f, 0x10, 0xee, 0x49, 0xef, 0x19, 0x62, 0xd0, 0xaf, 0xf9, 0x38, 0xce, 0x8f,
+	0x1f, 0xc0, 0x01, 0x88, 0x53, 0x0a, 0xf1, 0x12, 0x99, 0xa0, 0x06, 0x2f, 0x2a, 0xfa, 0x24, 0xbd,
+	0x2b, 0x9e, 0x92, 0x0f, 0x08, 0xff, 0xdf, 0xb4, 0xcd, 0x89, 0x39, 0x41, 0x23, 0xd6, 0xe2, 0x41,
+	0x2c, 0x40, 0x3d, 0xaa, 0xa8, 0x87, 0xc8, 0xa0, 0x09, 0x75, 0x44, 0xbe, 0x20, 0x7c, 0x6a, 0x9f,
+	0x73, 0x9b, 0x4c, 0x19, 0xb5, 0xff, 0xf3, 0x2b, 0x26, 0x7f, 0xf5, 0xef, 0xcc, 0x30, 0xc5, 0x65,
+	0x35, 0xc5, 0x18, 0x71, 0x4c, 0xa6, 0xe0, 0x8d, 0x02, 0xe4, 0x3d, 0xc2, 0x5d, 0x8d, 0xdd, 0x46,
+	0x46, 0x5b, 0x33, 0xa4, 0x8e, 0xb6, 0xbc, 0x63, 0x2a, 0x07, 0xc8, 0x49, 0x05, 0x59, 0x24, 0x63,
+	0x99, 0x90, 0xd5, 0xa0, 0xb6, 0xe7, 0xe9, 0x78, 0x8b, 0x30, 0xde, 0x39, 0x14, 0x88, 0x61, 0xe3,
+	0x46, 0xb6, 0xd4, 0x58, 0x0f, 0xa4, 0x23, 0x8a, 0x74, 0x80, 0xd8, 0x2d, 0x49, 0xa3, 0xe9, 0xfa,
+	0xc6, 0x96, 0x85, 0x36, 0xb7, 0x2c, 0xf4, 0x63, 0xcb, 0x42, 0xaf, 0xb6, 0xad, 0xdc, 0xe6, 0xb6,
+	0x95, 0xfb, 0xb6, 0x6d, 0xe5, 0x1e, 0xdd, 0x73, 0x3d, 0x39, 0xbf, 0x5c, 0x71, 0xaa, 0xa2, 0x9e,
+	0xd8, 0x7d, 0x2e, 0x1f, 0x8b, 0x70, 0x81, 0xaa, 0x32, 0xa3, 0x35, 0x1e, 0x24, 0x37, 0xe6, 0xf4,
+	0xff, 0xcb, 0xac, 0x76, 0x72, 0x2d, 0xe0, 0x51, 0xa5, 0x43, 0x09, 0x27, 0x7e, 0x07, 0x00, 0x00,
+	0xff, 0xff, 0xe3, 0x9c, 0x4e, 0x2d, 0xdb, 0x0a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -359,7 +636,10 @@ type QueryClient interface {
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Parameters queries the parameters of the module.
 	QueryDateset(ctx context.Context, in *QueryDatesetRequest, opts ...grpc.CallOption) (*QueryDatesetResponse, error)
-	QueryDatasetExpiration(ctx context.Context, in *QueryDatasetExpirationRequest, opts ...grpc.CallOption) (*QueryDatasetExpirationResponse, error)
+	QueryDatesets(ctx context.Context, in *QueryDatesetsRequest, opts ...grpc.CallOption) (*QueryDatesetsResponse, error)
+	QueryDatasetExpirations(ctx context.Context, in *QueryDatasetExpirationsRequest, opts ...grpc.CallOption) (*QueryDatasetExpirationsResponse, error)
+	QueryCPDT(ctx context.Context, in *QueryCPDTRequest, opts ...grpc.CallOption) (*QueryCPDTResponse, error)
+	QueryCPDTs(ctx context.Context, in *QueryCPDTsRequest, opts ...grpc.CallOption) (*QueryCPDTsResponse, error)
 }
 
 type queryClient struct {
@@ -388,9 +668,36 @@ func (c *queryClient) QueryDateset(ctx context.Context, in *QueryDatesetRequest,
 	return out, nil
 }
 
-func (c *queryClient) QueryDatasetExpiration(ctx context.Context, in *QueryDatasetExpirationRequest, opts ...grpc.CallOption) (*QueryDatasetExpirationResponse, error) {
-	out := new(QueryDatasetExpirationResponse)
-	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Query/QueryDatasetExpiration", in, out, opts...)
+func (c *queryClient) QueryDatesets(ctx context.Context, in *QueryDatesetsRequest, opts ...grpc.CallOption) (*QueryDatesetsResponse, error) {
+	out := new(QueryDatesetsResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Query/QueryDatesets", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) QueryDatasetExpirations(ctx context.Context, in *QueryDatasetExpirationsRequest, opts ...grpc.CallOption) (*QueryDatasetExpirationsResponse, error) {
+	out := new(QueryDatasetExpirationsResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Query/QueryDatasetExpirations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) QueryCPDT(ctx context.Context, in *QueryCPDTRequest, opts ...grpc.CallOption) (*QueryCPDTResponse, error) {
+	out := new(QueryCPDTResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Query/QueryCPDT", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) QueryCPDTs(ctx context.Context, in *QueryCPDTsRequest, opts ...grpc.CallOption) (*QueryCPDTsResponse, error) {
+	out := new(QueryCPDTsResponse)
+	err := c.cc.Invoke(ctx, "/blockved.glitterchain.index.Query/QueryCPDTs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -403,7 +710,10 @@ type QueryServer interface {
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Parameters queries the parameters of the module.
 	QueryDateset(context.Context, *QueryDatesetRequest) (*QueryDatesetResponse, error)
-	QueryDatasetExpiration(context.Context, *QueryDatasetExpirationRequest) (*QueryDatasetExpirationResponse, error)
+	QueryDatesets(context.Context, *QueryDatesetsRequest) (*QueryDatesetsResponse, error)
+	QueryDatasetExpirations(context.Context, *QueryDatasetExpirationsRequest) (*QueryDatasetExpirationsResponse, error)
+	QueryCPDT(context.Context, *QueryCPDTRequest) (*QueryCPDTResponse, error)
+	QueryCPDTs(context.Context, *QueryCPDTsRequest) (*QueryCPDTsResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -416,8 +726,17 @@ func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsReq
 func (*UnimplementedQueryServer) QueryDateset(ctx context.Context, req *QueryDatesetRequest) (*QueryDatesetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryDateset not implemented")
 }
-func (*UnimplementedQueryServer) QueryDatasetExpiration(ctx context.Context, req *QueryDatasetExpirationRequest) (*QueryDatasetExpirationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryDatasetExpiration not implemented")
+func (*UnimplementedQueryServer) QueryDatesets(ctx context.Context, req *QueryDatesetsRequest) (*QueryDatesetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryDatesets not implemented")
+}
+func (*UnimplementedQueryServer) QueryDatasetExpirations(ctx context.Context, req *QueryDatasetExpirationsRequest) (*QueryDatasetExpirationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryDatasetExpirations not implemented")
+}
+func (*UnimplementedQueryServer) QueryCPDT(ctx context.Context, req *QueryCPDTRequest) (*QueryCPDTResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryCPDT not implemented")
+}
+func (*UnimplementedQueryServer) QueryCPDTs(ctx context.Context, req *QueryCPDTsRequest) (*QueryCPDTsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryCPDTs not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -460,20 +779,74 @@ func _Query_QueryDateset_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_QueryDatasetExpiration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryDatasetExpirationRequest)
+func _Query_QueryDatesets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryDatesetsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).QueryDatasetExpiration(ctx, in)
+		return srv.(QueryServer).QueryDatesets(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/blockved.glitterchain.index.Query/QueryDatasetExpiration",
+		FullMethod: "/blockved.glitterchain.index.Query/QueryDatesets",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).QueryDatasetExpiration(ctx, req.(*QueryDatasetExpirationRequest))
+		return srv.(QueryServer).QueryDatesets(ctx, req.(*QueryDatesetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_QueryDatasetExpirations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryDatasetExpirationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).QueryDatasetExpirations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockved.glitterchain.index.Query/QueryDatasetExpirations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).QueryDatasetExpirations(ctx, req.(*QueryDatasetExpirationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_QueryCPDT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryCPDTRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).QueryCPDT(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockved.glitterchain.index.Query/QueryCPDT",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).QueryCPDT(ctx, req.(*QueryCPDTRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_QueryCPDTs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryCPDTsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).QueryCPDTs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/blockved.glitterchain.index.Query/QueryCPDTs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).QueryCPDTs(ctx, req.(*QueryCPDTsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -491,8 +864,20 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_QueryDateset_Handler,
 		},
 		{
-			MethodName: "QueryDatasetExpiration",
-			Handler:    _Query_QueryDatasetExpiration_Handler,
+			MethodName: "QueryDatesets",
+			Handler:    _Query_QueryDatesets_Handler,
+		},
+		{
+			MethodName: "QueryDatasetExpirations",
+			Handler:    _Query_QueryDatasetExpirations_Handler,
+		},
+		{
+			MethodName: "QueryCPDT",
+			Handler:    _Query_QueryCPDT_Handler,
+		},
+		{
+			MethodName: "QueryCPDTs",
+			Handler:    _Query_QueryCPDTs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -620,7 +1005,7 @@ func (m *QueryDatesetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryDatasetExpirationRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryDatasetExpirationsRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -630,12 +1015,12 @@ func (m *QueryDatasetExpirationRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryDatasetExpirationRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryDatasetExpirationsRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryDatasetExpirationRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryDatasetExpirationsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -655,7 +1040,7 @@ func (m *QueryDatasetExpirationRequest) MarshalToSizedBuffer(dAtA []byte) (int, 
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryDatasetExpirationResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryDatasetExpirationsResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -665,12 +1050,12 @@ func (m *QueryDatasetExpirationResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryDatasetExpirationResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryDatasetExpirationsResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryDatasetExpirationResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryDatasetExpirationsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -691,6 +1076,253 @@ func (m *QueryDatasetExpirationResponse) MarshalToSizedBuffer(dAtA []byte) (int,
 		for iNdEx := len(m.Datasets) - 1; iNdEx >= 0; iNdEx-- {
 			{
 				size, err := m.Datasets[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryDatesetsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryDatesetsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryDatesetsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryDatesetsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryDatesetsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryDatesetsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Datasets) > 0 {
+		for iNdEx := len(m.Datasets) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Datasets[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryCPDTRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryCPDTRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryCPDTRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.DatasetName) > 0 {
+		i -= len(m.DatasetName)
+		copy(dAtA[i:], m.DatasetName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DatasetName)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryCPDTResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryCPDTResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryCPDTResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.CPDTs) > 0 {
+		for iNdEx := len(m.CPDTs) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.CPDTs[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryCPDTsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryCPDTsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryCPDTsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryCPDTsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryCPDTsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryCPDTsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.CPDTs) > 0 {
+		for iNdEx := len(m.CPDTs) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.CPDTs[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -761,7 +1393,7 @@ func (m *QueryDatesetResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryDatasetExpirationRequest) Size() (n int) {
+func (m *QueryDatasetExpirationsRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -774,7 +1406,7 @@ func (m *QueryDatasetExpirationRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryDatasetExpirationResponse) Size() (n int) {
+func (m *QueryDatasetExpirationsResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -782,6 +1414,102 @@ func (m *QueryDatasetExpirationResponse) Size() (n int) {
 	_ = l
 	if len(m.Datasets) > 0 {
 		for _, e := range m.Datasets {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryDatesetsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryDatesetsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Datasets) > 0 {
+		for _, e := range m.Datasets {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryCPDTRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.DatasetName)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryCPDTResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.CPDTs) > 0 {
+		for _, e := range m.CPDTs {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *QueryCPDTsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryCPDTsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.CPDTs) > 0 {
+		for _, e := range m.CPDTs {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -1100,7 +1828,7 @@ func (m *QueryDatesetResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryDatasetExpirationRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryDatasetExpirationsRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1123,10 +1851,10 @@ func (m *QueryDatasetExpirationRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryDatasetExpirationRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryDatasetExpirationsRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryDatasetExpirationRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryDatasetExpirationsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1186,7 +1914,7 @@ func (m *QueryDatasetExpirationRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryDatasetExpirationResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryDatasetExpirationsResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1209,10 +1937,10 @@ func (m *QueryDatasetExpirationResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryDatasetExpirationResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryDatasetExpirationsResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryDatasetExpirationResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryDatasetExpirationsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1246,6 +1974,620 @@ func (m *QueryDatasetExpirationResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Datasets = append(m.Datasets, DatasetExpiration{})
 			if err := m.Datasets[len(m.Datasets)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryDatesetsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryDatesetsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryDatesetsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryDatesetsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryDatesetsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryDatesetsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Datasets", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Datasets = append(m.Datasets, Dataset{})
+			if err := m.Datasets[len(m.Datasets)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryCPDTRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryCPDTRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryCPDTRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DatasetName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DatasetName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryCPDTResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryCPDTResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryCPDTResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CPDTs", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CPDTs = append(m.CPDTs, CPDT{})
+			if err := m.CPDTs[len(m.CPDTs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryCPDTsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryCPDTsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryCPDTsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryCPDTsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryCPDTsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryCPDTsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CPDTs", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CPDTs = append(m.CPDTs, CPDT{})
+			if err := m.CPDTs[len(m.CPDTs)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

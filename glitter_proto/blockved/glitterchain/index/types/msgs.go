@@ -1,6 +1,7 @@
 package types
 
 import (
+	"github.com/glitternetwork/chain-dep/utils"
 	"github.com/pkg/errors"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -12,13 +13,6 @@ const (
 	TypeMsgEditDataset    = "EditDataset"
 	TypeMsgRenewalDataset = "RenewalDataset"
 )
-
-func strSholudNotEmpty(name string, s string) error {
-	if len(s) > 0 {
-		return nil
-	}
-	return errors.Errorf("%s should not empty", name)
-}
 
 var _ sdk.Msg = &EditTableRequest{}
 
@@ -39,13 +33,13 @@ func (m EditTableRequest) Type() string {
 }
 
 func (msg EditTableRequest) ValidateBasic() error {
-	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+	if err := utils.StrSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("tableName", msg.GetTableName()); err != nil {
+	if err := utils.StrSholudNotEmpty("tableName", msg.GetTableName()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
 		return err
 	}
 	return nil
@@ -95,10 +89,10 @@ func (m CreateDatasetRequest) Type() string {
 	return TypeMsgCreateDataset
 }
 func (msg CreateDatasetRequest) ValidateBasic() error {
-	if err := strSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
+	if err := utils.StrSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+	if err := utils.StrSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
 		return err
 	}
 
@@ -113,16 +107,16 @@ func (msg CreateDatasetRequest) ValidateBasic() error {
 	if !isFind {
 		return errors.New("param work status error")
 	}
-	if err := strSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
+	if err := utils.StrSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
+	if err := utils.StrSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("description", msg.GetDescription()); err != nil {
+	if err := utils.StrSholudNotEmpty("description", msg.GetDescription()); err != nil {
 		return err
 	}
 	if msg.GetDuration() <= 0 {
@@ -172,10 +166,10 @@ func (m EditDatasetRequest) Type() string {
 	return TypeMsgEditDataset
 }
 func (msg EditDatasetRequest) ValidateBasic() error {
-	if err := strSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
+	if err := utils.StrSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+	if err := utils.StrSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
 		return err
 	}
 	isFind := false
@@ -189,16 +183,16 @@ func (msg EditDatasetRequest) ValidateBasic() error {
 	if !isFind {
 		return errors.New("param work status error")
 	}
-	if err := strSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
+	if err := utils.StrSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
+	if err := utils.StrSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("description", msg.GetDescription()); err != nil {
+	if err := utils.StrSholudNotEmpty("description", msg.GetDescription()); err != nil {
 		return err
 	}
 	return nil
@@ -237,10 +231,10 @@ func (m RenewalDatasetRequest) Type() string {
 	return TypeMsgRenewalDataset
 }
 func (msg RenewalDatasetRequest) ValidateBasic() error {
-	if err := strSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
+	if err := utils.StrSholudNotEmpty("fromAddress", msg.GetFromAddress()); err != nil {
 		return err
 	}
-	if err := strSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
+	if err := utils.StrSholudNotEmpty("datasetName", msg.GetDatasetName()); err != nil {
 		return err
 	}
 	if msg.GetDuration() <= 0 {

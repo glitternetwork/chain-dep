@@ -12,7 +12,7 @@ service Msg {
 
 
 message PledgeRequest {
-  string  address = 1;
+  string  from_address = 1;
   string  dataset_name = 2;
   string  amount = 3
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
@@ -22,7 +22,7 @@ message PledgeResponse {
 }
 
 message ReleasePledgeRequest{
-  string  address = 1;
+  string  from_address = 1;
   string  dataset_name = 2;
   string  amount = 3
   [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];

@@ -9,7 +9,7 @@ const (
 	DefaultInt64FieldUnsetdata  = -999999
 )
 
-func strSholudNotEmpty(name string, s string) error {
+func StrSholudNotEmpty(name string, s string) error {
 	if len(s) > 0 {
 		return nil
 	}
