@@ -67,7 +67,7 @@ require (
 	github.com/cosmos/btcutil v1.0.4 // indirect
 	github.com/cosmos/go-bip39 v1.0.0 // indirect
 	github.com/cosmos/gorocksdb v1.2.0 // indirect
-	github.com/cosmos/iavl v0.19.3 // indirect
+	github.com/cosmos/iavl v0.19.0 // indirect
 	github.com/cosmos/ledger-cosmos-go v0.11.1 // indirect
 	github.com/cosmos/ledger-go v0.9.2 // indirect
 	github.com/danieljoos/wincred v1.0.2 // indirect
@@ -163,5 +163,3 @@ require (
 )
 
 replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-
-replace github.com/pingcap/parser => github.com/pingcap/tidb/parser v0.0.0-20220605042428-1a89decdb192
