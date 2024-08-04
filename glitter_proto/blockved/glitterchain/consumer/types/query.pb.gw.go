@@ -152,15 +152,15 @@ func request_Query_QueryReleasingCPDT_0(ctx context.Context, marshaler runtime.M
 		_   = err
 	)
 
-	val, ok = pathParams["consumer_address"]
+	val, ok = pathParams["address"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "consumer_address")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "address")
 	}
 
-	protoReq.ConsumerAddress, err = runtime.String(val)
+	protoReq.Address, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "consumer_address", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "address", err)
 	}
 
 	msg, err := client.QueryReleasingCPDT(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -179,15 +179,15 @@ func local_request_Query_QueryReleasingCPDT_0(ctx context.Context, marshaler run
 		_   = err
 	)
 
-	val, ok = pathParams["consumer_address"]
+	val, ok = pathParams["address"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "consumer_address")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "address")
 	}
 
-	protoReq.ConsumerAddress, err = runtime.String(val)
+	protoReq.Address, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "consumer_address", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "address", err)
 	}
 
 	msg, err := server.QueryReleasingCPDT(ctx, &protoReq)
@@ -499,11 +499,11 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 var (
 	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"blockved", "glitterchain", "consumer", "params"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryConsumer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 3}, []string{"blockved", "glitterchain", "consumer", "address"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryConsumer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"blockved", "glitterchain", "consumer", "consumer_address", "address"}, "", runtime.AssumeColonVerbOpt(false)))
 
 	pattern_Query_QueryConsumers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"blockved", "glitterchain", "consumers"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryReleasingCPDT_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"blockved", "glitterchain", "consumer", "releasingCPDT", "consumer_address"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryReleasingCPDT_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"blockved", "glitterchain", "consumer", "releasingCPDT", "consumer_address", "address"}, "", runtime.AssumeColonVerbOpt(false)))
 
 	pattern_Query_QueryReleasingCPDTs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"blockved", "glitterchain", "consumer", "releasingCPDTs"}, "", runtime.AssumeColonVerbOpt(false)))
 )

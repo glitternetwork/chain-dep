@@ -36,7 +36,7 @@ service Query {
   }
 
   rpc QueryCPDT(QueryCPDTRequest) returns (QueryCPDTResponse) {
-    option (google.api.http).get = "/blockved/glitterchain/index/cpdt/{dataset_name}";
+    option (google.api.http).get = "/blockved/glitterchain/index/cpdt/dataset/{dataset_name}";
   }
 
   rpc QueryCPDTs(QueryCPDTsRequest) returns (QueryCPDTsResponse) {

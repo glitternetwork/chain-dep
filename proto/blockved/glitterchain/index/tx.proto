@@ -5,7 +5,6 @@ package blockved.glitterchain.index;
 
 option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types";
 import "gogoproto/gogo.proto";
-import "common/sql_engine.proto";
 import "blockved/glitterchain/index/dataset.proto";
 import "google/protobuf/timestamp.proto";
 

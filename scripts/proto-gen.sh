@@ -18,16 +18,6 @@ mkdir -p "$OUT_DIR"
 echo "Processing glitter proto files ..."
 SRC_DIR="./proto"
 
-COMMON_DIR=${SRC_DIR}"/common"
-protoc \
-  --proto_path=${SRC_DIR} \
-  -I="third_party/proto/" \
-  --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
-  --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
-  $(find  $COMMON_DIR -path -prune -o -name '*.proto' -print0 | xargs -0)
-mkdir -p   glitter_proto/common
-cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/common/*.go glitter_proto/common
-
 
 CHAIN_DIR=${SRC_DIR}"/blockved/glitterchain/index"
 rm -rf  glitter_proto/blockved/glitterchain/index/types/*.pb.go
@@ -41,7 +31,6 @@ protoc \
 cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types/*.go  glitter_proto/blockved/glitterchain/index/types/
 
 
-
 CHAIN_DIR=${SRC_DIR}"/blockved/glitterchain/consumer"
 protoc \
   --proto_path=${SRC_DIR} \
@@ -52,25 +41,6 @@ protoc \
 cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types/*.go  glitter_proto/blockved/glitterchain/consumer/types/
 
 
-INDEXSERVER_DIR=${SRC_DIR}"/indexserver"
-protoc \
-  --proto_path=${SRC_DIR} \
-  -I="third_party/proto/" \
-  --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
-  --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
-  --openapiv2_out ./glitter_proto \
-  $(find  ${INDEXSERVER_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
-mkdir -p   glitter_proto/indexserver
-cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/indexserver/*.go glitter_proto/indexserver/
-cat << EOF > glitter_proto/indexserver/embed_swagger.go
-package indexserver
 
-import (
-	_ "embed"
-)
-
-//go:embed rpc.swagger.json
-var SwaggerJSONData string
-EOF
 
 rm -rf glitter_proto/github.com/

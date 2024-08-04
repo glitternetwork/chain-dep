@@ -96,8 +96,8 @@ func GetCmdTxCreateDataset() *cobra.Command {
 				datasetName,
 				types.ServiceStatus(workstatus),
 				hosts,
-				meta,
 				manageAddresses,
+				meta,
 				description,
 				duration,
 			)

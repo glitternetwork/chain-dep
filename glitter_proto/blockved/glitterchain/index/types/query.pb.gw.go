@@ -584,7 +584,7 @@ var (
 
 	pattern_Query_QueryDatasetExpirations_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"blockved", "glitterchain", "index", "datasetexpiration"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_QueryCPDT_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"blockved", "glitterchain", "index", "cpdt", "dataset_name"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_QueryCPDT_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"blockved", "glitterchain", "index", "cpdt", "dataset", "dataset_name"}, "", runtime.AssumeColonVerbOpt(false)))
 
 	pattern_Query_QueryCPDTs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"blockved", "glitterchain", "index", "cpdts"}, "", runtime.AssumeColonVerbOpt(false)))
 )
