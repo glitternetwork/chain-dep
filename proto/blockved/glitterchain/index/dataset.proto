@@ -17,7 +17,8 @@ enum ServiceStatus {
 message Table{
   string table_name = 1;
   string meta  = 2;
-  google.protobuf.Timestamp update_time = 3
+  string description = 3;
+  google.protobuf.Timestamp update_time = 4
   [(gogoproto.nullable) = false, (gogoproto.stdtime) = true, (gogoproto.moretags) = "yaml:\"update_time\""];
 }
 
