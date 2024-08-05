@@ -1,0 +1,21 @@
+syntax = "proto3";
+package glitterchain.index;
+
+// this line is used by starport scaffolding # genesis/proto/import
+
+//option go_package = "x/index/types;types";
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index/types";
+import "gogoproto/gogo.proto";
+import "glitterchain/index/index.proto";
+import "glitterchain/index/params.proto";
+import "glitterchain/index/dataset.proto";
+// GenesisState defines the index module's genesis state.
+message GenesisState {
+  Params params = 1[(gogoproto.nullable) = false];
+  repeated Dataset datasets = 2[(gogoproto.nullable) = false];
+  repeated CPDT    CPDTs = 3
+  [
+    (gogoproto.nullable) = false,
+    (gogoproto.customname) = "CPDTs"
+  ];
+}

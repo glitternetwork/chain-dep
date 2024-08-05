@@ -1,0 +1,109 @@
+syntax = "proto3";
+package glitterchain.index;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "glitterchain/index/params.proto";
+import "glitterchain/index/index.proto";
+import "glitterchain/index/dataset.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+
+// this line is used by starport scaffolding # 1
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index/types";
+
+// Query defines the gRPC querier service.
+service Query {
+
+
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/glitterchain/index/params";
+  }
+
+  // Parameters queries the parameters of the module.
+  rpc QueryDateset(QueryDatesetRequest) returns (QueryDatesetResponse) {
+    option (google.api.http).get = "/glitterchain/index/dataset/{dataset_name}";
+  }
+
+  rpc QueryDatesets(QueryDatesetsRequest) returns (QueryDatesetsResponse) {
+    option (google.api.http).get = "/glitterchain/index/datasets";
+  }
+
+
+  rpc QueryDatasetExpirations(QueryDatasetExpirationsRequest) returns (QueryDatasetExpirationsResponse) {
+    option (google.api.http).get = "/glitterchain/index/datasetexpiration";
+  }
+
+  rpc QueryCPDT(QueryCPDTRequest) returns (QueryCPDTResponse) {
+    option (google.api.http).get = "/glitterchain/index/cpdt/dataset/{dataset_name}";
+  }
+
+  rpc QueryCPDTs(QueryCPDTsRequest) returns (QueryCPDTsResponse) {
+    option (google.api.http).get = "/glitterchain/index/cpdts";
+  }
+
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+
+message QueryDatesetRequest{
+  string dataset_name = 1;
+}
+
+message QueryDatesetResponse{
+  Dataset dateset = 1;
+}
+
+
+message QueryDatasetExpirationsRequest {
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryDatasetExpirationsResponse {
+    repeated DatasetExpiration datasets = 1 [(gogoproto.nullable) = false];
+    cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryDatesetsRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryDatesetsResponse{
+  repeated Dataset datasets = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+
+message QueryCPDTRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  string dataset_name = 1;
+}
+
+message QueryCPDTResponse{
+  repeated CPDT CPDTs = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryCPDTsRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryCPDTsResponse{
+  repeated CPDT CPDTs = 1  [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

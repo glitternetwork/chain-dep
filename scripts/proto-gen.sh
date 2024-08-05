@@ -19,26 +19,26 @@ echo "Processing glitter proto files ..."
 SRC_DIR="./proto"
 
 
-CHAIN_DIR=${SRC_DIR}"/blockved/glitterchain/index"
-rm -rf  glitter_proto/blockved/glitterchain/index/types/*.pb.go
-rm -rf  glitter_proto/blockved/glitterchain/index/types/*.pb.gw.go
+CHAIN_DIR=${SRC_DIR}"/glitterchain/index"
+rm -rf  glitter_proto/glitterchain/index/types/*.pb.go
+rm -rf  glitter_proto/glitterchain/index/types/*.pb.gw.go
 protoc \
   --proto_path=${SRC_DIR} \
   -I="third_party/proto/" \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
   $(find  ${CHAIN_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
-cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index/types/*.go  glitter_proto/blockved/glitterchain/index/types/
+cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index/types/*.go  glitter_proto/glitterchain/index/types/
 
 
-CHAIN_DIR=${SRC_DIR}"/blockved/glitterchain/consumer"
+CHAIN_DIR=${SRC_DIR}"/glitterchain/consumer"
 protoc \
   --proto_path=${SRC_DIR} \
   -I="third_party/proto/" \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
   $(find  ${CHAIN_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
-cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer/types/*.go  glitter_proto/blockved/glitterchain/consumer/types/
+cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/consumer/types/*.go  glitter_proto/glitterchain/consumer/types/
 
 
 

@@ -1,0 +1,7 @@
+syntax = "proto3";
+package glitterchain.index;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index/types";
+import "gogoproto/gogo.proto";

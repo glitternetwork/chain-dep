@@ -3,9 +3,9 @@ module github.com/glitternetwork/chain-dep
 go 1.19
 
 require (
-	github.com/cosmos/cosmos-sdk v0.45.10
-	github.com/cosmos/ibc-go/v3 v3.2.0
-	github.com/evmos/ethermint v0.19.3
+	github.com/cosmos/cosmos-sdk v0.45.5-0.20220523154235-2921a1c3c918
+	github.com/cosmos/ibc-go/v3 v3.1.0
+	github.com/evmos/ethermint v0.19.1
 	github.com/gogo/protobuf v1.3.3
 	github.com/golang/protobuf v1.5.2
 	github.com/gorilla/mux v1.8.0

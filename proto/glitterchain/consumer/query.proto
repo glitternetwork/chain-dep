@@ -1,0 +1,78 @@
+syntax = "proto3";
+package glitterchain.consumer;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "glitterchain/consumer/consumer.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/consumer/types";
+
+service Query {
+
+
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/glitterchain/consumer/params";
+  }
+
+  rpc QueryConsumer(QueryConsumerRequest) returns (QueryConsumerResponse) {
+    option (google.api.http).get = "/glitterchain/consumer/consumer_address/{address}";
+  }
+
+  rpc QueryConsumers(QueryConsumersRequest) returns (QueryConsumersResponse) {
+    option (google.api.http).get = "/glitterchain/consumers";
+  }
+
+  rpc QueryReleasingCPDT(QueryReleasingCPDTRequest) returns (QueryReleasingCPDTResponse) {
+    option (google.api.http).get = "/glitterchain/consumer/releasingCPDT/consumer_address/{address}";
+  }
+
+  rpc QueryReleasingCPDTs(QueryReleasingCPDTsRequest) returns (QueryReleasingCPDTsResponse) {
+    option (google.api.http).get = "/glitterchain/consumer/releasingCPDTs";
+  }
+
+
+}
+
+message QueryParamsRequest {}
+
+message QueryParamsResponse{}
+
+message QueryConsumerRequest{
+  string address = 1;
+}
+message QueryConsumerResponse{
+  Consumer consumer = 1;
+}
+
+
+message QueryConsumersRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+message QueryConsumersResponse{
+  repeated  Consumer consumer = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryReleasingCPDTRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  string address = 1;
+}
+
+message QueryReleasingCPDTResponse{
+  repeated ReleasingCPDT releasingCPDTs = 1  [(gogoproto.nullable) = false];
+}
+
+message QueryReleasingCPDTsRequest{
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryReleasingCPDTsResponse{
+  repeated ReleasingCPDT releasingCPDTs = 1  [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package glitterchain.index;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  string  fee_per_dataset_per_second = 1
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}

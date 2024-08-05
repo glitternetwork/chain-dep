@@ -30,8 +30,8 @@ import (
 	ethermintcodec "github.com/evmos/ethermint/encoding/codec"
 	"github.com/evmos/ethermint/x/evm"
 	"github.com/evmos/ethermint/x/feemarket"
-	glitterconsumer "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/consumer"
-	glitterindex "github.com/glitternetwork/chain-dep/glitter_proto/blockved/glitterchain/index"
+	glitterconsumer "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/consumer"
+	glitterindex "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index"
 )
 
 const (

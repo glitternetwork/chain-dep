@@ -1,0 +1,33 @@
+syntax = "proto3";
+package glitterchain.consumer;
+
+option go_package = "github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/consumer/types";
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+service Msg {
+  rpc Pledge      (PledgeRequest     ) returns (PledgeResponse     );
+  rpc ReleasePledge    (ReleasePledgeRequest   ) returns (ReleasePledgeResponse);
+}
+
+
+message PledgeRequest {
+  string  from_address = 1;
+  string  dataset_name = 2;
+  string  amount = 3
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}
+
+message PledgeResponse {
+}
+
+message ReleasePledgeRequest{
+  string  from_address = 1;
+  string  dataset_name = 2;
+  string  amount = 3
+  [(gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (gogoproto.nullable) = false];
+}
+
+message ReleasePledgeResponse{
+  google.protobuf.Timestamp completion_time = 1 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}
