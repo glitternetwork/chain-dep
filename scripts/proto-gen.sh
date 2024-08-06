@@ -33,7 +33,6 @@ cp -r glitter_proto/github.com/glitternetwork/chain-dep/glitter_proto/glittercha
 CHAIN_DIR=${SRC_DIR}"/glitterchain/consumer"
 protoc \
   --proto_path=${SRC_DIR} \
-  -I="third_party/proto/" \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
   $(find  ${CHAIN_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
