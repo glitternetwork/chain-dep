@@ -1,0 +1,4 @@
+[submodule "submodules/glitter.proto"]
+	path = submodules/glitter.proto
+	url = git@github.com:glitternetwork/glitter.proto.git
+	branch = feat/dev_v4

@@ -16,7 +16,7 @@ protoc_gen_gocosmos
 OUT_DIR="./glitter_proto"
 mkdir -p "$OUT_DIR"
 echo "Processing glitter proto files ..."
-SRC_DIR="./proto"
+SRC_DIR="./submodules/glitter.proto/proto"
 
 
 CHAIN_DIR=${SRC_DIR}"/glitterchain/index"
@@ -24,7 +24,6 @@ rm -rf  glitter_proto/glitterchain/index/types/*.pb.go
 rm -rf  glitter_proto/glitterchain/index/types/*.pb.gw.go
 protoc \
   --proto_path=${SRC_DIR} \
-  -I="third_party/proto/" \
   --gocosmos_out=plugins=interfacetype+grpc:./glitter_proto \
   --grpc-gateway_out=logtostderr=true,allow_colon_final_segments=true:./glitter_proto \
   $(find  ${CHAIN_DIR} -path -prune -o -name '*.proto' -print0 | xargs -0)
