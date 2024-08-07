@@ -16,7 +16,7 @@ const (
 
 func FlagSetDescription() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagDescription, utils.DefaultStringFieldUnsetData, "The description required on the dataset")
+	fs.String(FlagDescription, utils.DefaultStringField, "The description required on the dataset")
 	return fs
 }
 
@@ -28,24 +28,24 @@ func FlagSetWorkStatus() *flag.FlagSet {
 
 func FlagSetHosts() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagHosts, utils.DefaultStringFieldUnsetData, "The work status required on the dataset")
+	fs.String(FlagHosts, utils.DefaultStringField, "The work status required on the dataset")
 	return fs
 }
 
 func FlagSetManageAddresses() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagManageAddresses, utils.DefaultStringFieldUnsetData, "The manage addresses required on the dataset")
+	fs.String(FlagManageAddresses, utils.DefaultStringField, "The manage addresses required on the dataset")
 	return fs
 }
 
 func FlagSetMeta() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagMeta, utils.DefaultStringFieldUnsetData, "The meta required on the dataset")
+	fs.String(FlagMeta, utils.DefaultStringField, "The meta required on the dataset")
 	return fs
 }
 
 func FlagSetDuration() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.Int64(FlagDuration, utils.DefaultInt64FieldUnsetdata, "duration(second) required on the dataset")
+	fs.Int64(FlagDuration, 0, "duration(second) required on the dataset")
 	return fs
 }

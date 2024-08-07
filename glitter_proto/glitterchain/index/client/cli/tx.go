@@ -69,28 +69,30 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			if workstatus == utils.DefaultInt64FieldUnsetdata {
+			var isFindWorkStatus bool
+			for k, _ := range types.ServiceStatus_name {
+				if k == int32(workstatus) {
+					isFindWorkStatus = true
+					break
+				}
+			}
+			if !isFindWorkStatus {
 				return errors.New("param work status error")
 			}
-
 			meta, err := cmd.Flags().GetString(FlagMeta)
 			if err != nil {
 				return err
 			}
-			if meta == utils.DefaultStringFieldUnsetData {
+			if meta == utils.DefaultStringField {
 				return errors.New("param meta error")
 			}
 			duration, err := cmd.Flags().GetInt64(FlagDuration)
 			if err != nil {
 				return err
 			}
-			if duration == utils.DefaultInt64FieldUnsetdata {
-				return errors.New("unset param duration")
-			}
 			if duration <= 0 {
 				return errors.New("param duration must greater than 0")
 			}
-
 			msg := types.NewCreateDatasetRequest(
 				fromAddress,
 				datasetName,
@@ -190,7 +192,7 @@ func GetCmdTxEditTable() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "edit-table <dataset_name> <table_name> <meta>",
 		Short: "edit table",
-		Args:  cobra.ExactArgs(3),
+		Args:  cobra.ExactArgs(4),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -198,11 +200,11 @@ func GetCmdTxEditTable() *cobra.Command {
 			}
 			fromAddress := clientCtx.GetFromAddress()
 			var (
-				datasetName, tableName, meta string
+				datasetName, tableName, meta, description string
 			)
-			datasetName, tableName, meta = args[0], args[1], args[2]
+			datasetName, tableName, meta, description = args[0], args[1], args[2], args[3]
 
-			msg := types.NewEditTableRequest(fromAddress, datasetName, tableName, meta)
+			msg := types.NewEditTableRequest(fromAddress, datasetName, tableName, meta, description)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

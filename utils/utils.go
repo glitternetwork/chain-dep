@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	DefaultStringFieldUnsetData = "unset-data"
-	DefaultInt64FieldUnsetdata  = -999999
+	DefaultStringField = "--"
+	DefaultInt64Field  = -999999
 )
 
 func StrSholudNotEmpty(name string, s string) error {

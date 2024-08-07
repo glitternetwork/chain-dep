@@ -5,7 +5,7 @@ proto-compiler:
 init:
 
 proto-gen:
-	git submodule update
+	git submodule update --remote
 	rm -rf glitter_proto/glitterchain/index/types/*.pb.go
 	rm -rf glitter_proto/glitterchain/index/types/*.gw.go
 

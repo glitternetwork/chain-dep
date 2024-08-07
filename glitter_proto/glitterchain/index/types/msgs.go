@@ -16,12 +16,13 @@ const (
 
 var _ sdk.Msg = &EditTableRequest{}
 
-func NewEditTableRequest(fromAddress sdk.AccAddress, datasetName string, tableName string, meta string) *EditTableRequest {
+func NewEditTableRequest(fromAddress sdk.AccAddress, datasetName string, tableName string, meta string, description string) *EditTableRequest {
 	return &EditTableRequest{
 		FromAddress: fromAddress.String(),
 		DatasetName: datasetName,
 		TableName:   tableName,
 		Meta:        meta,
+		Description: description,
 	}
 }
 func (msg EditTableRequest) Route() string {
@@ -40,6 +41,9 @@ func (msg EditTableRequest) ValidateBasic() error {
 		return err
 	}
 	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
+		return err
+	}
+	if err := utils.StrSholudNotEmpty("description", msg.GetDescription()); err != nil {
 		return err
 	}
 	return nil
