@@ -6,7 +6,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/glitternetwork/chain-dep/glitter_proto/glitterchain/index/types"
-	"github.com/glitternetwork/chain-dep/utils"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"strconv"
@@ -82,9 +81,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			meta, err := cmd.Flags().GetString(FlagMeta)
 			if err != nil {
 				return err
-			}
-			if meta == utils.DefaultStringField {
-				return errors.New("param meta error")
 			}
 			duration, err := cmd.Flags().GetInt64(FlagDuration)
 			if err != nil {

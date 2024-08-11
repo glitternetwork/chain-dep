@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"github.com/glitternetwork/chain-dep/utils"
 	flag "github.com/spf13/pflag"
 )
 
@@ -16,7 +15,7 @@ const (
 
 func FlagSetDescription() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagDescription, utils.DefaultStringField, "The description required on the dataset")
+	fs.String(FlagDescription, "", "The description required on the dataset")
 	return fs
 }
 
@@ -28,19 +27,19 @@ func FlagSetWorkStatus() *flag.FlagSet {
 
 func FlagSetHosts() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagHosts, utils.DefaultStringField, "The work status required on the dataset")
+	fs.String(FlagHosts, "", "The work status required on the dataset")
 	return fs
 }
 
 func FlagSetManageAddresses() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagManageAddresses, utils.DefaultStringField, "The manage addresses required on the dataset")
+	fs.String(FlagManageAddresses, "", "The manage addresses required on the dataset")
 	return fs
 }
 
 func FlagSetMeta() *flag.FlagSet {
 	fs := flag.NewFlagSet("", flag.ContinueOnError)
-	fs.String(FlagMeta, utils.DefaultStringField, "The meta required on the dataset")
+	fs.String(FlagMeta, "", "The meta required on the dataset")
 	return fs
 }
 

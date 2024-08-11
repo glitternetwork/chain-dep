@@ -40,12 +40,6 @@ func (msg EditTableRequest) ValidateBasic() error {
 	if err := utils.StrSholudNotEmpty("tableName", msg.GetTableName()); err != nil {
 		return err
 	}
-	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("description", msg.GetDescription()); err != nil {
-		return err
-	}
 	return nil
 }
 
@@ -111,18 +105,6 @@ func (msg CreateDatasetRequest) ValidateBasic() error {
 	if !isFind {
 		return errors.New("param work status error")
 	}
-	if err := utils.StrSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("description", msg.GetDescription()); err != nil {
-		return err
-	}
 	if msg.GetDuration() <= 0 {
 		return errors.New("param duration error")
 	}
@@ -186,18 +168,6 @@ func (msg EditDatasetRequest) ValidateBasic() error {
 	}
 	if !isFind {
 		return errors.New("param work status error")
-	}
-	if err := utils.StrSholudNotEmpty("hosts", msg.GetHosts()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("manage address", msg.GetManageAddresses()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("meta", msg.GetMeta()); err != nil {
-		return err
-	}
-	if err := utils.StrSholudNotEmpty("description", msg.GetDescription()); err != nil {
-		return err
 	}
 	return nil
 }
