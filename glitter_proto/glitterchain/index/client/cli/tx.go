@@ -78,10 +78,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 			if !isFindWorkStatus {
 				return errors.New("param work status error")
 			}
-			meta, err := cmd.Flags().GetString(FlagMeta)
-			if err != nil {
-				return err
-			}
 			duration, err := cmd.Flags().GetInt64(FlagDuration)
 			if err != nil {
 				return err
@@ -95,7 +91,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 				types.ServiceStatus(workstatus),
 				hosts,
 				manageAddresses,
-				meta,
 				description,
 				duration,
 			)
@@ -109,7 +104,6 @@ func GetCmdTxCreateDataset() *cobra.Command {
 	cmd.Flags().AddFlagSet(FlagSetWorkStatus())
 	cmd.Flags().AddFlagSet(FlagSetHosts())
 	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
-	cmd.Flags().AddFlagSet(FlagSetMeta())
 	cmd.Flags().AddFlagSet(FlagSetDuration())
 	cmd.Flags().AddFlagSet(FlagSetDescription())
 	flags.AddTxFlagsToCmd(cmd)
@@ -155,17 +149,12 @@ func GetCmdTxEditDataset() *cobra.Command {
 				return err
 			}
 
-			meta, err := cmd.Flags().GetString(FlagMeta)
-			if err != nil {
-				return err
-			}
 			msg := types.NewEditDatasetRequest(
 				fromAddress,
 				datasetName,
 				types.ServiceStatus(workstatus),
 				hosts,
 				manageAddresses,
-				meta,
 				description,
 			)
 			if err := msg.ValidateBasic(); err != nil {
@@ -179,14 +168,13 @@ func GetCmdTxEditDataset() *cobra.Command {
 	cmd.Flags().AddFlagSet(FlagSetWorkStatus())
 	cmd.Flags().AddFlagSet(FlagSetHosts())
 	cmd.Flags().AddFlagSet(FlagSetManageAddresses())
-	cmd.Flags().AddFlagSet(FlagSetMeta())
 	flags.AddTxFlagsToCmd(cmd)
 	return cmd
 }
 
 func GetCmdTxEditTable() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "edit-table <dataset_name> <table_name> <meta>",
+		Use:   "edit-table <dataset_name> <table_name> <description>",
 		Short: "edit table",
 		Args:  cobra.ExactArgs(4),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -196,11 +184,11 @@ func GetCmdTxEditTable() *cobra.Command {
 			}
 			fromAddress := clientCtx.GetFromAddress()
 			var (
-				datasetName, tableName, meta, description string
+				datasetName, tableName, description string
 			)
-			datasetName, tableName, meta, description = args[0], args[1], args[2], args[3]
+			datasetName, tableName, description = args[0], args[1], args[3]
 
-			msg := types.NewEditTableRequest(fromAddress, datasetName, tableName, meta, description)
+			msg := types.NewEditTableRequest(fromAddress, datasetName, tableName, description)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

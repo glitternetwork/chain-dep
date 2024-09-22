@@ -16,12 +16,11 @@ const (
 
 var _ sdk.Msg = &EditTableRequest{}
 
-func NewEditTableRequest(fromAddress sdk.AccAddress, datasetName string, tableName string, meta string, description string) *EditTableRequest {
+func NewEditTableRequest(fromAddress sdk.AccAddress, datasetName string, tableName string, description string) *EditTableRequest {
 	return &EditTableRequest{
 		FromAddress: fromAddress.String(),
 		DatasetName: datasetName,
 		TableName:   tableName,
-		Meta:        meta,
 		Description: description,
 	}
 }
@@ -64,7 +63,6 @@ func NewCreateDatasetRequest(
 	workStatus ServiceStatus,
 	hosts string,
 	manageAddresses string,
-	meta string,
 	description string,
 	duration int64,
 
@@ -75,7 +73,6 @@ func NewCreateDatasetRequest(
 		WorkStatus:      workStatus,
 		Hosts:           hosts,
 		ManageAddresses: manageAddresses,
-		Meta:            meta,
 		Description:     description,
 		Duration:        duration,
 	}
@@ -132,7 +129,6 @@ func NewEditDatasetRequest(
 	workStatus ServiceStatus,
 	hosts string,
 	manageAddresses string,
-	meta string,
 	description string,
 ) *EditDatasetRequest {
 	return &EditDatasetRequest{
@@ -141,7 +137,6 @@ func NewEditDatasetRequest(
 		WorkStatus:      workStatus,
 		Hosts:           hosts,
 		ManageAddresses: manageAddresses,
-		Meta:            meta,
 		Description:     description,
 	}
 }
