@@ -9,6 +9,10 @@ import (
 	"strconv"
 )
 
+const (
+	DefaultGracePeriod int64 = 86400 * 7 * 3
+)
+
 var (
 	KeyFeePerDatasetPerSecond = []byte("FeePerDatasetPerSecond")
 	KeyGracePeriod            = []byte("GracePeriod")
@@ -32,7 +36,7 @@ func NewParams(feePerDatasetPerSecond sdk.Int, gracePeriod int64) Params {
 // DefaultParams returns a default set of parameters
 func DefaultParams() Params {
 	DefaultFeePerDatasetPerSecond, _ := sdk.NewIntFromString("1000000000000")
-	return NewParams(DefaultFeePerDatasetPerSecond, 3*60)
+	return NewParams(DefaultFeePerDatasetPerSecond, DefaultGracePeriod)
 }
 
 // ParamSetPairs get the params.ParamSet

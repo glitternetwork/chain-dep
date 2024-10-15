@@ -8,10 +8,10 @@ import (
 )
 
 const (
-	//DefaultCPDTReleasingTime     time.Duration = time.Hour * 24 * 7 * 3
-	DefaultCPDTReleasingTime     time.Duration = time.Minute * 2
-	DefaultMaxCPDTNumPerConsumer uint32        = 1000
-	DefaultMaxCPDTEntries        uint32        = 7
+	DefaultCPDTReleasingTime = time.Hour * 24 * 7 * 3
+	//DefaultCPDTReleasingTime    = time.Minute * 2
+	DefaultMaxCPDTNumPerConsumer uint32 = 1000
+	DefaultMaxCPDTEntries        uint32 = 7
 )
 
 var (
